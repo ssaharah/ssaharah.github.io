@@ -4,8 +4,7 @@ const User_Info = document.querySelector("#user_info");
 const Login_button =  document.querySelector("#Login");
 const SignUpButton = document.querySelector("#Signup");
 const Welcome = document.querySelector("#Welcome");
-const About_Us_Text = document.querySelector("#About_Us_Text");
-const About_Us= document.querySelector("#About_Us");
+
 const SendButton1 = document.querySelector("#Chat_Button");
 const t3erdt = document.getElementById("3erdt"); 
 const edsz = document.getElementById('edsz');
@@ -51,8 +50,8 @@ const friendif = document.getElementById('friendif');
 const notiup= document.getElementById('notiup');
 const enteraddfriend = document.getElementById('enteraddfriend');
 
-
-
+sessionStorage.setItem("Chat_Name", "")
+sessionStorage.setItem("Chat_currently_in", "")
 
 //This function will check if a user is logged in or not.
 auth.onAuthStateChanged(user => {
@@ -751,6 +750,7 @@ auth.onAuthStateChanged(user => {
                         });
                     }  
                 } 
+                Chat_Name
             });
             Pause.addEventListener('click',function(e){
                 e.preventDefault();
@@ -812,9 +812,7 @@ auth.onAuthStateChanged(user => {
         Login_button.style.display ="none";
         SignUpButton.style.display ="none";
         Welcome.style.display ="none";
-        About_Us.style.display ="none";
-       
-        About_Us_Text.style.display="none";
+        
         User_info.style.display = "inline";
         Whole.style.display = "inline";
         DropdownButton.style.display = "inline-block";
@@ -845,8 +843,9 @@ auth.onAuthStateChanged(user => {
 
         call = function(){
             
-            const red = sessionStorage.getItem('Chat_Name');   
-            const Refi = firestore.collection(red).doc("Chat_Info");
+            const red = sessionStorage.getItem('Chat_Name'); 
+            if(red == ""){
+                const Refi = firestore.collection(red.trim()).doc("Chat_Info");
             Refi.onSnapshot(function(doc){
                 const data  = doc.data();
                 const uio = data.started
@@ -861,7 +860,7 @@ auth.onAuthStateChanged(user => {
                         let yui = call + red + "§"
                         var r = yh.includes(red)
                         if(n == false &&  r== false){
-                            alert('f')
+                            
                             firestore.collection('users').doc(user.uid).update({
                                 calls: yui
                             });
@@ -939,13 +938,17 @@ auth.onAuthStateChanged(user => {
                     });
 
                 }
+            })
+
+            }
+            
                 
-            });
+            
         }
         call()
         
         //When the last message send update this method runs.
-        getRealTimeUpdate = function () {
+        function getRealTimeUpdate   () {
            
             const Chat_currently_in = sessionStorage.getItem('Chat_Name');   
             const Ref = firestore.collection(Chat_currently_in).doc("Messages");
@@ -1344,8 +1347,11 @@ auth.onAuthStateChanged(user => {
                 document.getElementById('Plus_Sign').style.display = "inline-block";
             }
         }
-        const Back_butto1n = document.getElementById('Back_button');
+        
+        
+        
         function Back_button(Chatsin){
+            const Back_butto1n = document.getElementById('Back_button');
             Back_butto1n.addEventListener('click', function(e){
             e.preventDefault();
                 window.history.go(-1)
@@ -1368,6 +1374,9 @@ auth.onAuthStateChanged(user => {
                                     }
 
                                     });
+                                    function ooop(){
+                                        getRealTimeUpdate()
+                                    }
             CreateChat.addEventListener('click',function(e){
                 e.preventDefault();
                 let Chat_Name = document.getElementById('CreateChatFirstName').value;
@@ -1395,11 +1404,14 @@ auth.onAuthStateChanged(user => {
                                 });
                                 
                                 
-                                getRealTimeUpdate();
+                                
+                                
+                                ooop()
                                 JoinChatData = Chatsin +  Chat_Name + "§"
                                 firestore.collection('users').doc(user.uid).update({
                                     Chatsin: JoinChatData
                                 });
+                                
                                 JoinChat1(Chat_Name);
                             }
                         });
@@ -1423,10 +1435,9 @@ auth.onAuthStateChanged(user => {
         Login_button.style.display = "inline";
         SignUpButton.style.display = "inline";
         Welcome.style.display ="inline";
-        About_Us_Text.style.display="inline";
-        About_Us.style.display="inline";
+        
         document.getElementById('edsz').style.display = "none";
-        document.getElementById('chatf').style.display  = "none";
+        document.getElementById('ffg').style.display = "none";
     }
 });
 const Sign_up_whole = document.querySelector("#signup");
@@ -1447,6 +1458,8 @@ Sign_up_whole.addEventListener('submit',(e)=> {
                 notifi: "",
                 incall:false,
                 sound:"",
+                fr:"",
+                frs:"",
                 mute:false,
                 camera: false,
                 getcall: false,
