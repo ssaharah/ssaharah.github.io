@@ -167,7 +167,7 @@ auth.onAuthStateChanged(user => {
             firestore.collection('users').doc(user.uid).get().then(s=>{
                 let gh = s.data();
                 let bnj  = gh.notifi
-                if(bng != ""){
+                if(bnj != ""){
                     let rty = localStorage.getItem('rty');
             let rtx = localStorage.getItem('rtx');
           
