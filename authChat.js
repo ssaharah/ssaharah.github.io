@@ -567,7 +567,9 @@ auth.onAuthStateChanged(user => {
             document.getElementById('scroll').style.display = "none";
             document.getElementById('addfriend').style.display = "none";
             document.getElementById('StuffTOHide').style.display = "none";
-            
+             
+
+
             document.getElementById("chat").style.display = "none";
             document.getElementById('Plus_Sign').style.display = "none";
             document.getElementById('All_The_chats').style.display = "none";
@@ -805,7 +807,7 @@ auth.onAuthStateChanged(user => {
             }
             }
         });
-        
+        ("Friend not found")
         User_info.innerHTML = html_for_info;
         StuffTOHide.style.display = "none";
         Sidebar.style.display = "none";
@@ -948,6 +950,250 @@ auth.onAuthStateChanged(user => {
         call()
         
         //When the last message send update this method runs.
+        
+        localStorage.setItem("user.uid", user.uid);
+        localStorage.setItem('user.email', user.email);
+        function Seperate(){
+            Whole_cut_string = [];
+            Number_Of_Time_repeat = Math.ceil(Message.length/30);
+            for (let index = 0; index < Number_Of_Time_repeat; index++) {
+                Whole_part =  Message.split("", 30).join('')
+                Whole_cut_string.push((Whole_part));
+                for (let i = 0; i < 30; i++) {
+                    Message = Message.substring(1);
+                }
+            }  
+            return Whole_cut_string;
+        }
+        function getallfriends(fr){
+            
+            let thefriends = fr.split("/");
+            let frtf = thefriends;
+            let ui = 0
+            let marray = [];
+            let name = [];
+            friendif.innerHTML = "";
+            Plus_button.style.display = "none";
+            for(i = 0; i < thefriends.length; i++){
+                let frtfi = thefriends[i]
+                firestore.collection('users').doc(thefriends[i]).get().then(function(snapshoty){
+                    const data = snapshoty.data();
+                    const friendname = data.Username;
+                    let thing = friendname + "close"
+                    text = `<div class="iq"><button style="display:inline; background-color:transparent; border:none; font-size:16px; margin-left:170px;" id=${thing}>x</button> <img style="width:135px; height:135px; border-radius:12px; margin-left:30px;" src="${data.Profile}" alt=""><p style=" display:inline; padding-left:20px;">${friendname}</p></div>`
+                    friendif.innerHTML += text;
+                    ui += 1
+                    marray.push(thing)
+                    name.push(friendname)
+                    let uis = "unfriend" + frtfi
+                    let uit = uis + "t"
+                    let uise = uis + uit
+                    let textfg = `<div id="${uis}" class="modal-boss-s">
+                    <div class="modal-signup" style="height: 15.6vw;">
+                        <form class="list">
+                            <h1 style="font-size: 27px;" id="${uit}"> 
+                            </h1>
+                            <div id="${uise}"></div>
+                        </form>
+                    </div>`
+                    const trty = document.getElementById('trty');
+                    if(trty.innerHTML == ""){
+                        trty.innerHTML += textfg;
+                    }
+                    let yesiu = uis + "yes";
+                    let noiu = uis + "no"
+                    let yesbuttonano = `<button id="${yesiu}"   style="width:120px; height: 35px; background-color: green; color: white; border: none; border-radius: 5px;">Yes</button>
+                    <button id="${noiu}"  style="width:120px; height: 35px; background-color: red; color: white; border: none; border-radius: 5px;">No</button>`
+                    
+                    if(document.getElementById(uise).innerHTML == "" ){
+                      
+                        document.getElementById(uise).innerHTML += yesbuttonano;
+                    }
+                    
+                    for (let index = 0; index < marray.length; index++) {
+                        
+                        document.getElementById(marray[index]).addEventListener('click', function (){
+                            document.getElementById(uis).style.display = "none";
+                            document.getElementById('trty').style.display = "flex"
+                            document.getElementById(uis).style.display = "flex";
+                            document.getElementById(uis).style.position = "fixed";
+                            document.getElementById(uit).innerText = "Are you sure you want to unfriend " + name[index]  + "?"
+                        });
+                    }
+                    
+                    const yesunfr = document.getElementById(yesiu);
+                    const nounfr = document.getElementById(noiu);
+                        yesunfr.addEventListener('click', function(e){
+                            e.preventDefault();
+                               
+                                let oelete = thefriends.indexOf(frtfi)
+                                
+                                if (oelete > -1) {
+                                    thefriends.splice(oelete, 1);
+                                }
+                                firestore.collection('users').doc(user.uid).update({
+                                    fr: thefriends.join()
+                                })
+                                firestore.collection('users').doc(frtfi).get().then(snapshot=>{
+                                    const data = snapshot.data();
+                                    let fr = data.fr;
+                                    let orty = fr.split("/");
+                                    let rty = orty.indexOf(user.uid);
+                                    if(rty > -1){
+                                        orty.splice(rty, 1);
+
+                                    }
+                                    firestore.collection('users').doc(frtfi).update({
+                                        fr: orty.join("")
+
+                                    });
+                                });
+                            document.getElementById(uis).style.display = "none";
+                        });
+                        nounfr.addEventListener('click', function(e){
+                            e.preventDefault()
+                            document.getElementById(uis).style.display = "none";
+                        }); 
+                });
+            }
+        }
+        function InviteAFriend(){
+            Invite.addEventListener('click', function(){
+                let Friend = InviteUsername.value;
+                
+                firestore.collection('users').where("Username", "==",  Friend).get().then(snap=>{
+                    let data = snap.docs
+                    data.forEach(doc => {
+                        let polm = doc.id
+                        localStorage.setItem("efg", polm)
+                        
+                    })
+                })
+                firestore.collection('users').doc(user.uid).get().then(snapshot=>{
+                    const data = snapshot.data();
+                    let yut = data.fr;
+                    let rfgt = yut.split("/");
+                    if(yut != ""){
+                       
+                   
+                    const Chat_currently_in = sessionStorage.getItem('Chat_Name');
+                    
+                    if(Chat_currently_in == undefined){
+                        alert('Error')
+                        
+                    }else{
+                       let polm = localStorage.getItem('efg')
+                        if(rfgt.includes(polm) == false){
+                            alert("Friend not found");
+                        }else{
+                            
+                            firestore.collection('users').where("Username", "==", Friend).get().then(function(snapshot){
+                                snapshot.forEach(doc => {
+                                    const Data = doc.data();
+                                    DocId = doc.id;
+                                    let ChatOfThatFriend = Data.Chatsin;
+                                    let NewChatOfThatFriend = ChatOfThatFriend  + Chat_currently_in + "§";
+                                    firestore.collection('users').doc(DocId).update({
+                                        Chatsin: NewChatOfThatFriend
+                                    }); 
+                                
+                                    firestore.collection(Chat_currently_in).doc('Chat_Info').get().then(snapshot =>{
+                                        const InviteFriendData = snapshot.data();
+                                        
+                                        const User = InviteFriendData.User_In_Chat;
+                                        firestore.collection(Chat_currently_in).doc('Chat_Info').update({
+                                            User_In_Chat: User + Friend  + " "
+                                        });
+                                    });
+                                });
+                            });
+                        }
+                    }
+
+                    }else{
+                        alert('No friends found.')
+                    }
+                    
+                    
+                });
+            });
+        }
+        
+        function SendButton(Display_Name){
+            //This runs when the user clicks send
+            SendButton1.addEventListener('click' ,(e) =>{
+                //Stops the page from reloading.
+                e.preventDefault();
+                DATE = new Date().getTime();
+                let Date_Send = new Date();
+                //Getting the message that the user send.
+                const Message = document.querySelector("#Chat_input").value;
+                //If the message is not equal to nothing the follwing runs else it just says to send a message that is not empty
+                
+                if (Message != null && Message.trim() != "")
+                {   
+                       const Chat_currently_in = sessionStorage.getItem('Chat_Name')
+                        const Ref2 = firestore.collection(Chat_currently_in).doc(DATE.toString());
+                        let Date_mili = Date_Send.getTime();
+                        let Date = Date_Send.getSeconds() + "/" + Date_Send.getMinutes() + "/" + Date_Send.getHours() + "/" +
+                        Date_Send.getDay() + "/" + Date_Send.getMonth() +"/" +  Date_Send.getFullYear();
+                        let Number_Of_Characters = Math.round((Message.length * 30 +  30)/7 + 42);
+                        let Number_Of_Words = Message.split(' ').length-1;
+                        const Ref = firestore.collection(Chat_currently_in).doc("Messages");
+                        const Refd = firestore.collection(Chat_currently_in).doc("Chat_Info");
+                        if(Number_Of_Words == 0 ){
+                            Number_Of_Words = 1;
+                        }
+                        //Setting the value on a new message.
+                        Ref2.set({
+                            Message: Message,
+                            WhoIsTheMessageFrom: user.uid,
+                            IsMessage:false,
+                            Display_Name: Display_Name,
+                            Number_Of_Characters: Number_Of_Characters/ Math.ceil(Message.length / 30),
+                            Date_mili: -Date_mili,
+                            Date: Date,
+                        });
+                        Refd.update({
+                            Message: Message,
+                            WhoIsTheMessageFrom: user.uid,
+                            Display_Name: Display_Name,
+                            Number_Of_Characters: Number_Of_Characters/ Math.ceil(Message.length / 30),
+                            Date_mili: -Date_mili,
+                            Date: Date,
+
+                        })
+                        //Updating the last message send.Which then triggers a method to run
+                        Ref.set({
+                            Message: Message,
+                            WhoIsTheMessageFrom: user.uid,
+                            IsMessage: true,
+                            Display_Name:  Display_Name,
+                            Number_Of_Characters: Number_Of_Characters/ Math.ceil(Message.length / 30),
+                            Date: Date,
+                        });
+                    //saving some stuff to local storage.
+                    Chat_name = sessionStorage.getItem('Chat_Name');
+                    sessionStorage.setItem('Message', Message);
+                    sessionStorage.setItem('WhoIsTheMessageFrom', user.email);
+                    document.querySelector("#Chat_input").value = ""
+                    scrollSmoothToBottom("scroll")
+                        function scrollSmoothToBottom (id) { 
+                            setTimeout(function(){
+                                var div = document.getElementById(id);
+                                $('#' + id).animate({
+                                    scrollTop: div.scrollHeight - div.clientHeight
+                                }, 500);    
+                            }, 500)
+                            
+                         }
+                }else{
+                    //same
+                    console.log("Please enter a text!");
+                //same
+                }
+            });
+        }
         function getRealTimeUpdate   () {
            
             const Chat_currently_in = sessionStorage.getItem('Chat_Name');   
@@ -1068,238 +1314,6 @@ auth.onAuthStateChanged(user => {
             
             
         }//End of function
-        localStorage.setItem("user.uid", user.uid);
-        localStorage.setItem('user.email', user.email);
-        function Seperate(){
-            Whole_cut_string = [];
-            Number_Of_Time_repeat = Math.ceil(Message.length/30);
-            for (let index = 0; index < Number_Of_Time_repeat; index++) {
-                Whole_part =  Message.split("", 30).join('')
-                Whole_cut_string.push((Whole_part));
-                for (let i = 0; i < 30; i++) {
-                    Message = Message.substring(1);
-                }
-            }  
-            return Whole_cut_string;
-        }
-        function getallfriends(fr){
-            
-            let thefriends = fr.split("/");
-            let frtf = thefriends;
-            let ui = 0
-            let marray = [];
-            let name = [];
-            friendif.innerHTML = "";
-            Plus_button.style.display = "none";
-            for(i = 0; i < thefriends.length; i++){
-                let frtfi = thefriends[i]
-                firestore.collection('users').doc(thefriends[i]).get().then(function(snapshoty){
-                    const data = snapshoty.data();
-                    const friendname = data.Username;
-                    let thing = friendname + "close"
-                    text = `<div class="iq"><button style="display:inline; background-color:transparent; border:none; font-size:16px; margin-left:170px;" id=${thing}>x</button> <img style="width:135px; height:135px; border-radius:12px; margin-left:30px;" src="${data.Profile}" alt=""><p style=" display:inline; padding-left:20px;">${friendname}</p></div>`
-                    friendif.innerHTML += text;
-                    ui += 1
-                    marray.push(thing)
-                    name.push(friendname)
-                    let uis = "unfriend" + frtfi
-                    let uit = uis + "t"
-                    let uise = uis + uit
-                    let textfg = `<div id="${uis}" class="modal-boss-s">
-                    <div class="modal-signup" style="height: 15.6vw;">
-                        <form class="list">
-                            <h1 style="font-size: 27px;" id="${uit}"> 
-                            </h1>
-                            <div id="${uise}"></div>
-                        </form>
-                    </div>`
-                    const trty = document.getElementById('trty');
-                    if(trty.innerHTML == ""){
-                        trty.innerHTML += textfg;
-                    }
-                    let yesiu = uis + "yes";
-                    let noiu = uis + "no"
-                    let yesbuttonano = `<button id="${yesiu}"   style="width:120px; height: 35px; background-color: green; color: white; border: none; border-radius: 5px;">Yes</button>
-                    <button id="${noiu}"  style="width:120px; height: 35px; background-color: red; color: white; border: none; border-radius: 5px;">No</button>`
-                    
-                    if(document.getElementById(uise).innerHTML == "" ){
-                      
-                        document.getElementById(uise).innerHTML += yesbuttonano;
-                    }
-                    for (let index = 0; index < marray.length; index++) {
-                        
-                        document.getElementById(marray[index]).addEventListener('click', function (){
-                            document.getElementById(uis).style.display = "none";
-                            document.getElementById('trty').style.display = "flex"
-                            document.getElementById(uis).style.display = "flex";
-                            document.getElementById(uis).style.position = "fixed";
-                            document.getElementById(uit).innerText = "Are you sure you want to unfriend " + name[index]  + "?"
-                        });
-                    }
-                    
-                    const yesunfr = document.getElementById(yesiu);
-                    const nounfr = document.getElementById(noiu);
-                        yesunfr.addEventListener('click', function(e){
-                            e.preventDefault();
-                               
-                                let oelete = thefriends.indexOf(frtfi)
-                                
-                                if (oelete > -1) {
-                                    thefriends.splice(oelete, 1);
-                                }
-                                firestore.collection('users').doc(user.uid).update({
-                                    fr: thefriends.join()
-                                })
-                                firestore.collection('users').doc(frtfi).get().then(snapshot=>{
-                                    const data = snapshot.data();
-                                    let fr = data.fr;
-                                    let orty = fr.split("/");
-                                    let rty = orty.indexOf(user.uid);
-                                    if(rty > -1){
-                                        orty.splice(rty, 1);
-
-                                    }
-                                    firestore.collection('users').doc(frtfi).update({
-                                        fr: orty.join("")
-
-                                    });
-                                });
-                            document.getElementById(uis).style.display = "none";
-                        });
-                        nounfr.addEventListener('click', function(e){
-                            e.preventDefault()
-                            document.getElementById(uis).style.display = "none";
-                        }); 
-                });
-            }
-        }
-        function InviteAFriend(){
-            Invite.addEventListener('click', function(){
-                let Friend = InviteUsername.value;
-                firestore.collection('users').doc(user.uid).get().then(snapshot=>{
-                    const data = snapshot.data();
-                    let yut = data.fr;
-                    let rfgt = yut.split("/");
-                    if(yut != ""){
-                        friandarray = [];
-                   
-                    const Chat_currently_in = sessionStorage.getItem('Chat_Name');
-                    
-                    if(Chat_currently_in == undefined){
-                        alert('Error')
-                        
-                    }else{
-                        if(friandarray.includes(Friend) == false){
-                            alert("Friend not found");
-                        }else{
-                            
-                            firestore.collection('users').where("Username", "==", Friend).get().then(function(snapshot){
-                                snapshot.forEach(doc => {
-                                    const Data = doc.data();
-                                    DocId = doc.id;
-                                    let ChatOfThatFriend = Data.Chatsin;
-                                    let NewChatOfThatFriend = ChatOfThatFriend  + Chat_currently_in + "§";
-                                    firestore.collection('users').doc(DocId).update({
-                                        Chatsin: NewChatOfThatFriend
-                                    }); 
-                                
-                                    firestore.collection(Chat_currently_in).doc('Chat_Info').get().then(snapshot =>{
-                                        const InviteFriendData = snapshot.data();
-                                        
-                                        const User = InviteFriendData.User_In_Chat;
-                                        firestore.collection(Chat_currently_in).doc('Chat_Info').update({
-                                            User_In_Chat: User + Friend  + " "
-                                        });
-                                    });
-                                });
-                            });
-                        }
-                    }
-
-                    }else{
-                        alert('No friends found.')
-                    }
-                    
-                    
-                });
-            });
-        }
-        
-        function SendButton(Display_Name){
-            //This runs when the user clicks send
-            SendButton1.addEventListener('click' ,(e) =>{
-                //Stops the page from reloading.
-                e.preventDefault();
-                DATE = new Date().getTime();
-                let Date_Send = new Date();
-                //Getting the message that the user send.
-                const Message = document.querySelector("#Chat_input").value;
-                //If the message is not equal to nothing the follwing runs else it just says to send a message that is not empty
-                
-                if (Message != null && Message.trim() != "")
-                {   
-                       const Chat_currently_in = sessionStorage.getItem('Chat_Name')
-                        const Ref2 = firestore.collection(Chat_currently_in).doc(DATE.toString());
-                        let Date_mili = Date_Send.getTime();
-                        let Date = Date_Send.getSeconds() + "/" + Date_Send.getMinutes() + "/" + Date_Send.getHours() + "/" +
-                        Date_Send.getDay() + "/" + Date_Send.getMonth() +"/" +  Date_Send.getFullYear();
-                        let Number_Of_Characters = Math.round((Message.length * 30 +  30)/7 + 42);
-                        let Number_Of_Words = Message.split(' ').length-1;
-                        const Ref = firestore.collection(Chat_currently_in).doc("Messages");
-                        const Refd = firestore.collection(Chat_currently_in).doc("Chat_Info");
-                        if(Number_Of_Words == 0 ){
-                            Number_Of_Words = 1;
-                        }
-                        //Setting the value on a new message.
-                        Ref2.set({
-                            Message: Message,
-                            WhoIsTheMessageFrom: user.uid,
-                            IsMessage:false,
-                            Display_Name: Display_Name,
-                            Number_Of_Characters: Number_Of_Characters/ Math.ceil(Message.length / 30),
-                            Date_mili: -Date_mili,
-                            Date: Date,
-                        });
-                        Refd.update({
-                            Message: Message,
-                            WhoIsTheMessageFrom: user.uid,
-                            Display_Name: Display_Name,
-                            Number_Of_Characters: Number_Of_Characters/ Math.ceil(Message.length / 30),
-                            Date_mili: -Date_mili,
-                            Date: Date,
-
-                        })
-                        //Updating the last message send.Which then triggers a method to run
-                        Ref.set({
-                            Message: Message,
-                            WhoIsTheMessageFrom: user.uid,
-                            IsMessage: true,
-                            Display_Name:  Display_Name,
-                            Number_Of_Characters: Number_Of_Characters/ Math.ceil(Message.length / 30),
-                            Date: Date,
-                        });
-                    //saving some stuff to local storage.
-                    Chat_name = sessionStorage.getItem('Chat_Name');
-                    sessionStorage.setItem('Message', Message);
-                    sessionStorage.setItem('WhoIsTheMessageFrom', user.email);
-                    document.querySelector("#Chat_input").value = ""
-                    scrollSmoothToBottom("scroll")
-                        function scrollSmoothToBottom (id) { 
-                            setTimeout(function(){
-                                var div = document.getElementById(id);
-                                $('#' + id).animate({
-                                    scrollTop: div.scrollHeight - div.clientHeight
-                                }, 500);    
-                            }, 500)
-                            
-                         }
-                }else{
-                    //same
-                    console.log("Please enter a text!");
-                //same
-                }
-            });
-        }
         function GetAllChats(Chatsin){
             let ChatsinArray = Chatsin.split("§");
             let All_The_chats = document.getElementById('All_The_chats');
@@ -1314,9 +1328,11 @@ auth.onAuthStateChanged(user => {
                     firestore.collection(ChatsinArray[i]).doc('Chat_Info').get().then(function(snapshot){
                         const Data = snapshot.data();
                         let message = Data.Message;
-                       
                         let WhoIsTheMessageFrom= Data.WhoIsTheMessageFrom;
                         let g = Data.Date
+                       
+                       if(message != undefined &&  WhoIsTheMessageFrom != undefined && g != undefined ){
+                        
                         let f = g.split("/")
                         if(message == ""){
                             message = "Image"
@@ -1324,20 +1340,33 @@ auth.onAuthStateChanged(user => {
                         
                         let time = f[3] + "/" + f[4] + "/" + f[5]
                         let rf = Data.Display_Name
-                        let text = ""
-                        if(WhoIsTheMessageFrom == user.uid){
-                            text = "You:"
-                        }else{
-                           text = rf + ":"
-                        }
+                        let textiscool = ""
                         
+                        if(WhoIsTheMessageFrom.trim() == user.uid){
+                            textiscool = "You:"
+                        }else{
+                           textiscool = rf + ":"
+                        }
+                        localStorage.setItem("texto", textiscool)
+                        
+                }else{
+                        message = ""
+                        textiscool = ""
+                        localStorage.setItyem("texto", textiscool)
+                       }
+                       
                         allchatpic.innerHTML += `<img style="width:3.1vw; height:3.1vw; margin-left:20px; margin-right:20px; margin-top:10px; display:inline-block; border-radius:50px;" src="${Data.Image}" alt="Can't load"> `
-                        const Chatsin = ` <br><button  id="${ChatsinArray[i]}"class="Inline_vertical"  onclick="JoinChat1(this.id); getRealTimeUpdate(); " style="margin-left:70px; border:none;   background-color: transparent;"><img style="float: left;  
-                          border-radius: 75px; " class="inline" src="${Data.Image}" alt="Can not load"><p style="display:inline; margin-right:710px; text-align: justify;    "> ${ChatsinArray[i]} </p> <br><p style="margin-right:710px;">${text} ${message}  </p> </p>  </button> `;
-                        Chat_all+= Chatsin
+                        const Chatsin = ` <br><button  id="${ChatsinArray[i]}"class="Inline_vertical"  onclick="JoinChat1(this.id);   " style="margin-left:70px; border:none;   background-color: transparent;"><img style="float: left;  
+                          border-radius: 75px; " class="inline" src="${Data.Image}" alt="Can not load"><p style="display:inline; margin-right:710px; text-align: justify;    "> ${ChatsinArray[i]} </p> <br>${localStorage.getItem("texto")}${message} </p>  </button> `;
+                          Chat_all+= Chatsin
+                        
                         All_The_chats.innerHTML = Chat_all; 
                         Chat_currently_in +=  "," + ChatsinArray[i];
                         Chat_currently_in.split(",");
+                        document.getElementById(ChatsinArray[i]).addEventListener("click", function (e){
+                            e.preventDefault()
+                            getRealTimeUpdate()
+                        })
                         
                     });
                     
