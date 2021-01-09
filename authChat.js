@@ -164,7 +164,7 @@ auth.onAuthStateChanged(user => {
         });
         noti.addEventListener('click', function(e){
             e.preventDefault();
-            firestore.collection('user').doc(user.uid).get().then(s=>{
+            firestore.collection('users').doc(user.uid).get().then(s=>{
                 let gh = s.data();
                 let bnj  = gh.notifi
                 if(bng != ""){
