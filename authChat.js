@@ -1269,7 +1269,7 @@ auth.onAuthStateChanged(user => {
                                     //Sending the message.
                                     if(Texts.Message != ""){
                                         htmlForText = ""
-                                        
+                                        console.log(Texts.WhoIsTheMessageFrom)
                                         if(Texts.WhoIsTheMessageFrom == user.uid){
                                         const htmlForTexth = `
                                         <div class="Go"><img class="inline" src=${Profile_bas64} alt="User Profile"><p class="real_inline">You:</p></div>
@@ -1284,7 +1284,7 @@ auth.onAuthStateChanged(user => {
                                         
                                         }else{
                                             htmlForText = ""
-                                                console.log(Texts.WhoIsTheMessageFrom)
+                                                
                                                         firestore.collection('users').doc(Texts.WhoIsTheMessageFrom).get().then(snapshot =>{
                                                             const moreData =snapshot.data();
                                                             const Profile_bas64Ny = moreData.Profile
