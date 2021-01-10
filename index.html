@@ -544,9 +544,9 @@ function JoinChat1(Chat_Id){
                                                     
                                                    
                                                                        
-                                                    //''''''''''''''''''''''''''''''''''''''''''''''''
+                                                    
                                                     }else{ 
-                                                        console.log(Texts.WhoIsTheMessageFrom) 
+                                                        
                                                         firestore.collection('users').doc(Texts.WhoIsTheMessageFrom).get().then(snapshot =>{
                                                                             const moreData =snapshot.data();
                                                                             const Profile_bas64Ny = moreData.Profile 
