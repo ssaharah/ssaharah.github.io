@@ -195,6 +195,7 @@ form input[type ="button"]{
 .Logout:hover{
     background-color: black; 
 }
+
 .user_info{
     display: none;
     font-size: 0.9vw;
@@ -346,13 +347,13 @@ form input[type ="button"]{
 .iq{
    
     background-color: white;
-    border: 2px solid black;
-    width: 200px;
-    height: 200px;
+    border: 0.14641288433382138vw solid black;
+    width:  14.641288433382138vw;
+    height:  14.641288433382138vw;
     display: inline-block;
     
-    margin-left: 10px;
-    border-radius: 12px;
+    margin-left: 0.7320644216691069vw;
+    border-radius: 0.8784773060029283vw;
 }
 
 .city{
@@ -360,10 +361,10 @@ form input[type ="button"]{
     
     color: black;
     border: none;
-    border-bottom: 3px solid black ;
-    border-left: 1px solid black;
-    border-right: 1px solid black;
-    border-top: 2px solid black;
+    border-bottom: 0.21961932650073207vw solid black ;
+    border-left:  0.07320644216691069vw solid black;
+    border-right:  0.07320644216691069vw solid black;
+    border-top: 0.14641288433382138vw solid black;
     background-color: rgb(85, 85, 85);
     width: 37.265625vw;
     height: 5.859375vw;
@@ -415,7 +416,7 @@ button{
 }
 
 .sidebarS li{
-    font-size: 20px;
+    font-size:  1.4641288433382138vw;
 }
 h4 {
     font-size:  3.28125vw;

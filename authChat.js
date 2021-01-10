@@ -979,7 +979,7 @@ auth.onAuthStateChanged(user => {
                     const data = snapshoty.data();
                     const friendname = data.Username;
                     let thing = friendname + "close"
-                    text = `<div class="iq"><button style="display:inline; background-color:transparent; border:none; font-size:16px; margin-left:170px;" id=${thing}>x</button> <img style="width:135px; height:135px; border-radius:12px; margin-left:30px;" src="${data.Profile}" alt=""><p style=" display:inline; padding-left:20px;">${friendname}</p></div>`
+                    text = `<div class="iq"><button style="margin-top:0.0320644216691069vh; display:inline; background-color:transparent; border:none; font-size:1.171303074670571vw; margin-left:12.445095168374817vw;" id=${thing}>x</button> <img style="width:9.882869692532942vw; height:9.882869692532942vw; border-radius:0.8784773060029283vw; margin-left:2.1961932650073206vw;" src="${data.Profile}" alt=""><p style=" display:inline; padding-left:1.4641288433382138vw;">${friendname}</p></div>`
                     friendif.innerHTML += text;
                     ui += 1
                     marray.push(thing)
