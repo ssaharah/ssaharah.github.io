@@ -1241,9 +1241,10 @@ auth.onAuthStateChanged(user => {
                                            
                                                     firestore.collection('users').doc(Texts.WhoIsTheMessageFrom).get().then(snapshot =>{
                                                         const MoreData = snapshot.data();
+                                                        const WSX = MoreData.Display_Name
                                                         const Profile_bas64NY = MoreData.Profile;
                                                         const htmlForTexth = `
-                                                        <div class="GoR" "><img class="inline" src=${Profile_bas64NY} alt="User Profile"><p class="inlineR">${Display_Name}</p></div>
+                                                        <div class="GoR" "><img class="inline" src=${Profile_bas64NY} alt="User Profile"><p class="inlineR">${WSX}</p></div>
                                                         <div  id="Message_SendRC1" class="right" style = "heigth: 15.6vw; width:15.6vw;"></p><img style="width: 150px; height: 150px;" src="${Texts.ImageSrc}" alt="Profile Picture"></img>
                                                         <br></div> 
                                                     
@@ -1283,14 +1284,14 @@ auth.onAuthStateChanged(user => {
                                         
                                         }else{
                                             htmlForText = ""
-                                            
+                                                console.log(Texts.WhoIsTheMessageFrom)
                                                         firestore.collection('users').doc(Texts.WhoIsTheMessageFrom).get().then(snapshot =>{
                                                             const moreData =snapshot.data();
                                                             const Profile_bas64Ny = moreData.Profile
+                                                           const SDF = moreData.Display_Name
                                                            
-                                                            
                                                             const htmlForTexth = `
-                                                            <div class="GoR" "><img class="inline" src=${Profile_bas64Ny} alt="User Profile"><p class="inlineR">${Display_Name}</p></div>
+                                                            <div class="GoR" "><img class="inline" src=${Profile_bas64Ny} alt="User Profile"><p class="inlineR">${SDF}</p></div>
                                                             <div  id="Message_SendRC1" class="right" ></p style="margin-top:10px;">${Texts.Message}
                                                             <p></div> 
                                                         
