@@ -4,7 +4,7 @@ const User_Info = document.querySelector("#user_info");
 const Login_button =  document.querySelector("#Login");
 const SignUpButton = document.querySelector("#Signup");
 const Welcome = document.querySelector("#Welcome");
-
+alert('dddd')
 const SendButton1 = document.querySelector("#Chat_Button");
 const t3erdt = document.getElementById("3erdt"); 
 const edsz = document.getElementById('edsz');
