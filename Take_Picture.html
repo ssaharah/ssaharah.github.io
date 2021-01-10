@@ -6,13 +6,12 @@
     <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-firestore.js"></script>
     <link rel="stylesheet" href="Take_Picture.css">
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.1.9/lib/p5.js"></script>
     <link rel="icon" href="Images/1228917a-cb83-495c-9f3a-c7bb035829f0_200x200.png">
-    
     <title>Take A Picture</title>
 </head>
 <body id="body" >
     <button id="Take_Picture">Take Picture</button>
-    <video id="video"></video>
 </body>
 <script>
     var firebaseConfig = {
@@ -28,12 +27,18 @@
     firebase.initializeApp(firebaseConfig);
     const firestore = firebase.firestore();
     document.body.style.zoom=3.0;this.blur();
-    
+    function setup(){
+        noCanvas();
+        const video = createCapture(VIDEO);
+        video.size(320,240);
+        Take_Picture.addEventListener('click', function(){
+            video.loadPixels();
             const base64= video.canvas.toDataURL();
             firestore.collection('users').doc(localStorage.getItem('user')).update({
                 Profile: base64
             });
             
-        
+        });
+    }
 </script>
 </html>
