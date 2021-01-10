@@ -4,7 +4,6 @@ const User_Info = document.querySelector("#user_info");
 const Login_button =  document.querySelector("#Login");
 const SignUpButton = document.querySelector("#Signup");
 const Welcome = document.querySelector("#Welcome");
-
 const SendButton1 = document.querySelector("#Chat_Button");
 const t3erdt = document.getElementById("3erdt"); 
 const edsz = document.getElementById('edsz');
@@ -1195,7 +1194,7 @@ auth.onAuthStateChanged(user => {
             });
         }
         function getRealTimeUpdate   () {
-           
+          
             const Chat_currently_in = sessionStorage.getItem('Chat_Name');   
             const Ref = firestore.collection(Chat_currently_in).doc("Messages");
             //When the page is loaded this method runs.
@@ -1206,7 +1205,7 @@ auth.onAuthStateChanged(user => {
             }
             
             Ref.onSnapshot(function (doc){
-
+                
                         Ref.get().then(function(doc) {
                             //Getting some data
                             const NewDates = new Date
@@ -1316,7 +1315,10 @@ auth.onAuthStateChanged(user => {
             
             
         }//End of function
+        
         function GetAllChats(Chatsin){
+            let allthechatsarei = []
+           
             let ChatsinArray = Chatsin.split("§");
             let All_The_chats = document.getElementById('All_The_chats');
             let Chat_all = '';
@@ -1326,6 +1328,7 @@ auth.onAuthStateChanged(user => {
             allchatpic.innerHTML = ``
             for (let i = 0; i < ChatsinArray.length - 1; i++) {
                 if(ChatsinArray[i] != ""){
+                   
                     
                     firestore.collection(ChatsinArray[i]).doc('Chat_Info').get().then(function(snapshot){
                         const Data = snapshot.data();
@@ -1354,30 +1357,33 @@ auth.onAuthStateChanged(user => {
                 }else{
                         message = ""
                         textiscool = ""
-                        localStorage.setItyem("texto", textiscool)
+                        localStorage.setItem("texto", textiscool)
                        }
                        
                         allchatpic.innerHTML += `<img style="width:3.1vw; height:3.1vw; margin-left:20px; margin-right:20px; margin-top:10px; display:inline-block; border-radius:50px;" src="${Data.Image}" alt="Can't load"> `
-                        const Chatsin = ` <br><button  id="${ChatsinArray[i]}"class="Inline_vertical"  onclick="JoinChat1(this.id);   " style="margin-left:70px; border:none;   background-color: transparent;"><img style="float: left;  
+                        const Chatsin = ` <br><button  id="${ChatsinArray[i]}"class="Inline_vertical"  onclick="JoinChat1(this.id);     " style="margin-left:70px; border:none;   background-color: transparent;"><img style="float: left;  
                           border-radius: 75px; " class="inline" src="${Data.Image}" alt="Can not load"><p style="display:inline; margin-right:710px; text-align: justify;    "> ${ChatsinArray[i]} </p> <br>${localStorage.getItem("texto")}${message} </p>  </button> `;
                           Chat_all+= Chatsin
-                        
+                          
+                          allthechatsarei.push(ChatsinArray[i])
+                         
                         All_The_chats.innerHTML = Chat_all; 
+                        addtheEventlistener(allthechatsarei)
                         Chat_currently_in +=  "," + ChatsinArray[i];
                         Chat_currently_in.split(",");
-                        document.getElementById(ChatsinArray[i]).addEventListener("click", function (e){
-                            e.preventDefault()
-                            getRealTimeUpdate()
-                        })
+                        
                         
                     });
                     
                 }
                 
+                
                 document.querySelector("#Bottom").style.display = "none";
                 document.getElementById('Plus_Sign').style.display = "inline-block";
             }
+            
         }
+        
         
         
         
@@ -1387,6 +1393,18 @@ auth.onAuthStateChanged(user => {
             e.preventDefault();
                 window.history.go(-1)
             });
+        }
+        function addtheEventlistener(allthechatsarei){
+            
+        for (let i = 0; i < allthechatsarei.length; i++) {
+           
+            document.getElementById(allthechatsarei[i]).addEventListener('click', function(e){
+                e.preventDefault()
+               
+                getRealTimeUpdate()
+            })
+            
+        }
         }
         function CreateChat(Chatsin){
             const CreateChat= document.getElementById('CreateChat');
