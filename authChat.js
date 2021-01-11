@@ -650,7 +650,7 @@ auth.onAuthStateChanged(user => {
               });
               setInterval(() => {
                   save();
-              }, 4000);
+              }, 12000);
             firestore.collection('users').doc(user.uid).get().then(snapshot =>{
                 const snapshotData = snapshot.data();
                 if(snapshotData.Notes == undefined){
@@ -1254,6 +1254,7 @@ auth.onAuthStateChanged(user => {
                                                     const Message_SendRC1  = document.getElementById("Message_SendRC1");
                                                     Message_SendRC1.style.display = "block";
                                                     document.getElementById("Chat_input").value = "";
+                                                    
                                                     
                                                     
                                             });

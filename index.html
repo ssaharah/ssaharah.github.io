@@ -11,17 +11,21 @@
     <link rel="icon" type="image/png" href="Images/1228917a-cb83-495c-9f3a-c7bb035829f0_200x200.png"/>
     <title>Sahara</title>
 </head>
-
+<script>
+    function changetoimage(id, image){
+        document.getElementById(id).src = image
+    }
+</script>
 <body id="body" style="background-repeat: no-repeat;" >
-        <div style="margin-left: auto;margin-right: auto;width:80vw; ">
+        <div style=" width:80vw; ">
             
             <div class="white">
                 <button id="rf" style="display: none;"></button>
                 <div id="loading" class="test"></div>
-                <a href="#"><img id="side_arrow" style="margin-left: 1vw; width:  1.5vw; height:  1.5vw;" src="Images/96997d58-285a-4f4a-8bce-b8eda73d343f_200x200.png" alt="Side Arrow"></a>
+                <a href="#"><img id="side_arrow" onmouseout="changetoimage('side_arrow', 'Images/Menu1.png')" onmouseover="changetoimage('side_arrow','Images/Menu2.png' )" style="margin-left: 1vw; width:  2vw; height:  2vw;" src="Images/Menu1.png" alt="Side Arrow"></a>
                 <div  class="sidebar"id ="sidebar"> 
                     <ul class="No-List" >
-                        <h4>Sahara</h4>
+                        <h4 style="  font-family: Arial, Helvetica, sans-serif;">Sahara</h4>
                         <li><a id="notes" style="text-decoration: none;" href="#"><img style=" width:  1.7vw; height:  1.7vw;" src="Images/note-black.png" alt="Mail">Notes </a> </li>
                         <li><a id="chatts" style="text-decoration: none;"href="#"><img style=" width:  1.5vw; height:  1.5vw;" src="Images/chat-black.png" alt="Chat">Chat </a> </li>
                         <li><a id="school"style="text-decoration: none;"href="#"><img style=" width:  1.5vw; height:  1.5vw;" src="Images/school-black.png" alt="School">School </a> </li>
@@ -33,7 +37,7 @@
                
             <span>
                 
-                <img style="vertical-align: center;"  class="Img"src="Images/1228917a-cb83-495c-9f3a-c7bb035829f0_200x200.png" alt="S">ahara
+                <img style="margin-left: 11.784773060029282vw; vertical-align: center;"  class="Img"src="Images/1228917a-cb83-495c-9f3a-c7bb035829f0_200x200.png" alt="S">ahara
                 <a  class="yui"   id ="Login"href="#" style="text-decoration:none; font-size:  0.9vw;color:cornsilk;margin-left: 15.625vw;display: none; " data-target="modal-login">Login</a>
                 <a  class="yui" id = "Signup" href="#" style="text-decoration:none;font-size:  0.9vw;color:cornsilk;display: none;" data-target="modal-signup">Sign up</a>
                 <button id="Take_Picture"  style="display: none; background-color: transparent; border: none; margin-left: 13.28125vw;" ></button>
@@ -59,7 +63,7 @@
                     </div>
                     
                 </div>
-                <div style="position: absolute;  top: 8.43375vw; left: 10.99375vw;" id="yuiut"><button style="margin-left:  9.765625vw;" id="ChatGoTo" class="city">Chat</button><button id="FriendGoTo" class="city">Friends</button></div>
+                <div style="position: absolute;  top: 8.43375vw; left: 9.79375vw;" id="yuiut"><button style="margin-left:  9.765625vw;" id="ChatGoTo" class="city">Chat</button><button id="FriendGoTo" class="city">Friends</button></div>
             </span>
             
             
@@ -166,7 +170,7 @@
             <br><br>
             <div style=" width: 1000px;" id="All_The_chats">
             </div>    
-                <h1 id="Welcome" class="hide" style="margin-top: 30px;">Welcome To Sahara</h1>
+                <h1 id="Welcome" class="hide" style="margin-top: 30px;">Welcome To<br> Sahara</h1>
                 <div id="StuffInChat">
                     <button  id="Back_button"style="background-color: transparent; border: none;  margin-right: 500px;  margin-bottom:50px;"><img style="width: 40px; height: 40px; display: none;" src="Images/2b31d65a-2474-4ac1-b9e6-5842d98a0144_200x200.png" alt="Back Button"></button>
                 </div>    
@@ -287,6 +291,7 @@
                 </form>
             </div>
         </div>
+        
 </body>
 <script>
         var firebaseConfig = {
