@@ -441,6 +441,7 @@ h4 {
   
  ul li:hover a {
     padding-left: 1.5625vw;
+    background-color: rgba(0, 0, 0, 0.315);
     
 }
 .sidebar ul a i {

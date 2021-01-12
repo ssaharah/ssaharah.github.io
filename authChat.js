@@ -650,7 +650,7 @@ auth.onAuthStateChanged(user => {
               });
               setInterval(() => {
                   save();
-              }, 12000);
+              }, 12000); 
             firestore.collection('users').doc(user.uid).get().then(snapshot =>{
                 const snapshotData = snapshot.data();
                 if(snapshotData.Notes == undefined){
@@ -806,26 +806,21 @@ auth.onAuthStateChanged(user => {
             }
             }
         });
-        ("Friend not found")
+        
         User_info.innerHTML = html_for_info;
         StuffTOHide.style.display = "none";
         Sidebar.style.display = "none";
         Login_button.style.display ="none";
         SignUpButton.style.display ="none";
         Welcome.style.display ="none";
-        
+        Sidebar.style.display = "block";
         User_info.style.display = "inline";
         Whole.style.display = "inline";
         DropdownButton.style.display = "inline-block";
         Side_arrow.style.display = "inline";
         hides.style.display = "block";
         
-        Side_arrow.addEventListener('click', (e)=>{
-            e.preventDefault();
-            
-            Sidebar.style.display = "block";    
-            
-        });
+        
         
         //-----------------------------------------------------
         //send the message
@@ -984,7 +979,7 @@ auth.onAuthStateChanged(user => {
                     ui += 1
                     marray.push(thing)
                     name.push(friendname)
-                    let uis = "unfriend" + frtfi
+                    let uis = "unfriend"  + frtfi
                     let uit = uis + "t"
                     let uise = uis + uit
                     let textfg = `<div id="${uis}" class="modal-boss-s">
@@ -995,15 +990,14 @@ auth.onAuthStateChanged(user => {
                             <div id="${uise}"></div>
                         </form>
                     </div>`
-                    const trty = document.getElementById('trty');
-                    if(trty.innerHTML == ""){
+                    
                         trty.innerHTML += textfg;
-                    }
+                    
                     let yesiu = uis + "yes";
                     let noiu = uis + "no"
                     let yesbuttonano = `<button id="${yesiu}"   style="width:120px; height: 35px; background-color: green; color: white; border: none; border-radius: 5px;">Yes</button>
                     <button id="${noiu}"  style="width:120px; height: 35px; background-color: red; color: white; border: none; border-radius: 5px;">No</button>`
-                    
+                    console.log(uise)
                     if(document.getElementById(uise).innerHTML == "" ){
                       
                         document.getElementById(uise).innerHTML += yesbuttonano;
