@@ -311,7 +311,7 @@ auth.onAuthStateChanged(user => {
                 }
             });
 
-        });
+        }); 
         fileAddBackground.addEventListener('change', function(){
             const files = this.files[0];
                 if (files) {
@@ -1357,7 +1357,7 @@ auth.onAuthStateChanged(user => {
                        
                         allchatpic.innerHTML += `<img style="width:3.1vw; height:3.1vw; margin-left:20px; margin-right:20px; margin-top:10px; display:inline-block; border-radius:50px;" src="${Data.Image}" alt="Can't load"> `
                         const Chatsin = ` <br><button  id="${ChatsinArray[i]}"class="Inline_vertical"  onclick="JoinChat1(this.id);     " style="margin-left:70px; border:none;   background-color: transparent;"><img style="float: left;  
-                          border-radius: 75px; " class="inline" src="${Data.Image}" alt="Can not load"><p style="display:inline; margin-right:710px; text-align: justify;    "> ${ChatsinArray[i]} </p> <br>${localStorage.getItem("texto")}${message} </p>  </button> `;
+                          border-radius: 75px; " class="inline" src="${Data.Image}" alt="Can not load"><p style="display:inline; margin-right:710px; text-align: justify;    "> ${ChatsinArray[i]} </p> <br><p style="margin-right:650px;">${localStorage.getItem("texto")}${message}</p> </p>  </button> `;
                           Chat_all+= Chatsin
                           
                           allthechatsarei.push(ChatsinArray[i])
