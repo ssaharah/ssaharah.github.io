@@ -2,7 +2,7 @@ html {
     height: 100%;
 }
 body{
-    background-color: #e7e7f0;
+    background-color: whitesmoke;
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -54,11 +54,13 @@ footer p {
     padding-top:  3.90625vw;
     padding-bottom:  3.90625vw;
 }
+
 span {
     color:rgb(255, 208, 0);
     text-align: center;
     font-size: 5.4vw;
     font-style: normal;
+    
     padding-left: 26.5625vw;
 }
 header img {
@@ -110,10 +112,13 @@ footer{
     padding-top:1.953125vw;
 }
 .white{
-    background-color: rgb(85, 85, 85);
-    margin-bottom: 3.90625vw;
-    height: 100px;
+    background-color:rgb(105, 105, 105);
+    border-bottom: 2px solid black;
+    margin-bottom: 0.0625vw;
+    height: 7.8125vw;
+    width: 98.9375vw;
 }
+
 .modal-boss-s {
     width: 100%;
     height: 100%;
@@ -178,8 +183,11 @@ form input[type ="button"]{
     top:0;
     right: 1.09375vw;
     transform: rotate(45deg);
+    font-weight: bold;
+    font-size: 40px;
     cursor: pointer;
 }
+
 .Login:hover{
     background-color: black;  
 }
@@ -189,6 +197,7 @@ form input[type ="button"]{
 .Logout:hover{
     background-color: black; 
 }
+
 .user_info{
     display: none;
     font-size: 0.9vw;
@@ -340,13 +349,13 @@ form input[type ="button"]{
 .iq{
    
     background-color: white;
-    border: 2px solid black;
-    width: 200px;
-    height: 200px;
+    border: 0.14641288433382138vw solid black;
+    width:  14.641288433382138vw;
+    height:  14.641288433382138vw;
     display: inline-block;
     
-    margin-left: 10px;
-    border-radius: 12px;
+    margin-left: 0.7320644216691069vw;
+    border-radius: 0.8784773060029283vw;
 }
 
 .city{
@@ -354,13 +363,13 @@ form input[type ="button"]{
     
     color: black;
     border: none;
-    border-bottom: 3px solid black ;
-    border-left: 1px solid black;
-    border-right: 1px solid black;
-    border-top: 2px solid black;
-    background-color: rgb(85, 85, 85);
-    width: 477px;
-    height: 75px;
+    border-bottom: 0.21961932650073207vw solid black ;
+    border-left:  0.07320644216691069vw solid black;
+    border-right:  0.07320644216691069vw solid black;
+    border-top: 0.14641288433382138vw solid black;
+    background-color: rgb(105, 105, 105);
+    width: 39.98vw;
+    height: 5.859375vw;
     text-align: center;
     display: none;
 }
@@ -368,6 +377,7 @@ form input[type ="button"]{
     position: relative;
     display: inline-block;
 }
+
 .dropdown-content {
     display: none;
     position: absolute;
@@ -397,6 +407,7 @@ button{
     height: 100%;
     background-color: white;
     display: none;
+    margin-top: 0.7vw;
 }
 .sidebarS{
     position: fixed;
@@ -408,7 +419,7 @@ button{
 }
 
 .sidebarS li{
-    font-size: 20px;
+    font-size:  1.4641288433382138vw;
 }
 h4 {
     font-size:  3.28125vw;
@@ -421,7 +432,8 @@ h4 {
     line-height: 5.078125vw;
     width: 100%;
     font-size: 2vw;
-    border-top: 0.078125vw  solid rgb(231, 231, 240);
+    box-sizing: border-box;
+    border-top: 0.078125vw  solid rgb(255, 255, 255, 1);
     border-bottom:  0.078125vw solid black;
    
 }
@@ -429,7 +441,8 @@ h4 {
   
  ul li:hover a {
     padding-left: 1.5625vw;
-    background-color: rgb(190, 190, 190);
+    background-color: rgba(0, 0, 0, 0.315);
+    
 }
 .sidebar ul a i {
     margin-right:  1.25vw;

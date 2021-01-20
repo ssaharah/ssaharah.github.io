@@ -4,8 +4,6 @@ const User_Info = document.querySelector("#user_info");
 const Login_button =  document.querySelector("#Login");
 const SignUpButton = document.querySelector("#Signup");
 const Welcome = document.querySelector("#Welcome");
-const About_Us_Text = document.querySelector("#About_Us_Text");
-const About_Us= document.querySelector("#About_Us");
 const SendButton1 = document.querySelector("#Chat_Button");
 const t3erdt = document.getElementById("3erdt"); 
 const edsz = document.getElementById('edsz');
@@ -51,8 +49,8 @@ const friendif = document.getElementById('friendif');
 const notiup= document.getElementById('notiup');
 const enteraddfriend = document.getElementById('enteraddfriend');
 
-
-
+sessionStorage.setItem("Chat_Name", "")
+sessionStorage.setItem("Chat_currently_in", "")
 
 //This function will check if a user is logged in or not.
 auth.onAuthStateChanged(user => {
@@ -165,10 +163,10 @@ auth.onAuthStateChanged(user => {
         });
         noti.addEventListener('click', function(e){
             e.preventDefault();
-            firestore.collection('user').doc(user.uid).get().then(s=>{
+            firestore.collection('users').doc(user.uid).get().then(s=>{
                 let gh = s.data();
                 let bnj  = gh.notifi
-                if(bng != ""){
+                if(bnj != ""){
                     let rty = localStorage.getItem('rty');
             let rtx = localStorage.getItem('rtx');
           
@@ -568,7 +566,9 @@ auth.onAuthStateChanged(user => {
             document.getElementById('scroll').style.display = "none";
             document.getElementById('addfriend').style.display = "none";
             document.getElementById('StuffTOHide').style.display = "none";
-            
+             
+
+
             document.getElementById("chat").style.display = "none";
             document.getElementById('Plus_Sign').style.display = "none";
             document.getElementById('All_The_chats').style.display = "none";
@@ -650,7 +650,7 @@ auth.onAuthStateChanged(user => {
               });
               setInterval(() => {
                   save();
-              }, 4000);
+              }, 12000); 
             firestore.collection('users').doc(user.uid).get().then(snapshot =>{
                 const snapshotData = snapshot.data();
                 if(snapshotData.Notes == undefined){
@@ -751,6 +751,7 @@ auth.onAuthStateChanged(user => {
                         });
                     }  
                 } 
+                Chat_Name
             });
             Pause.addEventListener('click',function(e){
                 e.preventDefault();
@@ -812,21 +813,14 @@ auth.onAuthStateChanged(user => {
         Login_button.style.display ="none";
         SignUpButton.style.display ="none";
         Welcome.style.display ="none";
-        About_Us.style.display ="none";
-       
-        About_Us_Text.style.display="none";
+        Sidebar.style.display = "block";
         User_info.style.display = "inline";
         Whole.style.display = "inline";
         DropdownButton.style.display = "inline-block";
         Side_arrow.style.display = "inline";
         hides.style.display = "block";
         
-        Side_arrow.addEventListener('click', (e)=>{
-            e.preventDefault();
-            
-            Sidebar.style.display = "block";    
-            
-        });
+        
         
         //-----------------------------------------------------
         //send the message
@@ -845,8 +839,9 @@ auth.onAuthStateChanged(user => {
 
         call = function(){
             
-            const red = sessionStorage.getItem('Chat_Name');   
-            const Refi = firestore.collection(red).doc("Chat_Info");
+            const red = sessionStorage.getItem('Chat_Name'); 
+            if(red == ""){
+                const Refi = firestore.collection(red.trim()).doc("Chat_Info");
             Refi.onSnapshot(function(doc){
                 const data  = doc.data();
                 const uio = data.started
@@ -861,7 +856,7 @@ auth.onAuthStateChanged(user => {
                         let yui = call + red + "§"
                         var r = yh.includes(red)
                         if(n == false &&  r== false){
-                            alert('f')
+                            
                             firestore.collection('users').doc(user.uid).update({
                                 calls: yui
                             });
@@ -939,132 +934,17 @@ auth.onAuthStateChanged(user => {
                     });
 
                 }
+            })
+
+            }
+            
                 
-            });
+            
         }
         call()
         
         //When the last message send update this method runs.
-        getRealTimeUpdate = function () {
-           
-            const Chat_currently_in = sessionStorage.getItem('Chat_Name');   
-            const Ref = firestore.collection(Chat_currently_in).doc("Messages");
-            //When the page is loaded this method runs.
-            if (document.readyState == "complete") {
-                Ref.set({
-                    Message: "",
-                });
-            }
-            
-            Ref.onSnapshot(function (doc){
-
-                        Ref.get().then(function(doc) {
-                            //Getting some data
-                            const NewDates = new Date
-                                const Dates = NewDates.getTime()
-                            Chat_name = sessionStorage.getItem('Chat_Name');
-                            Message = document.getElementById("Chat_input").value
-                            WhoIsTheMessageFrom = sessionStorage.getItem('WhoIsTheMessageFrom');
-                            let htmlForText = '';
-                            const Texts = doc.data();
-                            const Display_Name = Texts.Display_Name;
-                            if(Texts.Type){
-                                
-                                firestore.collection("users").doc(user.uid).get().then(function(doc){
-                                    const Data = doc.data();
-                                    const Profile_bas64 = Data.Profile;
-                                    //Sending the message.
-                                      htmlForText = '';
-                                        if(Texts.WhoIsTheMessageFrom == user.uid){  //Change to user.uid at the end                                     
-                                        const htmlForTexth = `
-                                        <div class="Go"><img class="inline" src=${Profile_bas64} alt="User Profile"><p class="real_inline">You:</p></div>
-                                        <div  id="Message_SendLC1" class="left" style = "height: 15.6vw; width:15.6vw;"><p class="go_to_spot">Just Now</p><p class="Center"><img style="width: 150px; height: 150px;" src="${Texts.ImageSrc}" alt="Profile Picture"></img>
-                                        </p> <br></div>
-                                        `;
-                                        
-                                        htmlForText += htmlForTexth
-                                        MessageBoxr.innerHTML += htmlForText;
-                                        const Message_SendLC1  = document.getElementById("Message_SendLC1");
-                                        Message_SendLC1.style.display = "block";
-                                       
-                                        }else{  
-                                            htmlForText = '';
-                                           
-                                                    firestore.collection('users').doc(Texts.WhoIsTheMessageFrom).get().then(snapshot =>{
-                                                        const MoreData = snapshot.data();
-                                                        const Profile_bas64NY = MoreData.Profile;
-                                                        const htmlForTexth = `
-                                                        <div class="GoR" "><img class="inline" src=${Profile_bas64NY} alt="User Profile"><p class="inlineR">${Display_Name}</p></div>
-                                                        <div  id="Message_SendRC1" class="right" style = "heigth: 15.6vw; width:15.6vw;"></p><img style="width: 150px; height: 150px;" src="${Texts.ImageSrc}" alt="Profile Picture"></img>
-                                                        <br></div> 
-                                                    
-                                                    `;
-                                                        htmlForText += htmlForTexth
-                                                    MessageBoxr.innerHTML += htmlForText;
-                                                    const Message_SendRC1  = document.getElementById("Message_SendRC1");
-                                                    Message_SendRC1.style.display = "block";
-                                                    document.getElementById("Chat_input").value = "";
-                                                    
-                                                    
-                                            });
-                                        }//End of the else statement  
-                                    //End of the if statement
-                                });//End of the get method
-                            }else{
-                                firestore.collection("users").doc(user.uid).get().then(function(doc){
-                                    const Number_Of_CharactersR= document.getElementById("Chat_input").value;
-                                    const Number_Of_Characters = Math.round(Number_Of_CharactersR.length * 30 +  30)/7 + 42;
-                                    const Data = doc.data();
-                                    const Profile_bas64 = Data.Profile;
-                                    //Sending the message.
-                                    if(Texts.Message != ""){
-                                        htmlForText = ""
-                                        
-                                        if(Texts.WhoIsTheMessageFrom == user.uid){
-                                        const htmlForTexth = `
-                                        <div class="Go"><img class="inline" src=${Profile_bas64} alt="User Profile"><p class="real_inline">You:</p></div>
-                                        <div  id="Message_SendLC1" class="left" style = "height: auto; width:auto;"><p class="go_to_spot">Just Now</p><p class="Center">${Texts.Message}
-                                        </p><br></div>
-                                        `;
-                                        htmlForText += htmlForTexth
-                                        
-                                        MessageBoxr.innerHTML += htmlForText;
-                                        const Message_SendLC1  = document.getElementById("Message_SendLC1");
-                                        Message_SendLC1.style.display = "block";
-                                        
-                                        }else{
-                                            htmlForText = ""
-                                            
-                                                        firestore.collection('users').doc(Texts.WhoIsTheMessageFrom).get().then(snapshot =>{
-                                                            const moreData =snapshot.data();
-                                                            const Profile_bas64Ny = moreData.Profile
-                                                           
-                                                            
-                                                            const htmlForTexth = `
-                                                            <div class="GoR" "><img class="inline" src=${Profile_bas64Ny} alt="User Profile"><p class="inlineR">${Display_Name}</p></div>
-                                                            <div  id="Message_SendRC1" class="right" ></p style="margin-top:10px;">${Texts.Message}
-                                                            <p></div> 
-                                                        
-                                                        `;
-                                                        
-                                                            htmlForText += htmlForTexth
-                                                        MessageBoxr.innerHTML += htmlForText;
-                                                        const Message_SendRC1  = document.getElementById("Message_SendRC1");
-                                                        Message_SendRC1.style.display = "block";
-                                                        document.getElementById("Chat_input").value = "";
-                                                        
-                                                        });
-                                                   
-                                        }//End of the else statement  
-                                    }//End of the if statement
-                                });//End of the get method  
-                            }  
-                        });//End of the get method
-                        
-            });//End of on snapshot
-            
-            
-        }//End of function
+        
         localStorage.setItem("user.uid", user.uid);
         localStorage.setItem('user.email', user.email);
         function Seperate(){
@@ -1094,12 +974,12 @@ auth.onAuthStateChanged(user => {
                     const data = snapshoty.data();
                     const friendname = data.Username;
                     let thing = friendname + "close"
-                    text = `<div class="iq"><button style="display:inline; background-color:transparent; border:none; font-size:16px; margin-left:170px;" id=${thing}>x</button> <img style="width:135px; height:135px; border-radius:12px; margin-left:30px;" src="${data.Profile}" alt=""><p style=" display:inline; padding-left:20px;">${friendname}</p></div>`
+                    text = `<div class="iq"><button style="margin-top:0.0320644216691069vh; display:inline; background-color:transparent; border:none; font-size:1.171303074670571vw; margin-left:12.445095168374817vw;" id=${thing}>x</button> <img style="width:9.882869692532942vw; height:9.882869692532942vw; border-radius:0.8784773060029283vw; margin-left:2.1961932650073206vw;" src="${data.Profile}" alt=""><p style=" display:inline; padding-left:1.4641288433382138vw;">${friendname}</p></div>`
                     friendif.innerHTML += text;
                     ui += 1
                     marray.push(thing)
                     name.push(friendname)
-                    let uis = "unfriend" + frtfi
+                    let uis = "unfriend"  + frtfi
                     let uit = uis + "t"
                     let uise = uis + uit
                     let textfg = `<div id="${uis}" class="modal-boss-s">
@@ -1110,19 +990,19 @@ auth.onAuthStateChanged(user => {
                             <div id="${uise}"></div>
                         </form>
                     </div>`
-                    const trty = document.getElementById('trty');
-                    if(trty.innerHTML == ""){
+                    
                         trty.innerHTML += textfg;
-                    }
+                    
                     let yesiu = uis + "yes";
                     let noiu = uis + "no"
                     let yesbuttonano = `<button id="${yesiu}"   style="width:120px; height: 35px; background-color: green; color: white; border: none; border-radius: 5px;">Yes</button>
                     <button id="${noiu}"  style="width:120px; height: 35px; background-color: red; color: white; border: none; border-radius: 5px;">No</button>`
-                    
+                    console.log(uise)
                     if(document.getElementById(uise).innerHTML == "" ){
                       
                         document.getElementById(uise).innerHTML += yesbuttonano;
                     }
+                    
                     for (let index = 0; index < marray.length; index++) {
                         
                         document.getElementById(marray[index]).addEventListener('click', function (){
@@ -1173,12 +1053,21 @@ auth.onAuthStateChanged(user => {
         function InviteAFriend(){
             Invite.addEventListener('click', function(){
                 let Friend = InviteUsername.value;
+                
+                firestore.collection('users').where("Username", "==",  Friend).get().then(snap=>{
+                    let data = snap.docs
+                    data.forEach(doc => {
+                        let polm = doc.id
+                        localStorage.setItem("efg", polm)
+                        
+                    })
+                })
                 firestore.collection('users').doc(user.uid).get().then(snapshot=>{
                     const data = snapshot.data();
                     let yut = data.fr;
                     let rfgt = yut.split("/");
                     if(yut != ""){
-                        friandarray = [];
+                       
                    
                     const Chat_currently_in = sessionStorage.getItem('Chat_Name');
                     
@@ -1186,7 +1075,8 @@ auth.onAuthStateChanged(user => {
                         alert('Error')
                         
                     }else{
-                        if(friandarray.includes(Friend) == false){
+                       let polm = localStorage.getItem('efg')
+                        if(rfgt.includes(polm) == false){
                             alert("Friend not found");
                         }else{
                             
@@ -1297,7 +1187,133 @@ auth.onAuthStateChanged(user => {
                 }
             });
         }
+        function getRealTimeUpdate   () {
+          
+            const Chat_currently_in = sessionStorage.getItem('Chat_Name');   
+            const Ref = firestore.collection(Chat_currently_in).doc("Messages");
+            //When the page is loaded this method runs.
+            if (document.readyState == "complete") {
+                Ref.set({
+                    Message: "",
+                });
+            }
+            
+            Ref.onSnapshot(function (doc){
+                
+                        Ref.get().then(function(doc) {
+                            //Getting some data
+                            const NewDates = new Date
+                                const Dates = NewDates.getTime()
+                            Chat_name = sessionStorage.getItem('Chat_Name');
+                            Message = document.getElementById("Chat_input").value
+                            WhoIsTheMessageFrom = sessionStorage.getItem('WhoIsTheMessageFrom');
+                            let htmlForText = '';
+                            const Texts = doc.data();
+                            const Display_Name = Texts.Display_Name;
+                           
+                            if(Texts.Type){
+                                
+                                firestore.collection("users").doc(user.uid).get().then(function(doc){
+                                    const Data = doc.data();
+                                    const Profile_bas64 = Data.Profile;
+                                    //Sending the message.
+                                      htmlForText = '';
+                                        if(Texts.WhoIsTheMessageFrom == user.uid){  //Change to user.uid at the end                                     
+                                        const htmlForTexth = `
+                                        <div class="Go"><img class="inline" src=${Profile_bas64} alt="User Profile"><p class="real_inline">You:</p></div>
+                                        <div  id="Message_SendLC1" class="left" style = "height: 15.6vw; width:15.6vw;"><p class="go_to_spot">Just Now</p><p class="Center"><img style="width: 150px; height: 150px;" src="${Texts.ImageSrc}" alt="Profile Picture"></img>
+                                        </p> <br></div>
+                                        `;
+                                        
+                                        htmlForText += htmlForTexth
+                                        MessageBoxr.innerHTML += htmlForText;
+                                        const Message_SendLC1  = document.getElementById("Message_SendLC1");
+                                        Message_SendLC1.style.display = "block";
+                                       
+                                        }else{  
+                                            htmlForText = '';
+                                           
+                                                    firestore.collection('users').doc(Texts.WhoIsTheMessageFrom).get().then(snapshot =>{
+                                                        const MoreData = snapshot.data();
+                                                        const WSX = MoreData.Display_Name
+                                                        const Profile_bas64NY = MoreData.Profile;
+                                                        const htmlForTexth = `
+                                                        <div class="GoR" "><img class="inline" src=${Profile_bas64NY} alt="User Profile"><p class="inlineR">${WSX}</p></div>
+                                                        <div  id="Message_SendRC1" class="right" style = "heigth: 15.6vw; width:15.6vw;"></p><img style="width: 150px; height: 150px;" src="${Texts.ImageSrc}" alt="Profile Picture"></img>
+                                                        <br></div> 
+                                                    
+                                                    `;
+                                                        htmlForText += htmlForTexth
+                                                    MessageBoxr.innerHTML += htmlForText;
+                                                    const Message_SendRC1  = document.getElementById("Message_SendRC1");
+                                                    Message_SendRC1.style.display = "block";
+                                                    document.getElementById("Chat_input").value = "";
+                                                    
+                                                    
+                                                    
+                                            });
+                                        }//End of the else statement  
+                                    //End of the if statement
+                                });//End of the get method
+                            }else{
+                                firestore.collection("users").doc(user.uid).get().then(function(doc){
+                                    const Number_Of_CharactersR= document.getElementById("Chat_input").value;
+                                    const Number_Of_Characters = Math.round(Number_Of_CharactersR.length * 30 +  30)/7 + 42;
+                                    const Data = doc.data();
+                                    const Profile_bas64 = Data.Profile;
+                                    //Sending the message.
+                                    if(Texts.Message != ""){
+                                        htmlForText = ""
+                                        console.log(Texts.WhoIsTheMessageFrom)
+                                        if(Texts.WhoIsTheMessageFrom == user.uid){
+                                        const htmlForTexth = `
+                                        <div class="Go"><img class="inline" src=${Profile_bas64} alt="User Profile"><p class="real_inline">You:</p></div>
+                                        <div  id="Message_SendLC1" class="left" style = "height: auto; width:auto;"><p class="go_to_spot">Just Now</p><p class="Center">${Texts.Message}
+                                        </p><br></div>
+                                        `;
+                                        htmlForText += htmlForTexth
+                                        
+                                        MessageBoxr.innerHTML += htmlForText;
+                                        const Message_SendLC1  = document.getElementById("Message_SendLC1");
+                                        Message_SendLC1.style.display = "block";
+                                        
+                                        }else{
+                                            htmlForText = ""
+                                                
+                                                        firestore.collection('users').doc(Texts.WhoIsTheMessageFrom).get().then(snapshot =>{
+                                                            const moreData =snapshot.data();
+                                                            const Profile_bas64Ny = moreData.Profile
+                                                           const SDF = moreData.Display_Name
+                                                           
+                                                            const htmlForTexth = `
+                                                            <div class="GoR" "><img class="inline" src=${Profile_bas64Ny} alt="User Profile"><p class="inlineR">${SDF}</p></div>
+                                                            <div  id="Message_SendRC1" class="right" ></p style="margin-top:10px;">${Texts.Message}
+                                                            <p></div> 
+                                                        
+                                                        `;
+                                                        
+                                                            htmlForText += htmlForTexth
+                                                        MessageBoxr.innerHTML += htmlForText;
+                                                        const Message_SendRC1  = document.getElementById("Message_SendRC1");
+                                                        Message_SendRC1.style.display = "block";
+                                                        document.getElementById("Chat_input").value = "";
+                                                        
+                                                        });
+                                                   
+                                        }//End of the else statement  
+                                    }//End of the if statement
+                                });//End of the get method  
+                            }  
+                        });//End of the get method
+                        
+            });//End of on snapshot
+            
+            
+        }//End of function
+        
         function GetAllChats(Chatsin){
+            let allthechatsarei = []
+           
             let ChatsinArray = Chatsin.split("§");
             let All_The_chats = document.getElementById('All_The_chats');
             let Chat_all = '';
@@ -1307,13 +1323,16 @@ auth.onAuthStateChanged(user => {
             allchatpic.innerHTML = ``
             for (let i = 0; i < ChatsinArray.length - 1; i++) {
                 if(ChatsinArray[i] != ""){
+                   
                     
                     firestore.collection(ChatsinArray[i]).doc('Chat_Info').get().then(function(snapshot){
                         const Data = snapshot.data();
                         let message = Data.Message;
-                       
                         let WhoIsTheMessageFrom= Data.WhoIsTheMessageFrom;
                         let g = Data.Date
+                       
+                       if(message != undefined &&  WhoIsTheMessageFrom != undefined && g != undefined ){
+                        
                         let f = g.split("/")
                         if(message == ""){
                             message = "Image"
@@ -1321,35 +1340,66 @@ auth.onAuthStateChanged(user => {
                         
                         let time = f[3] + "/" + f[4] + "/" + f[5]
                         let rf = Data.Display_Name
-                        let text = ""
-                        if(WhoIsTheMessageFrom == user.uid){
-                            text = "You:"
-                        }else{
-                           text = rf + ":"
-                        }
+                        let textiscool = ""
                         
+                        if(WhoIsTheMessageFrom.trim() == user.uid){
+                            textiscool = "You:"
+                        }else{
+                           textiscool = rf + ":"
+                        }
+                        localStorage.setItem("texto", textiscool)
+                        
+                }else{
+                        message = ""
+                        textiscool = ""
+                        localStorage.setItem("texto", textiscool)
+                       }
+                       
                         allchatpic.innerHTML += `<img style="width:3.1vw; height:3.1vw; margin-left:20px; margin-right:20px; margin-top:10px; display:inline-block; border-radius:50px;" src="${Data.Image}" alt="Can't load"> `
-                        const Chatsin = ` <br><button  id="${ChatsinArray[i]}"class="Inline_vertical"  onclick="JoinChat1(this.id); getRealTimeUpdate(); " style="margin-left:70px; border:none;   background-color: transparent;"><img style="float: left;  
-                          border-radius: 75px; " class="inline" src="${Data.Image}" alt="Can not load"><p style="display:inline; margin-right:710px; text-align: justify;    "> ${ChatsinArray[i]} </p> <br><p style="margin-right:710px;">${text} ${message}  </p> </p>  </button> `;
-                        Chat_all+= Chatsin
+                        const Chatsin = ` <br><button  id="${ChatsinArray[i]}"class="Inline_vertical"  onclick="JoinChat1(this.id);     " style="margin-left:70px; border:none;   background-color: transparent;"><img style="float: left;  
+                          border-radius: 75px; " class="inline" src="${Data.Image}" alt="Can not load"><p style="display:inline; margin-right:710px; text-align: justify;    "> ${ChatsinArray[i]} </p> <br>${localStorage.getItem("texto")}${message} </p>  </button> `;
+                          Chat_all+= Chatsin
+                          
+                          allthechatsarei.push(ChatsinArray[i])
+                         
                         All_The_chats.innerHTML = Chat_all; 
+                        addtheEventlistener(allthechatsarei)
                         Chat_currently_in +=  "," + ChatsinArray[i];
                         Chat_currently_in.split(",");
+                        
                         
                     });
                     
                 }
                 
+                
                 document.querySelector("#Bottom").style.display = "none";
                 document.getElementById('Plus_Sign').style.display = "inline-block";
             }
+            
         }
-        const Back_butto1n = document.getElementById('Back_button');
+        
+        
+        
+        
         function Back_button(Chatsin){
+            const Back_butto1n = document.getElementById('Back_button');
             Back_butto1n.addEventListener('click', function(e){
             e.preventDefault();
                 window.history.go(-1)
             });
+        }
+        function addtheEventlistener(allthechatsarei){
+            
+        for (let i = 0; i < allthechatsarei.length; i++) {
+           
+            document.getElementById(allthechatsarei[i]).addEventListener('click', function(e){
+                e.preventDefault()
+               
+                getRealTimeUpdate()
+            })
+            
+        }
         }
         function CreateChat(Chatsin){
             const CreateChat= document.getElementById('CreateChat');
@@ -1368,6 +1418,9 @@ auth.onAuthStateChanged(user => {
                                     }
 
                                     });
+                                    function ooop(){
+                                        getRealTimeUpdate()
+                                    }
             CreateChat.addEventListener('click',function(e){
                 e.preventDefault();
                 let Chat_Name = document.getElementById('CreateChatFirstName').value;
@@ -1395,11 +1448,14 @@ auth.onAuthStateChanged(user => {
                                 });
                                 
                                 
-                                getRealTimeUpdate();
+                                
+                                
+                                ooop()
                                 JoinChatData = Chatsin +  Chat_Name + "§"
                                 firestore.collection('users').doc(user.uid).update({
                                     Chatsin: JoinChatData
                                 });
+                                
                                 JoinChat1(Chat_Name);
                             }
                         });
@@ -1423,10 +1479,9 @@ auth.onAuthStateChanged(user => {
         Login_button.style.display = "inline";
         SignUpButton.style.display = "inline";
         Welcome.style.display ="inline";
-        About_Us_Text.style.display="inline";
-        About_Us.style.display="inline";
+        
         document.getElementById('edsz').style.display = "none";
-        document.getElementById('chatf').style.display  = "none";
+        document.getElementById('ffg').style.display = "none";
     }
 });
 const Sign_up_whole = document.querySelector("#signup");
@@ -1447,6 +1502,8 @@ Sign_up_whole.addEventListener('submit',(e)=> {
                 notifi: "",
                 incall:false,
                 sound:"",
+                fr:"",
+                frs:"",
                 mute:false,
                 camera: false,
                 getcall: false,
