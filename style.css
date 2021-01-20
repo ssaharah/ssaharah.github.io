@@ -55,13 +55,8 @@ footer p {
     padding-bottom:  3.90625vw;
 }
 
-span {
-    color:rgb(255, 208, 0);
-    text-align: center;
-    font-size: 5.4vw;
-    font-style: normal;
-    
-    padding-left: 26.5625vw;
+html{
+    height: 100%;
 }
 header img {
     padding-top: 1.953125vw;
@@ -472,9 +467,9 @@ h4 {
 .countdown{
     margin-top: 7.8125vw;
     text-align: center;
-    font-size: 7.9vw;
+    font-size: 5.9vw;
     font-family: Arial, Helvetica, sans-serif;
-    margin-left: 23.4375vw;
+    color: white;
   }
 .FHYUHDFIS{
     display: flex;

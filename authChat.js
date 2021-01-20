@@ -6,6 +6,7 @@ const SignUpButton = document.querySelector("#Signup");
 const Welcome = document.querySelector("#Welcome");
 const SendButton1 = document.querySelector("#Chat_Button");
 const t3erdt = document.getElementById("3erdt"); 
+const ytghfvbdcsdzq = document.getElementById("ytghfvbdcsdzq");
 const edsz = document.getElementById('edsz');
 const t4erdt = document.getElementById("4erdt");
 const Whole = document.querySelector("#chat");
@@ -311,7 +312,7 @@ auth.onAuthStateChanged(user => {
                 }
             });
 
-        });
+        }); 
         fileAddBackground.addEventListener('change', function(){
             const files = this.files[0];
                 if (files) {
@@ -416,6 +417,7 @@ auth.onAuthStateChanged(user => {
             All_The_chats.style.display = "inline";
             All_The_Notepad_stuff.style.display = "none";
             TimerStuff.style.display = "none";
+            document.getElementById("zsdcx").style.display = "none"
             document.getElementById('All_The_chats').style.display = "block";
             document.getElementById('allchatpic').style.display ="block";
             document.getElementById('yuiut').style.display = "block";
@@ -561,6 +563,7 @@ auth.onAuthStateChanged(user => {
             TimerStuff.style.display = "none";
             All_The_Notepad_stuff.style.display = "none";
             All_The_chats.style.display = "none";
+            document.getElementById("zsdcx").style.display = "none"
             document.getElementById('trty').style.display = "none";
             document.getElementById('allchatpic').style.display ="none";
             document.getElementById('scroll').style.display = "none";
@@ -580,8 +583,10 @@ auth.onAuthStateChanged(user => {
             e.preventDefault();
             //This function runs when the user has clicked notes.
             Add_User.style.display = 'none';
+            document.getElementById("zsdcx").style.display = "none"
             TimerStuff.style.display = "none";
             All_The_chats.style.display = "none";
+           
             document.getElementById('friendif').style.display = "none";
             document.getElementById('yuiut').style.display = "none";
             document.getElementById('All_The_chats').style.display = "none";
@@ -676,6 +681,7 @@ auth.onAuthStateChanged(user => {
             document.getElementById('All_The_chats').style.display = "none";
             document.getElementById('addfriend').style.display = "none";
              Add_User.style.display = 'none';
+            
             document.getElementById('allchatpic').style.display = "none"
             document.getElementById('friendif').style.display = "none";
             document.getElementById('yuiut').style.display = "none";
@@ -698,7 +704,12 @@ auth.onAuthStateChanged(user => {
             }
             
             All_The_Notepad_stuff.style.display = "none";
+            
+            const stopwatchgotostuff = document.getElementById("stopwatchgotostuff")
+            stopwatchgotostuff.style.display = "inline-block";
+            
             TimerStuff.style.display = "inline-block";
+            document.getElementById("zsdcx").style.display = "block"
             document.getElementById('Plus_Sign').style.display = "none";
             document.getElementById("ShowNotFirstTime").style.display = ShouldItShow;
             document.getElementById("chat").style.display = "none";
@@ -751,7 +762,7 @@ auth.onAuthStateChanged(user => {
                         });
                     }  
                 } 
-                Chat_Name
+                
             });
             Pause.addEventListener('click',function(e){
                 e.preventDefault();
@@ -779,6 +790,7 @@ auth.onAuthStateChanged(user => {
                 let timeS = localStorage.getItem("Time")
                 if(timeS <= 0){
                     countdown.innerHTML = `Times Up`;
+                   
                     return;
                 }else{
                     let OtherNumber = timeS;
@@ -1357,7 +1369,7 @@ auth.onAuthStateChanged(user => {
                        
                         allchatpic.innerHTML += `<img style="width:3.1vw; height:3.1vw; margin-left:20px; margin-right:20px; margin-top:10px; display:inline-block; border-radius:50px;" src="${Data.Image}" alt="Can't load"> `
                         const Chatsin = ` <br><button  id="${ChatsinArray[i]}"class="Inline_vertical"  onclick="JoinChat1(this.id);     " style="margin-left:70px; border:none;   background-color: transparent;"><img style="float: left;  
-                          border-radius: 75px; " class="inline" src="${Data.Image}" alt="Can not load"><p style="display:inline; margin-right:710px; text-align: justify;    "> ${ChatsinArray[i]} </p> <br>${localStorage.getItem("texto")}${message} </p>  </button> `;
+                          border-radius: 75px; " class="inline" src="${Data.Image}" alt="Can not load"><p style="display:inline; margin-right:710px; text-align: justify;    "> ${ChatsinArray[i]} </p> <br><p style="margin-right:650px;">${localStorage.getItem("texto")}${message}</p> </p>  </button> `;
                           Chat_all+= Chatsin
                           
                           allthechatsarei.push(ChatsinArray[i])
