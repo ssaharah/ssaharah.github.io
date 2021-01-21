@@ -417,6 +417,7 @@ auth.onAuthStateChanged(user => {
             All_The_chats.style.display = "inline";
             All_The_Notepad_stuff.style.display = "none";
             TimerStuff.style.display = "none";
+            document.getElementById("stopwatchgotostuff").style.display = "none";
             document.getElementById("zsdcx").style.display = "none"
             document.getElementById('All_The_chats').style.display = "block";
             document.getElementById('allchatpic').style.display ="block";
@@ -577,10 +578,12 @@ auth.onAuthStateChanged(user => {
             document.getElementById('All_The_chats').style.display = "none";
             document.getElementById('friendif').style.display = "none";
             document.getElementById('yuiut').style.display = "none";
+            document.getElementById("stopwatchgotostuff").style.display = "none";
 
         });
         Notes.addEventListener('click',(e)=>{
             e.preventDefault();
+            document.getElementById("stopwatchgotostuff").style.display = "none";
             //This function runs when the user has clicked notes.
             Add_User.style.display = 'none';
             document.getElementById("zsdcx").style.display = "none"
