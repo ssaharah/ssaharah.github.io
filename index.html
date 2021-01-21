@@ -34,8 +34,13 @@
                     </ul>
                 </div>
                 
-               
-            <span>
+            
+            <span style="color:rgb(255, 208, 0);
+            text-align: center;
+            font-size: 5.4vw;
+            font-style: normal;
+            
+            padding-left: 26.5625vw;">
                 
                 <img style="margin-left: 11.784773060029282vw; vertical-align: center;"  class="Img"src="Images/1228917a-cb83-495c-9f3a-c7bb035829f0_200x200.png" alt="S">ahara
                 <a  class="yui"   id ="Login"href="#" style="text-decoration:none; font-size:  0.9vw;color:cornsilk;margin-left: 15.625vw;display: none; " data-target="modal-login">Login</a>
@@ -63,6 +68,7 @@
                     </div>  
                     
                 </div>
+                
                 <div style="width: 90.04392386530014vw; position: absolute;  top: 8.43375vw; left: 9.79375vw;" id="yuiut"><button style="margin-left:  9.765625vw;" id="ChatGoTo" class="city">Chat</button><button id="FriendGoTo" class="city">Friends</button></div>
             </span>
             
@@ -71,7 +77,7 @@
             
             
             
-                
+            
             </div>
             
             <div style="position: fixed; background-color: white; height: 27.34375vw; width: 27.34375vw; margin-left: 46.25vw; display: none;" id="notiup" ><p style="text-align: center; padding-top: 5px; ">Notifications</p>
@@ -88,27 +94,32 @@
                      
             
             
-             
-            <div  id="countdownTimer" style="display: none; margin-left: 7.8125vw;"> 
-                <p id="countdown" class="countdown"></p>
-                <div id="Timer">
-                <p style="font-size: 1.8625vw; margin-left: 32.8125vw;"> Hours |  Minutes  |  Seconds</p>
-                  <div>
+            <div id="zsdcx" style="margin-top: 20px; background-color:rgb(105, 105, 105); display: none; width: 600px; margin-left: 350px;height: 400px; border-radius: 24px;">
+                <div  id="countdownTimer" style="display: none; margin-left: 10.8125vw;  border-radius: 14px;"> 
+                   
+                    <p id="countdown" class="countdown"></p>
+                    <div id="Timer">
+                    <p style="font-size: 1.8625vw; "> Hours |  Minutes  |  Seconds</p>
+                      <div>
+                        
+                        <input maxlength = "6" id="Messages" dir="rtl" style="font-size:  3.9vw; width: 22vw;  margin-bottom: 3.90625vw; text-align: center;" type="text" placeholder="00:00:00">
+                      </div>
+                    </div>
+                    <div  id="ShowFirstTime">
+                        <button id="start" style=" width: 11.7vw; height: 5.4vw; border-radius: 14px; background-color: rgb(24, 60, 221); border: none;    ">Start</button>
+                        <button id="cancelStart" style="width: 11.7vw; height: 5.4vw; border-radius: 14px; background-color: rgb(24, 60, 221); border: none;">Cancel</button>
+                    </div>
+                    <div id="ShowNotFirstTime">
+                        <button id="pause" style=" width: 11.7vw; height: 5.4vw; border: none;  border-radius: 14px; display: none; background-color:rgb(24, 60, 221);  ">Pause</button>
+                        <button id="unPause" style="width: 11.7vw; height: 5.4vw; border: none; border-radius: 14px; display: none; background-color:rgb(24, 60, 221); ">Unpause</button>
+                        <button id="cancelNotStart" style="width: 11.7vw; border: none; border-radius: 14px; height:  5.4vw; display: none; background-color:rgb(24, 60, 221);" >Cancel</button>
+                    </div>
                     
-                    <input maxlength = "6" id="Messages" dir="rtl" style="font-size:  3.9vw; width: 22vw; margin-left: 32.03125vw; margin-bottom: 3.90625vw; text-align: center;" type="text" placeholder="00:00:00">
-                  </div>
-                </div>
-                <div style="margin-left: 3.3375vw;" id="ShowFirstTime">
-                    <button id="start" style=" width: 11.7vw; height: 5.4vw;  margin-left: 28.125vw;  ">Start</button>
-                    <button id="cancelStart" style="width: 11.7vw; height: 5.4vw;">Cancel</button>
-                </div>
-                <div id="ShowNotFirstTime">
-                    <button id="pause" style=" width: 11.7vw; height: 5.4vw; display: none; margin-left: 28.125vw; ">Pause</button>
-                    <button id="unPause" style="width: 11.7vw; height: 5.4vw; display: none; margin-left:28.125vw;">Unpause</button>
-                    <button id="cancelNotStart" style="width: 11.7vw; height:  5.4vw; display: none;" >Cancel</button>
-                </div>
-                
-        </div>
+                    
+            </div>
+            </div>
+            
+        
         
         
             <main>
@@ -160,6 +171,26 @@
                         <br><br><br><br>
                     </form>    
                 </div> 
+            </div>
+            <div id="stopwatchgotostuff"  style="display: none;">
+               <div style="width: 600px; box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5); padding: 15px; border-radius: 5px; background-color: rgb(105, 105, 105);">
+                   <h1 style="margin:0; background-color: white; color: black; font-size: 64px; border-radius: 5px; padding: 10px;">
+                   <span style="display: inline-block; width: 85px; text-align: center;" id="minfirst">00</span>:
+                   <span style="display: inline-block; width: 85px; text-align: center;" id="secondsfirst">00</span>:
+                   <span style="display: inline-block; width: 85px; text-align: center;" id="milisecondsfirst">00</span>
+               </div>
+               <div style="display: flex; margin: 10px -5px 0; ">
+                <button id="startis" style="flex: 1; margin: 0 5px; border: none; font-size: 20px; padding: 5px; border-radius: 5px; box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5); background-color: grey; font-weight: bold; color: black;" id="startis">Start</button>
+                <button id="stopis" style="flex: 1; margin: 0 5px; border: none; font-size: 20px; padding: 5px; border-radius: 5px; background-color:  grey; font-weight: bold; color: black;" id="stopis">Stop</button>
+                <button id="resestis" style="flex: 1; margin: 0 5px; border: none; font-size: 20px; padding: 5px; border-radius: 5px; background-color: grey; font-weight: bold; color: black;" id="resetis">Reset</button>
+            </div>
+            </h1>
+                
+                
+            </div>
+            </div>
+            <div id="alarmgotostuff">
+    
             </div>
                 <div class="i" style="padding-top: 0.78125vw; background-color: black; color: white; display: none;"><p style="color: white; display: inline; margin-right: 100px;">Profile picture</p><p style="color: white; display: inline; margin-right: 60px;">Username</p>           <p style="display: inline; margin-left: 100px; color: white;">Friend since</p></div>
                
@@ -291,6 +322,7 @@
                 </form>
             </div>
         </div>
+        
         
 </body>
 <script>

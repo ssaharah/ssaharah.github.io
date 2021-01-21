@@ -6,6 +6,7 @@ const SignUpButton = document.querySelector("#Signup");
 const Welcome = document.querySelector("#Welcome");
 const SendButton1 = document.querySelector("#Chat_Button");
 const t3erdt = document.getElementById("3erdt"); 
+const ytghfvbdcsdzq = document.getElementById("ytghfvbdcsdzq");
 const edsz = document.getElementById('edsz');
 const t4erdt = document.getElementById("4erdt");
 const Whole = document.querySelector("#chat");
@@ -416,6 +417,7 @@ auth.onAuthStateChanged(user => {
             All_The_chats.style.display = "inline";
             All_The_Notepad_stuff.style.display = "none";
             TimerStuff.style.display = "none";
+            document.getElementById("zsdcx").style.display = "none"
             document.getElementById('All_The_chats').style.display = "block";
             document.getElementById('allchatpic').style.display ="block";
             document.getElementById('yuiut').style.display = "block";
@@ -561,6 +563,7 @@ auth.onAuthStateChanged(user => {
             TimerStuff.style.display = "none";
             All_The_Notepad_stuff.style.display = "none";
             All_The_chats.style.display = "none";
+            document.getElementById("zsdcx").style.display = "none"
             document.getElementById('trty').style.display = "none";
             document.getElementById('allchatpic').style.display ="none";
             document.getElementById('scroll').style.display = "none";
@@ -580,8 +583,10 @@ auth.onAuthStateChanged(user => {
             e.preventDefault();
             //This function runs when the user has clicked notes.
             Add_User.style.display = 'none';
+            document.getElementById("zsdcx").style.display = "none"
             TimerStuff.style.display = "none";
             All_The_chats.style.display = "none";
+           
             document.getElementById('friendif').style.display = "none";
             document.getElementById('yuiut').style.display = "none";
             document.getElementById('All_The_chats').style.display = "none";
@@ -676,6 +681,7 @@ auth.onAuthStateChanged(user => {
             document.getElementById('All_The_chats').style.display = "none";
             document.getElementById('addfriend').style.display = "none";
              Add_User.style.display = 'none';
+            
             document.getElementById('allchatpic').style.display = "none"
             document.getElementById('friendif').style.display = "none";
             document.getElementById('yuiut').style.display = "none";
@@ -698,7 +704,12 @@ auth.onAuthStateChanged(user => {
             }
             
             All_The_Notepad_stuff.style.display = "none";
+            
+            const stopwatchgotostuff = document.getElementById("stopwatchgotostuff")
+            stopwatchgotostuff.style.display = "inline-block";
+            
             TimerStuff.style.display = "inline-block";
+            document.getElementById("zsdcx").style.display = "block"
             document.getElementById('Plus_Sign').style.display = "none";
             document.getElementById("ShowNotFirstTime").style.display = ShouldItShow;
             document.getElementById("chat").style.display = "none";
@@ -751,7 +762,7 @@ auth.onAuthStateChanged(user => {
                         });
                     }  
                 } 
-                Chat_Name
+                
             });
             Pause.addEventListener('click',function(e){
                 e.preventDefault();
@@ -773,12 +784,81 @@ auth.onAuthStateChanged(user => {
                 
                 document.getElementById('countdownTimer').style.display = "none";
                 
+
             });
+            let control1= false;//Can't click start to times in a row
+            let control2 = false;//Can't click stop if it was not started
+            let control3 = true;//Stop when you click stop 
+            const startis = document.getElementById("startis")
+            const stopis = document.getElementById("stopis")
+            const resetis = document.getElementById("resestis")
+            let milisecondsfirst = document.getElementById("milisecondsfirst");
+            let secondsfirst  = document.getElementById("secondsfirst")
+            let minfirst = document.getElementById("minfirst");
+            let qsdfghj = parseInt(milisecondsfirst.innerText)
+            let azertyu = parseInt(secondsfirst.innerText)
+            let wxcvbn = parseInt(minfirst.innerText)
+            
+            startis.addEventListener("click", function(){
+                control2 = true
+                if(control1 == false){
+                    stopis.addEventListener("click", function(){
+                        clearInterval(nbv)
+                        control1 = false
+                    })
+                    resetis.addEventListener("click",function(){
+                        clearInterval(nbv)
+                        qsdfghj  = 0
+                        azertyu = 0
+                        wxcvbn = 0
+                        control1 = false
+                        milisecondsfirst.innerText = "00"
+                        secondsfirst.innerText = "00"
+                        minfirst.innerText = "00"
+    
+                    })
+                    control1 = true
+                    let nbv = setInterval(function(){
+                        
+                        if(qsdfghj != 59){
+                            qsdfghj += 1
+                        }else{
+                            qsdfghj = 00
+                            if(azertyu != 59){
+                                azertyu += 1
+                            }else{
+                                azertyu = 00
+                                wxcvbn += 1
+                                
+                            }
+                            
+                        }
+                        let poiuytr = qsdfghj.toString()
+                        let mlkjhgf = azertyu.toString()
+                        let nbvcxw = wxcvbn.toString()
+                        if(poiuytr.length == 1){
+                            poiuytr = "0" + poiuytr
+                        }
+                        if(mlkjhgf.length == 1){
+                            mlkjhgf = "0" + mlkjhgf
+                        }
+                        if(nbvcxw.length == 1){
+                            nbvcxw = "0" + nbvcxw
+                        }
+                        milisecondsfirst.innerText = poiuytr
+                        secondsfirst.innerText = mlkjhgf
+                        minfirst.innerText = nbvcxw
+                    }, 10)
+                }
+
+                
+            }) 
             function UpdateCo(){
             if(IsItPause == false){
                 let timeS = localStorage.getItem("Time")
                 if(timeS <= 0){
                     countdown.innerHTML = `Times Up`;
+                   
                     return;
                 }else{
                     let OtherNumber = timeS;
