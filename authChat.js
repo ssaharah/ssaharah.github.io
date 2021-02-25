@@ -99,7 +99,7 @@ auth.onAuthStateChanged(user => {
             document.getElementById("Chat_input").style.display = "none";
             document.getElementById("Chat_Button").style.display = "none";
             document.getElementById("Back_button").style.display = "none";
-            
+            document.getElementById("ffg").style.display = "block"
             document.getElementById('Plus_Sign').style.display = "inline-block"; 
             document.getElementById('allchatpic').style.display = "block"
            
@@ -107,6 +107,7 @@ auth.onAuthStateChanged(user => {
             document.getElementById('ChatGoTo').style.display = "inline-block"
             document.getElementById('FriendGoTo').style.display = "inline-block"
         })
+        
 
         FriendGoTo.addEventListener('click', (e) => {
             e.preventDefault();
@@ -343,9 +344,11 @@ auth.onAuthStateChanged(user => {
             const htmlForProfile = `
             <img  class="inline" id="ProfilePicture" src="${Profile}" alt="Profile Picture">
             `;
+            document.getElementById("edfvcd").src  = Profile
+            document.getElementById("FVdcv").innerText =  User
             const Button = document.getElementById('ButtonTo');
-            document.getElementById('ImgOfPic').src = Profile;
-            document.getElementById('POFPIC').innerText =  User
+           
+            
             
             Button.addEventListener('click', function(e){
                 e.preventDefault();
@@ -426,9 +429,9 @@ auth.onAuthStateChanged(user => {
             if(NotInChat == true){
                 Emoji_Picker.style.display = "inline";
                 AddPicture.style.display = "inline";
-                document.getElementById('Chat_Button').style.display = "inline";
-                document.getElementById('textarea').style.display = "inline";
-                document.getElementById('G').style.display = "inline";
+                //document.getElementById('Chat_Button').style.display = "inline";
+                //document.getElementById('textarea').style.display = "inline";
+                document.getElementById('Gp').style.display = "inline";
                 document.getElementById("chat").style.display = "none";
                 document.getElementById('Plus_Sign').style.display = "inline-block";
                 
@@ -596,12 +599,15 @@ auth.onAuthStateChanged(user => {
             document.getElementById('trty').style.display = "none";
             document.getElementById('addfriend').style.display = "none";
             document.getElementById('allchatpic').style.display ="none";
-            document.getElementById('scroll').style.display = "none";
-            document.getElementById('StuffTOHide').style.display = "none";
             
-            document.getElementById("chat").style.display = "none";
+            
+            //document.getElementById('StuffTOHide').style.display = "none";
+            
+            textarea.style.display = "block"
+            //document.getElementById("chat").style.display = "none";
             document.getElementById('Plus_Sign').style.display = "none";
             All_The_Notepad_stuff.style.display = "block";
+            console.log( All_The_Notepad_stuff.style.display)
             Delete.addEventListener('click', function(){
                 textarea.value = "";
               });
@@ -630,7 +636,7 @@ auth.onAuthStateChanged(user => {
                          fontStyle: textarea.style.fontStyle,
                          fontWeight: textarea.style.fontWeight
                      }).then(function(){
-                       const fadeTarget = document.getElementById("G");
+                       const fadeTarget = document.getElementById("Gp");
                       
                        Gp.innerText
                        fadeTarget.style.display ="block";
@@ -823,7 +829,7 @@ auth.onAuthStateChanged(user => {
                     control1 = true
                     let nbv = setInterval(function(){
                         
-                        if(qsdfghj != 59){
+                        if(qsdfghj != 100){
                             qsdfghj += 1
                         }else{
                             qsdfghj = 00
@@ -899,7 +905,7 @@ auth.onAuthStateChanged(user => {
         Sidebar.style.display = "block";
         User_info.style.display = "inline";
         Whole.style.display = "inline";
-        DropdownButton.style.display = "inline-block";
+        
         Side_arrow.style.display = "inline";
         hides.style.display = "block";
         
@@ -1555,7 +1561,7 @@ auth.onAuthStateChanged(user => {
         User_info.innerHTML = '';
         Sidebar.style.display = "none";
         Side_arrow.style.display = "none";
-        DropdownButton.style.display = "none";
+        
         MessageBoxr.style.display ="none";
         User_info.style.display = "none";
         Whole.style.display = "none";
@@ -1570,10 +1576,12 @@ auth.onAuthStateChanged(user => {
 const Sign_up_whole = document.querySelector("#signup");
 Sign_up_whole.addEventListener('submit',(e)=> {
     e.preventDefault();
+   
     //Get the info that the user has inputed.
     const email = document.querySelector("#signup-email").value;
     const password = document.querySelector("#signup-password").value;
     //sign up the user
+    
     if(email.length <= 24){
         auth.createUserWithEmailAndPassword(email,password).then(cred=>{
             const Display_Name  =  document.getElementById("signup-first-name").value + " " +  document.getElementById("signup-last-name").value;
