@@ -905,7 +905,7 @@ auth.onAuthStateChanged(user => {
         Sidebar.style.display = "block";
         User_info.style.display = "inline";
         Whole.style.display = "inline";
-        document.getElementById('etuy').style.display = "none"
+        
         Side_arrow.style.display = "inline";
         hides.style.display = "block";
         
@@ -1561,7 +1561,7 @@ auth.onAuthStateChanged(user => {
         User_info.innerHTML = '';
         Sidebar.style.display = "none";
         Side_arrow.style.display = "none";
-        
+        document.getElementById('etuy').style.display = "none"
         MessageBoxr.style.display ="none";
         User_info.style.display = "none";
         Whole.style.display = "none";
