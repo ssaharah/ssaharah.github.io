@@ -905,7 +905,7 @@ auth.onAuthStateChanged(user => {
         Sidebar.style.display = "block";
         User_info.style.display = "inline";
         Whole.style.display = "inline";
-        
+        document.getElementById('etuy').style.display = "none"
         Side_arrow.style.display = "inline";
         hides.style.display = "block";
         
