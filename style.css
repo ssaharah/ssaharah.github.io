@@ -108,7 +108,7 @@ footer{
 }
 .white{
     background-color:rgb(105, 105, 105);
-    border-bottom: 2px solid black;
+    
     margin-bottom: 0.0625vw;
     height: 7.8125vw;
     width: 98.9375vw;
@@ -280,6 +280,7 @@ form input[type ="button"]{
     align-items: center;
     display: none;
 }
+
 .modal-boss-sc{
     width: 100%;
     height: 100%;
@@ -399,14 +400,15 @@ button{
     position: fixed;
     left: 0px;
     width:  19.53125vw;
+    top: 0px;
     height: 100%;
     background-color: white;
     display: none;
-    margin-top: 0.7vw;
+    
 }
 .sidebarS{
     position: fixed;
-    left: 0px;
+    
     width:  19.53125vw;
     height: 270px;
     background-color: white;
@@ -425,20 +427,24 @@ h4 {
     display:block;
     height: 100%;
     line-height: 5.078125vw;
-    width: 100%;
+    width: 179px;
+    margin-top: 6px;
     font-size: 2vw;
-    box-sizing: border-box;
+    
     border-top: 0.078125vw  solid rgb(255, 255, 255, 1);
     border-bottom:  0.078125vw solid black;
+    background-color: transparent;
+    
+    border: 2px solid black;
+    border-radius: 22px;
+    
    
 }
-  
-  
- ul li:hover a {
-    padding-left: 1.5625vw;
-    background-color: rgba(0, 0, 0, 0.315);
-    
+
+.sidebar ul a:hover{
+    padding-left: 10px;
 }
+
 .sidebar ul a i {
     margin-right:  1.25vw;
 }
