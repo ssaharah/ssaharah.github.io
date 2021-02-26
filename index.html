@@ -16,7 +16,7 @@
         document.getElementById(id).src = image
     }
 </script>
-<body id="body" style="background-repeat: no-repeat; " >
+<body id="body" style="background-repeat: no-repeat;  background-color: whitesmoke;" >
         <div style=" width:80vw; ">
             
             <div class="white">
@@ -62,7 +62,7 @@
             </div>
                      
             
-            
+            <br><br><br><br><br><br><br><h1 id="Welcome" class="hide" style="margin-top: 130px; font-size: 100px; margin-left: 350px; font-family: Arial, Helvetica, sans-serif;"> Welcome To <p style="display: inline; font-size: 100px; margin-left: 450px;">Sahara</p> </h1>
             <div id="zsdcx" style="margin-top: 20px; background-color:rgb(105, 105, 105); display: none; width: 600px; margin-left: 350px;height: 400px; border-radius: 24px;">
                 <div  id="countdownTimer" style="display: none; margin-left: 10.8125vw;  border-radius: 14px;"> 
                    
@@ -87,15 +87,6 @@
                     
             </div>
             </div>
-            <div id="ffg" style="width: 78.125vw; overflow-y: scroll;   height: 80px; margin-left: 600px; margin-top: 100px; ">
-                    <div  style=" height: 10px;  display: inline-block;" id="allchatpic"></div> 
-            </div>
-            <button id="Plus_Sign" style=" display: inline-block; background-color: transparent; width:3.5vw; height:3.5vw; border: none; display: none;  "><img  style="width: 3.5vw; height: 3.5vw;" src="Images/1bbf2aba-6fb1-47bc-bc10-3b751e5f1337_200x200.png" alt="Plus sign"></button>
-            <br><br>
-            <div style=" width: 1000px; margin-left: 300px;" id="All_The_chats"></div>
-            
-        
-        
             <main>
                 <div id="All_The_Notepad_stuff" style="display: none; margin-left: 200px;">
                     <div style="margin-right: 30.3125vw;">
@@ -125,6 +116,8 @@
                         </span>
                         
                     </div>
+
+                
                     
 
 
@@ -149,36 +142,48 @@
                     </form>    
                 </div> 
             </div>
-            <div id="stopwatchgotostuff"  style="display: none;">
-               <div style="width: 600px; box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5); padding: 15px; border-radius: 5px; background-color: rgb(105, 105, 105);">
-                   <h1 style="margin:0; background-color: white; color: black; font-size: 64px; border-radius: 5px; padding: 10px;">
-                   <span style="display: inline-block; width: 85px; text-align: center;" id="minfirst">00</span>:
-                   <span style="display: inline-block; width: 85px; text-align: center;" id="secondsfirst">00</span>:
-                   <span style="display: inline-block; width: 85px; text-align: center;" id="milisecondsfirst">00</span>
-               </div>
-               <div style="display: flex; margin: 10px -5px 0; ">
-                <button id="startis" style="flex: 1; margin: 0 5px; border: none; font-size: 20px; padding: 5px; border-radius: 5px; box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5); background-color: grey; font-weight: bold; color: black;" id="startis">Start</button>
-                <button id="stopis" style="flex: 1; margin: 0 5px; border: none; font-size: 20px; padding: 5px; border-radius: 5px; background-color:  grey; font-weight: bold; color: black;" id="stopis">Stop</button>
-                <button id="resestis" style="flex: 1; margin: 0 5px; border: none; font-size: 20px; padding: 5px; border-radius: 5px; background-color: grey; font-weight: bold; color: black;" id="resetis">Reset</button>
+        </main>
+        <div id="stopwatchgotostuff"  style="display: none; margin-left: 300px;">
+            <div style="width: 600px; box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5); padding: 15px; border-radius: 5px; background-color: rgb(105, 105, 105);">
+                <h1 style="margin:0; background-color: white; color: black; font-size: 64px; border-radius: 5px; padding: 10px;">
+                <span style="display: inline-block; width: 85px; text-align: center;" id="minfirst">00</span>:
+                <span style="display: inline-block; width: 85px; text-align: center;" id="secondsfirst">00</span>:
+                <span style="display: inline-block; width: 85px; text-align: center;" id="milisecondsfirst">00</span>
             </div>
-            </h1>
+            <div style="display: flex; margin: 10px -5px 0; ">
+             <button id="startis" style="flex: 1; margin: 0 5px; border: none; font-size: 20px; padding: 5px; border-radius: 5px; box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5); background-color: grey; font-weight: bold; color: black;" id="startis">Start</button>
+             <button id="stopis" style="flex: 1; margin: 0 5px; border: none; font-size: 20px; padding: 5px; border-radius: 5px; background-color:  grey; font-weight: bold; color: black;" id="stopis">Stop</button>
+             <button id="resestis" style="flex: 1; margin: 0 5px; border: none; font-size: 20px; padding: 5px; border-radius: 5px; background-color: grey; font-weight: bold; color: black;" id="resetis">Reset</button>
+         </div>
+         </h1>
+             
+             
+         </div>
+         </div>
+         <div id="alarmgotostuff">
+ 
+         </div>
+             <div class="i" style="padding-top: 0.78125vw; background-color: black; color: white; display: none;"><p style="color: white; display: inline; margin-right: 100px;">Profile picture</p><p style="color: white; display: inline; margin-right: 60px;">Username</p>           <p style="display: inline; margin-left: 100px; color: white;">Friend since</p></div>
+             
+             <div id="StuffInChat">
+                 <button  id="Back_button"style="background-color: transparent; border: none;  margin-right: 500px;  margin-bottom:50px;"><img style="width: 40px; height: 40px; display: none;" src="Images/2b31d65a-2474-4ac1-b9e6-5842d98a0144_200x200.png" alt="Back Button"></button>
+             </div> 
+         </div>    
                 
-                
+         </div>    
+            
+            <div id="ffg" style="width: 78.125vw; overflow-y: scroll;   height: 80px; margin-left: 600px; margin-top: 100px; ">
+                    <div  style=" height: 10px;  display: inline-block; " id="allchatpic"></div> 
             </div>
-            </div>
-            <div id="alarmgotostuff">
-    
-            </div>
-                <div class="i" style="padding-top: 0.78125vw; background-color: black; color: white; display: none;"><p style="color: white; display: inline; margin-right: 100px;">Profile picture</p><p style="color: white; display: inline; margin-right: 60px;">Username</p>           <p style="display: inline; margin-left: 100px; color: white;">Friend since</p></div>
-               
-                
-            </div>    
-                <h1 id="Welcome" class="hide" style="margin-top: 30px;">Welcome To<br> Sahara</h1>
-                <div id="StuffInChat">
-                    <button  id="Back_button"style="background-color: transparent; border: none;  margin-right: 500px;  margin-bottom:50px;"><img style="width: 40px; height: 40px; display: none;" src="Images/2b31d65a-2474-4ac1-b9e6-5842d98a0144_200x200.png" alt="Back Button"></button>
-                </div>    
-            </div>    
-            </main>
+            <button id="Plus_Sign" style="margin-left: 600px; display: inline-block; background-color: transparent; width:3.5vw; height:3.5vw; border: none; display: none;  "><img  style="width: 3.5vw; height: 3.5vw;" src="Images/1bbf2aba-6fb1-47bc-bc10-3b751e5f1337_200x200.png" alt="Plus sign"></button>
+            <br><br>
+            <div style=" width: 1000px; margin-left: 300px;" id="All_The_chats"></div>
+            
+        
+        
+            
+            
+            
             
         <div id ="signup" class="modal-boss-s">
             <div class="modal-signup">

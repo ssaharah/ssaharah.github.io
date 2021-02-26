@@ -1623,7 +1623,7 @@ logout.addEventListener('click', (e)=>{
     auth.signOut();
     sessionStorage.setItem('SignedIn', "false");
     const Take_Picture = document.getElementById('Take_Picture').style.display = "none";
-    myVar = setTimeout(function(){ location.reload();  clearTimeout(myVar);}, 100);
+    myVar = setTimeout(function(){ location.reload();  clearTimeout(myVar);}, 2100);
     StuffTOHide.style.display = "none";
     body.backgroundColor = "white";
     Chat_UID.style.display = "none";
