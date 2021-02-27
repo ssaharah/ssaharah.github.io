@@ -1626,6 +1626,8 @@ logout.addEventListener('click', (e)=>{
     e.preventDefault;
     auth.signOut();
     sessionStorage.setItem('SignedIn', "false");
+    document.getElementById("")
+    document.getElementById("")
     const Take_Picture = document.getElementById('Take_Picture').style.display = "none";
     myVar = setTimeout(function(){ location.reload();  clearTimeout(myVar);}, 2100);
     StuffTOHide.style.display = "none";
@@ -1642,13 +1644,14 @@ Login_whole.addEventListener('submit',(e) =>
     e.preventDefault;
     //Get the users information.
     const email = document.querySelector("#login-email").value;
+    
     const password = document.querySelector("#login-password").value;
     auth.signInWithEmailAndPassword(email,password).then(cred =>{
         document.querySelector(".modal-boss-l").style.display = "none";
         document.getElementById("login-email").value = "";
         document.getElementById("login-password").value = "";
         sessionStorage.setItem('SignedIn', "true");
-        myVar = setTimeout(function(){ location.reload();  clearTimeout(myVar);}, 1500);
+        myVar = setTimeout(function(){ location.reload();  clearTimeout(myVar);}, 200);
     }).catch(function(error){
         if(error.message == "There is no user record corresponding to this identifier. The user may have been deleted."){
             catchErrorLogin.innerHTML = "Invalid username or password."

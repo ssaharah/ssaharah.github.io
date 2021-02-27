@@ -101,6 +101,7 @@ footer{
     background-color: black;
 }
 
+
 .Img{
     width: 3.90625vw;
     height: 3.90625vw;
@@ -201,6 +202,7 @@ form input[type ="button"]{
 
 .hide{
     display: none;
+    
 }
 .rounded_edge{
     border-radius: 0.703125vw;
