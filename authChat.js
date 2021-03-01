@@ -1,3 +1,4 @@
+
 const User_info = document.querySelector("#user_info");
 const MessageBoxr = document.querySelector("#Bottom");
 const User_Info = document.querySelector("#user_info");
@@ -72,6 +73,7 @@ auth.onAuthStateChanged(user => {
             
            
         });
+        
         //The user is logged in.
         //First we hide some stuff that we dont't want to show.
 
@@ -177,6 +179,7 @@ auth.onAuthStateChanged(user => {
             for (let iu = 0; iu < rtyu.length - 1; iu++) {
                 const accepty = document.getElementById(rtyu[iu]);
                 const decliney = document.getElementById(rtxu[iu]);
+                const ghyb = accepty.parentElement
                 if(decliney != null){
                     let nui = decliney.name;
                     
@@ -188,6 +191,7 @@ auth.onAuthStateChanged(user => {
                             let fr = data.fr;
                             let arrayu = not.split("/");
                             fr +=   nui + "/"
+                            ghyb.style.display = "none"
                             
                            
                             if(arrayu != not){
@@ -263,7 +267,8 @@ auth.onAuthStateChanged(user => {
                 
             }
         });
-       
+        
+        
         ChatGoTo.addEventListener('click', (e)=>{
             e.preventDefault();
             friendif.style.display = "none";
@@ -421,11 +426,7 @@ auth.onAuthStateChanged(user => {
             All_The_Notepad_stuff.style.display = "none";
             TimerStuff.style.display = "none";
             document.getElementById("stopwatchgotostuff").style.display = "none";
-            document.getElementById("zsdcx").style.display = "none" 
-            document.getElementById("yuiut").style.display = "block";
-            document.getElementById("ChatGoTo").style.display = "inline-block";
-            document.getElementById("FriendGoTo").style.display = "inline-block";
-            document.getElementById("StuffTOHide").style.display = "none"
+            document.getElementById("zsdcx").style.display = "none"
             document.getElementById('All_The_chats').style.display = "block";
             document.getElementById('allchatpic').style.display ="block";
             document.getElementById('yuiut').style.display = "block";
@@ -564,6 +565,7 @@ auth.onAuthStateChanged(user => {
             })
             
         })
+        Chat.click()
         School.addEventListener('click', (e) =>{
             e.preventDefault();
             //This function runs when the user has clicked school.
@@ -596,7 +598,7 @@ auth.onAuthStateChanged(user => {
             document.getElementById("zsdcx").style.display = "none"
             TimerStuff.style.display = "none";
             All_The_chats.style.display = "none";
-           
+            
             document.getElementById('friendif').style.display = "none";
             document.getElementById('yuiut').style.display = "none";
             document.getElementById('All_The_chats').style.display = "none";
@@ -605,10 +607,10 @@ auth.onAuthStateChanged(user => {
             document.getElementById('allchatpic').style.display ="none";
             
             
-            //document.getElementById('StuffTOHide').style.display = "none";
+            document.getElementById('StuffTOHide').style.display = "none";
             
             textarea.style.display = "block"
-            //document.getElementById("chat").style.display = "none";
+            document.getElementById("chat").style.display = "none";
             document.getElementById('Plus_Sign').style.display = "none";
             All_The_Notepad_stuff.style.display = "block";
             console.log( All_The_Notepad_stuff.style.display)
@@ -1067,7 +1069,7 @@ auth.onAuthStateChanged(user => {
                     const data = snapshoty.data();
                     const friendname = data.Username;
                     let thing = friendname + "close"
-                    text = `<div class="iq"><button style="margin-top:0.0320644216691069vh; display:inline; background-color:transparent; border:none; font-size:1.171303074670571vw; margin-left:12.445095168374817vw;" id=${thing}>x</button> <img style="width:9.882869692532942vw; height:9.882869692532942vw; border-radius:0.8784773060029283vw; margin-left:2.1961932650073206vw;" src="${data.Profile}" alt=""><p style=" display:inline; padding-left:1.4641288433382138vw;">${friendname}</p></div>`
+                    text = `<div class="iq" style="margin-top:1vw;"><button style="margin-top:0.0320644216691069vw; display:inline; background-color:transparent; border:none; font-size:1.171303074670571vw; margin-left:12.445095168374817vw;" id=${thing}>x</button> <img style="width:9.882869692532942vw; height:9.882869692532942vw; border-radius:0.8784773060029283vw; margin-left:2.1961932650073206vw;" src="${data.Profile}" alt=""><p style=" display:inline; padding-left:1.4641288433382138vw;">${friendname}</p></div>`
                     friendif.innerHTML += text;
                     ui += 1
                     marray.push(thing)
@@ -1202,6 +1204,7 @@ auth.onAuthStateChanged(user => {
                     
                     
                 });
+                InviteUsername.value = ""
             });
         }
         
@@ -1565,7 +1568,7 @@ auth.onAuthStateChanged(user => {
         User_info.innerHTML = '';
         Sidebar.style.display = "none";
         Side_arrow.style.display = "none";
-        document.getElementById('etuy').style.display = "none"
+        
         MessageBoxr.style.display ="none";
         User_info.style.display = "none";
         Whole.style.display = "none";
@@ -1626,10 +1629,8 @@ logout.addEventListener('click', (e)=>{
     e.preventDefault;
     auth.signOut();
     sessionStorage.setItem('SignedIn', "false");
-    document.getElementById("")
-    document.getElementById("")
     const Take_Picture = document.getElementById('Take_Picture').style.display = "none";
-    myVar = setTimeout(function(){ location.reload();  clearTimeout(myVar);}, 2100);
+    myVar = setTimeout(function(){ location.reload();  clearTimeout(myVar);}, 100);
     StuffTOHide.style.display = "none";
     body.backgroundColor = "white";
     Chat_UID.style.display = "none";
@@ -1644,14 +1645,13 @@ Login_whole.addEventListener('submit',(e) =>
     e.preventDefault;
     //Get the users information.
     const email = document.querySelector("#login-email").value;
-    
     const password = document.querySelector("#login-password").value;
     auth.signInWithEmailAndPassword(email,password).then(cred =>{
         document.querySelector(".modal-boss-l").style.display = "none";
         document.getElementById("login-email").value = "";
         document.getElementById("login-password").value = "";
         sessionStorage.setItem('SignedIn', "true");
-        myVar = setTimeout(function(){ location.reload();  clearTimeout(myVar);}, 200);
+        myVar = setTimeout(function(){ location.reload();  clearTimeout(myVar);}, 1500);
     }).catch(function(error){
         if(error.message == "There is no user record corresponding to this identifier. The user may have been deleted."){
             catchErrorLogin.innerHTML = "Invalid username or password."
