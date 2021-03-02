@@ -14,6 +14,7 @@ const Closes= document.querySelector("#modal-boss-sc");
 const addfriendcloseU = document.getElementById('addfriendcloseU');
 addfriendcloseU.addEventListener('click', function(){
     document.getElementById('addfriendU').style.display = "none";
+    
 })
 const Closel= document.querySelector("#modal-boss-lc");
     Closel.addEventListener('click',function(){
@@ -41,7 +42,10 @@ Submit.addEventListener('submit', function(){
 });
 const CloseInviteFriend = document.getElementById('CloseInviteFriend');
 CloseInviteFriend.addEventListener('click', function(){
+    alert("eeeee")
     document.getElementById('InviteFriendModal').style.display = "none";
+   
+    
 });
 
 const Add_UserToChat = document.getElementById('Add_User');

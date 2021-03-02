@@ -382,7 +382,10 @@ auth.onAuthStateChanged(user => {
             });
         });
         
-       
+       document.getElementById("edfvcd").addEventListener("click", function(){
+
+            UploadAProfielPicture.click()
+       })
         const UploadAProfielPicture = document.getElementById('UploadAProfielPicture');
         UploadAProfielPicture.addEventListener('click',function(e){
             e.preventDefault();
@@ -397,6 +400,7 @@ auth.onAuthStateChanged(user => {
                     const Image = document.getElementById('ProfilePicture');
                     const ImageSrc = this.files[0];
                     Image.src = URL.createObjectURL(ImageSrc); 
+                    document.getElementById("edfvcd").src = URL.createObjectURL(ImageSrc);
                     document.getElementById('file').style.display = "none";
                     document.getElementById('ProfilePictureModalU').style.display = "none";
                     const Base64Reader = new  FileReader();
@@ -633,7 +637,7 @@ auth.onAuthStateChanged(user => {
                 }
               });
               function save(){
-                if(textarea.value.length <= 5000){
+                if(textarea.value.length <= 10000){
                     const Gp = document.getElementById('Gp');
                     Gp.innerText="Successfully saved"
                      
@@ -1568,7 +1572,7 @@ auth.onAuthStateChanged(user => {
         User_info.innerHTML = '';
         Sidebar.style.display = "none";
         Side_arrow.style.display = "none";
-        
+        document.getElementById("noti").style.display = "none";
         MessageBoxr.style.display ="none";
         User_info.style.display = "none";
         Whole.style.display = "none";
