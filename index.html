@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-auth.js"></script>
+    <script src= "https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"> </script> 
+    <link rel="icon" type="image/png" href="Images/1228917a-cb83-495c-9f3a-c7bb035829f0_200x200.png"/>
+    <title>Sahara</title>
+</head>
+<script>
+    function changetoimage(id, image){
+        document.getElementById(id).src = image
+    }
+</script>
+<body id="body" style="background-repeat: no-repeat;" >
+        <div style=" width:80vw; ">
+            
+            <div class="white">
+                <button id="rf" style="display: none;"></button>
+                <div id="loading" class="test"></div>
+                <a href="#"><img id="side_arrow" onmouseout="changetoimage('side_arrow', 'Images/Menu1.png')" onmouseover="changetoimage('side_arrow','Images/Menu2.png' )" style="margin-left: 1vw; width:  2vw; height:  2vw;" src="Images/Menu1.png" alt="Side Arrow"></a>
+                <div  class="sidebar"id ="sidebar"> 
+                    <ul class="No-List" style="height:100%; " >
+                        <div style="overflow: scroll; height:100%;">
+                            <li><img id="edfvcd" style="width:165px; height: 165px; border-radius: 122px;" src="" alt=""></li>
+                            <li><p style="font-size: 22px; margin-left: 10px; font-weight: bold;" id="FVdcv"></p></li>
+                            <li><a id="notes" style="text-decoration: none; " href="#"><img style="margin-left: 30px; width:  1.7vw; height:  1.7vw;" src="Images/10002f38-6f2b-45af-9656-23c6fd17bbac_200x200.png" alt="Mail"><p style="font-size: 22px; display: inline; margin-left: 7px;">Notes</p></a> </li>
+                            <li><a id="chatts" style="text-decoration: none;"href="#"><img style="margin-left: 30px; width:  1.5vw; height:  1.5vw;" src="Images/chat-black.png" alt="Chat"><p style="font-size: 22px; display: inline; margin-left: 7px;">Chat</p> </a> </li>
+                            <li><a id="school"style="text-decoration: none;"href="#"><img style="margin-left: 30px; width:  1.5vw; height:  1.5vw;" src="Images/school-black.png" alt="School"><p style="font-size: 22px; display: inline; margin-left: 7px;">School</p> </a> </li>
+                            <li><a id="timer"style="text-decoration: none; "href="#"><img style= "margin-left: 30px; width:  1.5vw; height:  1.5vw;" src="Images/30635142-8ee7-42ff-816b-8f809838e0d5_200x200.png" alt="Timer"><p style="font-size: 22px; display: inline; margin-left: 7px;">Timer</p> </a> </li>
+                            <li><a style="text-decoration: none; "href="mailto:samilaayouni14@gmail.com"><img style=" margin-left: 25px;width:  1.5vw; height:  1.5vw;" src="Images/8704ee09-e259-4154-93bd-3693dc162e82_200x200.png" alt="Contact_Us"><p style="font-size: 22px; display: inline; margin-left: 7px;">Contact Us</p>  </a> </li>
+                            <li><a id="Logout" href="#" style="text-decoration: none; "><img style=" margin-left: 30px;width:  1.5vw; height:  1.5vw;" src="Images/logout.png" alt="Contact_Us"><p style="font-size: 22px; display: inline; margin-left: 7px;">Log out</p></a> </li>
+                        </div>
+                    </ul>
+                </div>
+                
+            
+            <span style="color:rgb(255, 208, 0);text-align: center;font-size: 5.4vw;font-style: normal;padding-left: 26.5625vw;">
+                
+                <img style="margin-left: 11.784773060029282vw; vertical-align: center;"  class="Img"src="Images/1228917a-cb83-495c-9f3a-c7bb035829f0_200x200.png" alt="S">ahara
+                <a  class="yui"   id ="Login"href="#" style="text-decoration:none; font-size:  0.9vw;color:cornsilk;margin-left: 15.625vw;display: none; " data-target="modal-login">Login</a>
+                <a  class="yui" id = "Signup" href="#" style="text-decoration:none;font-size:  0.9vw;color:cornsilk;display: none;" data-target="modal-signup">Sign up</a>
+                <button id="Take_Picture"  style="vertical-align: middle; display: none; background-color: transparent; border: none; margin-left: 13.28125vw;" ></button>
+                <div class ="user_info"id="user_info"></div>
+                <a href="#" style="text-decoration: none; " id="noti"><img style="width:  2vw; height:  2vw;  border-radius: 12px;" id="etuy" src="Images/2294246a-0052-4f8d-a5dc-462d939efafd_200x200.png" alt=""></a>
+                <div class="dropdown" id="ButtonTo">
+                    <div style="font-size: 2;"></div>
+                    <div class="sidebarS" id="Chat_Data" style="display: none; position: absolute; margin-left: 74.53125vw; height: 25vw; border: 1px solid black;"> 
+                    </div>  
+                </div>
+                <div style="width: 90.04392386530014vw; position: absolute;  top: 6.43375vw; left: 9.59375vw;" id="yuiut"><button style="margin-left:  9.765625vw;" id="ChatGoTo" class="city">Chat</button><button id="FriendGoTo" class="city">Friends</button></div>
+            </span>
+            </div>
+            <div style="position: fixed; background-color: white; height: 27.34375vw; width: 27.34375vw; margin-left: 20.25vw; display: none;" id="notiup" ><p style="text-align: center; padding-top: 5px; ">Notifications</p>
+                <hr><p style=" font-size: 13px;">Friend Request </p><hr><div id="notiuj" style="overflow-y: scroll;"></div></div>
+                <div style="margin-left: 10.859375vw; width: 93.75vw;">
+                  <div style=" width: 73.20644216691069vw; display: none; margin-left: 8.375vw; margin-top: 7.03125vw;" id="friendif"></div>
+            </div>
+                     
+            <div id="ffg" style="width: 50.125vw; overflow-y: scroll;   height: 80px; margin-left: 600px; margin-top: 100px; ">
+                <div  style=" height: 10px;  display: inline-block;" id="allchatpic"></div> 
+        </div>
+        <button id="Plus_Sign" style=" display: inline-block; background-color: transparent; width:3.5vw; height:3.5vw; border: none; display: none;  "><img  style="width: 3.5vw; height: 3.5vw;" src="Images/1bbf2aba-6fb1-47bc-bc10-3b751e5f1337_200x200.png" alt="Plus sign"></button>
+        
+        <div style=" width: 1000px; margin-left: 300px;" id="All_The_chats"></div>
+            
+            <div id="zsdcx" style="margin-top: 20px; background-color:rgb(105, 105, 105); display: none; width: 600px; margin-left: 350px;height: 400px; border-radius: 24px;">
+                <div  id="countdownTimer" style="display: none; margin-left: 10.8125vw;  border-radius: 14px;"> 
+                   
+                    <p id="countdown" class="countdown"></p>
+                    <div id="Timer">
+                    <p style="font-size: 1.8625vw; "> Hours |  Minutes  |  Seconds</p>
+                      <div>
+                        
+                        <input maxlength = "6" id="Messages" dir="rtl" style="font-size:  3.9vw; width: 22vw;  margin-bottom: 3.90625vw; text-align: center;" type="text" placeholder="00:00:00">
+                      </div>
+                    </div>
+                    <div  id="ShowFirstTime">
+                        <button id="start" style=" width: 11.7vw; height: 5.4vw; border-radius: 14px; background-image: linear-gradient(orange, yellow); border: none;    ">Start</button>
+                        <button id="cancelStart" style="width: 11.7vw; height: 5.4vw; border-radius: 14px; background-image: linear-gradient(orange, yellow); border: none;">Cancel</button>
+                    </div>
+                    <div id="ShowNotFirstTime">
+                        <button id="pause" style=" width: 11.7vw; height: 5.4vw; border: none;  border-radius: 14px; display: none; background-image: linear-gradient(orange, yellow);  ">Pause</button>
+                        <button id="unPause" style="width: 11.7vw; height: 5.4vw; border: none; border-radius: 14px; display: none; background-image: linear-gradient(orange, yellow); ">Unpause</button>
+                        <button id="cancelNotStart" style="width: 11.7vw; border: none; border-radius: 14px; height:  5.4vw; display: none; background-image: linear-gradient(orange, yellow);">Cancel</button>
+                    </div>
+                    
+                    
+            </div>
+            </div>
+            <div  id="StuffTOHide">
+                <div  style="background-color:whitesmoke; width: 60vw; margin-bottom: 30px; margin-left:  1.4641288433382138vw;" >
+                    <span style="display: none; margin-left: 60vw;" id="showInClick" >
+               
+                        <button id="Add_User"  style="margin-left: -350px;  background-color: transparent; width: 6.2vw; height: 6.2vw; border: none; display: none;   "><img src="Images/0b8b84d5-4dd5-4f27-920d-56e03a52733e_200x200.png" alt="Add User"></button>
+                    <p  style="display: inline-block; font-size: 1.4641288433382138vw; margin-right: -0.7320644216691069vw;" id="Chat_UID_h2"></p>
+                    
+                    <button id="3rty" style="background-color: transparent; border: none; width: 5.124450951683748vw; height: 5.124450951683748vw;"><img src="Images/7e7025e7-6afb-4b2c-9965-a41c142cfa29_200x200.png" alt="Picture Can't load"></button>
+                    <button id="4rty" style="background-color: transparent; border: none; width: 5.124450951683748vw; height: 5.124450951683748vw;  margin-right: -100px;"><img src="Images/309ede65-1cce-4bab-9867-8ab11e634ea4_200x200.png" alt="Picture Can't load"></button>
+                    </span>
+                    
+                </div>
+                <audio id="audio" src="telephone-ring-04.mp3" autoplay></audio>
+
+                <button id="edsz" style="background-color:transparent; border: none;  margin-left:  20.4641288433382138vw; "><img style="width: 2.1961932650073206vw; height: 2.1961932650073206vw; " src="Images/x.png" alt=""></button> 
+                <div id="scroll" style="width: 60vw; margin-left:20.4641288433382138vw ; height:  39vw; overflow: hidden; overflow-y: scroll;  display: none;" ><div id="Top"></div> <div id="Bottom"></div></div>
+                <form style="margin-left:  20.392386530014641vw;" id="chat" class = "hideS">
+                   
+                   
+                    <div style=" background-color: white; width: 59vw; height: 2.9282576866764276vw; border-top-left-radius:  0.7320644216691069vw; border-top-right-radius:  0.7320644216691069vw;"><button id="yuij"  style="border: none; background-color: transparent;"><img style=" width: 1.4641288433382138vw; height: 1.4641288433382138vw;" src="Images/3d8d4d35-1b0b-49cb-896f-b91e8ef003ad_200x200.png" alt=""></button>
+                        <input id="Chat_input" style="font-size: 1.0248901903367496vw; display: inline-block; width: 50vw; border: none; text-align: left; padding-top: 1.0980966325036603vh; background-color: white; outline: none; height: 0.9980966325036603vw;  " type="text" placeholder="Click here to start typing." ><button  style=" height:2.1961932650073206vw ;   background-color: transparent; border: none; display: inline-block;" id="Chat_Button"><img src="Images/011d0169-927f-4de0-a0c7-d70faa725edc_200x200.png" alt="Send"></button></div> 
+                        <div id="FHYUHDFIS" class="FHYUHDFIS">
+                            
+                            <div id="tyuij" style="display: none; border-top: 1px solid black; background-color: white; border-bottom-left-radius: 8.784773060029282vw; border-bottom-right-radius: 8.784773060029282vw; width: 59vw;"><button id="AddPicture" style="display: none; background-color: transparent; border: none;"><img style="width: 1.4641288433382138vw; height: 1.4641288433382138vw; " src="Images/908915e9-7479-4642-8a71-dc704f44bc78_200x200.png" alt="Upload An Image"></button>
+                           
+                                <button id="Emoji_Picker" style="background-color: transparent; border: none; margin-top: 7px;" ><img style="width: 1.4641288433382138vw; height: 1.4641288433382138vw; " src="Images/3da8df44-25dc-4f83-b945-ffaf1ddb896d_200x200.png" alt="Emoji"></button></div>
+                        </div>
+                    <br><br><br><br>
+                </form>    
+            </div> 
+        </div>
+                <div id="StuffInChat">
+                    <button  id="Back_button"style="background-color: transparent; border: none;  margin-right: 500px;  margin-bottom:50px;"><img style="width: 40px; height: 40px; display: none;" src="Images/2b31d65a-2474-4ac1-b9e6-5842d98a0144_200x200.png" alt="Back Button"></button>
+                </div>    
+            
+        
+                
+           
+                <div id="All_The_Notepad_stuff" style="display: none; margin-left: 300px; margin-top: 40px;">
+                    <div>
+                        <button id="ClearButton"style="font-size: 0.9375vw; display: inline;"><img style="width: 1.5vw; height: 1.5vw;" src="Images/f53ee05a-c2eb-4286-9d44-1761d3a73c68_200x200.png" alt="Delete" ></button>
+                        <button id="SaveButton"style=" font-size: 0.9375vw; display: inline;   "><img style="width: 1.5vw; height: 1.5vw;" src="Images/faac5ba7-cf5d-48b3-9dcd-685ee2ed2e48_200x200.png" alt="Save" ></button>
+                        
+                       
+                        <button id="BlodButton"style="  font-size: 0.9375vw; display: inline;   "><img style="width: 1.5vw; height: 1.5vw;" src="Images/c471dd20-43ea-4a68-9772-0d73846b9ec9_200x200.png" alt="Bold" ></button>
+                        <button  id="IButton"style="   font-size: 0.9375vw; display: inline;  "><img style="width: 1.5vw; height: 1.5vw;" src="Images/51828316-8524-427d-9eac-15827185084f_200x200.png" alt="I" ></button>
+                    </div>
+                    <div>
+                    
+                    <textarea style="border-radius: 0.9375vw; font-style: normal; font-family:Arial, Helvetica, sans-serif; outline: none; border: none; resize: none; width: 39vw; height: 39vw; margin-left: 7.8125vw; margin-top: 0.78125vw; font-size: 1.171875vw; "  id="textarea" cols="30" rows="10"></textarea>
+                    <div  id="Gp" style=" background-color: gray; border-radius: 2.34375vw; height: 2.34375vw; width: 11.71875vw; margin-left: 21.09375vw; display: none; "><p id="Gp" style="color: white; text-align: center; padding-top:  0.390625vw; padding-bottom:  0.390625vw;"></p></div>
+                </div>
+                </div> <h1 id="Welcome" class="hide" style=" margin-left: 300px; font-size: 100px;  font-family: Arial, Helvetica, sans-serif; ">Welcome To<br><p style=" margin-left: 400px; font-size: 100px;  font-family: Arial, Helvetica, sans-serif; display: inline;">Sahara</p></h1>    
+                
+                
+        </main>
+        
+            <div id="stopwatchgotostuff"  style= "margin-left: 300px; display: none; margin-top: 40px;">
+               <div style="width: 600px; box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5); padding: 15px; border-radius: 5px; background-color: rgb(105, 105, 105);">
+                   <h1 style="margin:0; background-color: white; color: black; font-size: 64px; border-radius: 5px; padding: 10px;">
+                   <span style="display: inline-block; width: 85px; text-align: center;" id="minfirst">00</span>:
+                   <span style="display: inline-block; width: 85px; text-align: center;" id="secondsfirst">00</span>:
+                   <span style="display: inline-block; width: 85px; text-align: center;" id="milisecondsfirst">00</span>
+               </div>
+               <div style="display: flex; margin: 10px -5px 0; "> 
+                <button id="startis" style="flex: 1; margin: 0 5px; border: none; font-size: 20px; padding: 5px; border-radius: 5px; box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5); background-color: grey; font-weight: bold; color: black;" id="startis">Start</button>
+                <button id="stopis" style="flex: 1; margin: 0 5px; border: none; font-size: 20px; padding: 5px; border-radius: 5px; background-color:  grey; font-weight: bold; color: black;" id="stopis">Stop</button>
+                <button id="resestis" style="flex: 1; margin: 0 5px; border: none; font-size: 20px; padding: 5px; border-radius: 5px; background-color: grey; font-weight: bold; color: black;" id="resetis">Reset</button>
+            </div>
+            </div>
+            </div>
+            <div id="alarmgotostuff">
+    
+            </div>
+                <div class="i" style="padding-top: 0.78125vw; background-color: black; color: white; display: none;"><p style="color: white; display: inline; margin-right: 100px;">Profile picture</p><p style="color: white; display: inline; margin-right: 60px;">Username</p>           <p style="display: inline; margin-left: 100px; color: white;">Friend since</p></div>
+            </div>    
+            </div>
+        <div id ="signup" class="modal-boss-s">
+            <div class="modal-signup">
+                <div  id ="modal-boss-sc"class="close">+</div> 
+                <form class="list" >
+                    <h1 style="font-size: 3.7vw; ">Sign Up</h1></li>
+                    <input style="width: 20vw; margin-top: 1vw;" class ="form"type="text" id ="signup-first-name" placeholder="Enter First Name">
+                    <input style="width: 20vw;" class ="form"type="text" id="signup-last-name" placeholder="Enter Last name">
+                    <input style="width: 20vw;"class ="form"type="email" id ="signup-email" placeholder="Enter Username">
+                    <input style="width: 20vw;"class ="form"type="password" id="signup-password" placeholder="Enter Password">
+                    <p style="color: red; font-size: 0.9vw;" id="catchErrorSignup"></p>
+                    <button  style="width: 7vw; " class ="form" id="Sign Up"><p  style="font-size: 0.7vw;">Sign Up</p></button></li>
+                </form>
+            </div>
+        </div>
+        <div id ="login" class="modal-boss-l">
+            <div class="modal-login">
+                <div  id ="modal-boss-lc"class="close">+</div>
+                <form class="list">
+                    <h1 style="font-size: 3.7vw;">Login</h1></li>
+                    <input style="width: 20vw; " class ="form" type="email" id ="login-email" placeholder="Enter Username">
+                    <input  style="width: 20vw;" class ="form" type="password" id="login-password" placeholder="Enter Password">
+                    <p style="color: red; font-size: 0.9vw;" id="catchErrorLogin"></p>
+                    <button  style="width: 7vw;" class ="form"id="Login"><p style="font-size: 0.7vw;">Login</p></button>
+                </form>
+            </div>
+        </div> 
+        <div id ="Back_buttonModal" class="modal-boss-s">
+            <div class="modal-signup" style="height: 16.6vw;">
+                <div  id ="CloseBack_button"class="close">+</div>
+                <form class="list">
+                    <h1>Create A Chat</h1></li>
+                    <input class ="form"type="text" id ="CreateChatFirstName" placeholder="Enter Name">
+                    <input  id="CreateChatFile"type="file">
+                    <button class ="form" id="CreateChat" style="margin-top: 20px;">Create Chat</button></li>
+                </form>
+            </div>
+        </div> 
+        <img src="" alt="">
+            <div id="InviteFriendModal" class="modal-boss-s">
+            <div class="modal-signup" style="height: 15.6vw;">
+                <div  id ="CloseInviteFriend"class="close" >+</div>
+                <form class="list">
+                    <h1>Invite a Friend</h1></li>
+                    <input class ="form"type="text" id ="InviteUsername" placeholder="Enter your friend's username">
+                    <button class ="form" id="Invite">Invite</button></li>
+                </form>
+            </div>
+        </div>
+        <div id="trty"></div><img id="addfriend" style="display: none;  width: 60px; height: 60px; margin-left: 650px;" src="Images/1bbf2aba-6fb1-47bc-bc10-3b751e5f1337_200x200.png" alt="">
+        </div>
+        <div id="ProfilePictureModal" class="modal-boss-s">
+            <div class="modal-signup" style="height: 11.7vw;">
+                <div  id ="CloseProfilePicture"class="close">+</div>
+                <form class="list">
+                    <li><h1>Profile</h1></li>
+                   <button id="TakeAProfielPicture"style="width: 11.7vw; height: 1.9vw; margin-top: 5px;">Take a Picture</button>
+                   <button  id="UploadAProfielPicture"style="width: 11.7vw; height: 1.9vw; margin-top: 5px;">Upload an Image</button>
+                </form> 
+            </div>
+        </div>
+        <div id="erg" style="display: none; backdrop-filter: blur(5px); " class="modal-boss-sc"><div id="ety"  style="display: none; border:2px solid white; backdrop-filter: blur(5px); width: 450px; height: 490px; margin-top: 100px; margin-left: 420px;">
+            <div style="background-color:white;"><h1 id="ro" style="color: black; margin-left: 120px;"></h1> </div>
+           <img style="margin-left: 95px; width: 265px; height: 265px; border-radius: 50%;" id="rts" src="" alt="">
+           <div style=" background-color: rgba(0, 0, 0, 0.247); height: 122px;  margin-top: 20px;">
+            <button id="3erdt" style=" margin-left: 50px; border: none; background-color: transparent;"><img style="width:70px; height:70px; margin-top: 40px;" src="Images/de33965d-eb14-452a-8772-9aa3afdcefab_200x200.png" alt=""> </button> 
+            <button id="4erdt" style=" margin-left: 200px; height: 80px; border: none; background-color: transparent;"><img style="width:70px; height:70px; " src="Images/6bf209c1-4d10-491a-812d-8a7c03798eea_200x200.png" alt=""></button></div></div></div> 
+        <div id="ProfilePictureModalU" class="modal-boss-s">
+            <div class="modal-signup" style="height: 11.7vw;">
+                <div  id ="CloseProfilePictureU"class="close">+</div>
+                <form class="list">
+                    <li><h1>Upload an Image</h1></li>
+                    <input  id="file"type='file' />
+                </form>
+            </div>
+        </div>
+        
+        <div style="position: fixed;" id="addfriendU" class="modal-boss-s">
+            <div  class="modal-signup" style="height: 11.7vw;">
+                <div  id ="addfriendcloseU"class="close">+</div>
+                <form class="list">
+                    <li><h1>Add a friend</h1></li>
+                    <input id="friendentername" type="text" placeholder="Enter your friend's name">
+                    <br>
+                    <button id="enteraddfriend" style="margin-top: 8px; width: 80px; height: 30px;">Enter</button>
+                </form>
+            </div>
+        </div>
+        <div id="AddPictureModal" class="modal-boss-s">
+            <div class="modal-signup" style="height: 11.7vw;">
+                <div  id ="CloseAddPicture"class="close">+</div>
+                <form class="list">
+                    <li><h1>Upload Image</h1></li>
+                   <button  id="UploadAAdd"style="width: 11.7vw; height: 1.9vw; margin-top: 5px;">Upload an Image</button>
+                </form>
+            </div>
+        </div>
+        <div id="AddModalU" class="modal-boss-s">
+            <div class="modal-signup" style="height: 11.7vw;">
+                <div  id ="CloseAddU"class="close">x</div>
+                <form class="list">
+                    <li><h1>Upload an Image</h1></li>
+                    <input  id="fileAdd"type='file' />
+                </form>
+            </div>
+        </div>
+        <div id="BackgroundU" class="modal-boss-s">
+            <div class="modal-signup" style="height: 11.7vw;">
+                <div  id ="CloseBackgroundU"class="close">+</div>
+                <form class="list">
+                    <li><h1>Upload an Image</h1></li>
+                    <input  id="fileAddBackground"type='file' />
+                </form>
+            </div>
+        </div>
+        
+        
+</body>
+<script>
+        var firebaseConfig = {
+            apiKey: "AIzaSyCoK1APEkbi7HzfGekPgAVX8l8q6BLmL50",
+            authDomain: "sahara-8bfbe.firebaseapp.com",
+            databaseURL: "https://sahara-8bfbe.firebaseio.com",
+            projectId: "sahara-8bfbe",
+            storageBucket: "sahara-8bfbe.appspot.com",
+            messagingSenderId: "247681289351",
+            appId: "1:247681289351:web:c75c7b2fc405a19e1e3c22",
+            measurementId: "G-Q1E5WQHV8G"
+        };
+        firebase.initializeApp(firebaseConfig);
+        const firestore = firebase.firestore();
+        const auth = firebase.auth();
+        const input = document.getElementById("Chat_input");
+        let NotInChat = true;
+</script>
+<script>src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"</script>
+<script src="index.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/emoji-button@latest/dist/index.min.js"></script>
+<script>
+// Hiding some stuff.
+Back_button.style.display = 'none';
+document.getElementById("Chat_input").style.display = "none";
+document.getElementById("Chat_Button").style.display = "none";
+//Getting the username from local storage.
+let user = localStorage.getItem('user');
+//This function will run when somebody clicks a chat.
+function JoinChat1(Chat_Id){ 
+    sessionStorage.setItem("Chat_Name", Chat_Id);
+    sessionStorage.setItem("Chat_currently_in", Chat_Id)
+    document.getElementById('ChatGoTo').style.display = "none";
+    FriendGoTo.style.display = "none";
+    //Hiding stuff and showing all the chat stuff
+    let fgp = 0
+    const i4rty = document.getElementById("4rty");
+    i4rty.addEventListener('click', function(){
+        firestore.collection(sessionStorage.getItem("Chat_currently_in")).doc("Chat_Info").get().then(snapshot=>{
+            const data = snapshot.data();
+            let Iscall = data.Iscall
+            if(Iscall != true){
+                firestore.collection(sessionStorage.getItem("Chat_currently_in")).doc("Chat_Info").update({
+                    Iscall: true
+                })
+                open("html.html")
+            }
+        })
+    });
+    document.getElementById('showInClick').style.display = "block";
+    document.getElementById("All_The_chats").style.display = "none";
+    document.getElementById("Bottom").style.display = "block";
+    document.getElementById('chat').style.display = "block";
+    document.getElementById("ffg").style.display = "none";
+    document.getElementById('scroll').style.display = "block";
+    document.getElementById('Bottom').innerHTML = ""
+    document.getElementById('FHYUHDFIS').style.display = "block-inline"
+    document.getElementById('StuffTOHide').style.display = "inline";
+    document.getElementById('Add_User').style.display = "inline-block";
+    document.getElementById('AddPicture').style.display = "inline";
+    document.getElementById("Chat_input").style.display = "inline";
+    document.getElementById("Chat_Button").style.display = "inline";
+    document.getElementById("Back_button").style.display = "inline";
+    document.getElementById('Plus_Sign').style.display = "none"; 
+    document.getElementById('allchatpic').style.display = "none";
+    call();
+    //This code is the emoji button.
+    const Emoji_Picker = document.getElementById('Emoji_Picker');
+    var input = document.querySelector('#Chat_input');
+        var picker = new EmojiButton({
+            position: 'bottom'
+        });
+        //When the emoji button is clicked it will show if not already showing and hide is showing.
+    Emoji_Picker.addEventListener('click',function(e){
+        e.preventDefault()
+        picker.pickerVisible ? picker.hidePicker() : picker.showPicker(InputEvent)
+        //When the user has chosen an emoji it will be added to the input field.
+        picker.on('emoji', function(emoji){
+            input.value += emoji
+        });
+    });
+    const inut = document.getElementById('Chat_input')
+    inut.addEventListener("keyup", function(event) {
+        // Number 13 is the "Enter" key on the keyboard
+        if (event.keyCode === 13) {
+            // Cancel the default action, if needed
+            event.preventDefault();
+            // Trigger the button element with a click
+            document.getElementById("Chat_Button").click();
+        }
+        });
+    
+   
+    //Making an array
+    let ARRAY = [];
+    //Just making sure the chat is not equal to nothing.
+    if(Chat_Id != ""){
+        //Gets the name of the chat that we just joined.
+        const Chat_currently_in = Chat_Id;
+        sessionStorage.setItem("Chat_Name", Chat_Id);
+        //This is the chat name.
+        const Chat_UID_h2html = `${Chat_currently_in}`;
+        document.getElementById('Chat_UID_h2').innerHTML = Chat_UID_h2html;
+        //This function runs
+        GetFirstThenNext("Bottom");
+        
+        function GetFirstThenNext(){
+        let user = localStorage.getItem('user');
+        //This will get 30 messages where the field IsMesssage = false.
+        NotInChat = false;
+            firestore.collection(Chat_currently_in).where("IsMessage", "==", false).get().then(snap => {
+                
+                let rf = snap.size
+                let data = snap.docs
+                let r = []
+                data.forEach(doc => {
+                
+                //We add all the doc.id to the array and then order it so it will not be in a mess.
+                    r.push(doc.id);
+                })
+                r.sort()
+                if(rf > 30){
+                    
+                    let g = rf - 30;
+                   
+                    for (let i = 0; i < g; i++) {
+                        firestore.collection(Chat_currently_in).doc(r[i]).delete()
+                        
+                    }
+                   fgp = 1 
+                }
+            })
+            
+            setTimeout(function(){
+                firestore.collection(Chat_currently_in).where("IsMessage", "==", false).limit(30).get().then(snapshot =>{
+            //Another function is called and the parameter is all the docs that this function got.
+                Text(snapshot.docs);
+               
+            });
+
+            }, 800)    
+            
+            
+        const Text = (data) =>{
+            //data is the data in each message.
+            let htmlForText = '';
+            //For ever doc/Message this function will run.
+            data.forEach(doc => {
+                
+                //We add all the doc.id to the array and then order it so it will not be in a mess.
+                ARRAY.push(doc.id);
+                ARRAY.sort();
+                });
+                //These arrays are for the thumbs up.
+                const Thumbs = [];
+                const Thumbs2 = [];
+                //This for loop runs for every index inside the arrays full of doc.ids
+                for (let i = 0; i < ARRAY.length; i++) {
+                //The rest just takes the doc and displays it in the chat box.
+                const Doc = ARRAY[i]
+                
+                firestore.collection(Chat_currently_in).doc(Doc).get().then(snapshot=>{
+                    //The message send is stored in Texts.
+                    const Texts = snapshot.data();
+                    const Tex = snapshot;
+                    const ghjkkklhb = Texts.WhoIsTheMessageFrom
+                    const Ref = firestore.collection(Chat_currently_in).doc("Messages");
+                    //The number of charcters in the Number_Of_Characters.
+                    const Number_Of_Characters = Texts.Number_Of_Characters;
+                    //This gets the user that send the message dislay name.
+                    firestore.collection("users").doc(user).get().then(function(doc) //2
+                    {
+                            const MessageBoxr = document.getElementById("Bottom")
+                            let Data = doc.data();
+                            let Display_Name = Data.Display_Name
+                            Ref.update({
+                                Display_Name: Display_Name
+                            });
+                            //This finds out how long ago the message was send.
+                            let CurrentDate = new Date();
+                            let CurrentDate_mili = CurrentDate.getTime();
+                            let mili = Math.abs(Texts.Date_mili);
+                            let Diffrence_mili = CurrentDate_mili - mili;
+                            let Diffrence_Years = Math.floor(Diffrence_mili/ 31556952000);
+                            let Diffrence_Monthes = Math.floor(Diffrence_mili/2629746000);
+                            if(Diffrence_Monthes > 12){
+                                Diffrence_Monthes -= 12
+                            }else if(Diffrence_Monthes == 12){
+                                Diffrence_Monthes =1
+                            }
+                            let Diffrence_Days =  Math.floor(Diffrence_mili / (24*60*60*1000));
+                            let daysms= Diffrence_mili % (24*60*60*1000);
+                            let Diffrence_hours = Math.floor((daysms)/(60*60*1000)); 
+                            let hoursms=Diffrence_mili % (60*60*1000);
+                            let Diffrence_minutes = Math.floor((hoursms)/(60*1000));
+                            //Seeing the diffrence in miliseconds and saying how long ago the message was sent based on that data.
+                            if(Diffrence_mili < 60000){
+                                let Datehtml = " Just now!";
+                                GetData(Datehtml);
+                            }
+                            else if (Diffrence_mili > 60000 && Diffrence_mili < 3600000){
+                                if(Diffrence_minutes <= 0){
+                                    let Datehtml = Diffrence_minutes + 60 + "m";
+                                    GetData(Datehtml);
+                                }
+                                else{
+                                
+                                    let Datehtml = Diffrence_minutes + "m";
+                                    GetData(Datehtml);
+                                }
+                            }
+                            else if (Diffrence_mili> 3600000 && Diffrence_mili< 86400000){
+                                    
+                                        let Datehtml = Diffrence_hours + "h";
+                                        GetData(Datehtml);
+                                      
+                            }
+                            else if (Diffrence_mili > 86400000){
+                                
+                                
+                                    
+                                        let Datehtml = Diffrence_Days + "d";
+                                        GetData(Datehtml);
+                                      
+                            }
+                            else{
+                               
+                                let Datehtml = Diffrence_Days + Diffrence_Monthes + Diffrence_Years;
+                                GetData(Datehtml);
+                            }
+                            //Functiob GetData that takes a parameter of Datehtml which was the result of the time thing.
+                            //This function display the message.
+                            function GetData(Datehtml){
+                                    let useremail = localStorage.getItem('user.email');
+                                    let rty = localStorage.getItem('user')
+                                    const Data = doc.data();
+                                    const Profile = Data.Profile;
+                                    firestore.collection("users").doc(user).get().then(function(doc){
+                                                const Data = doc.data();
+                                                const Profile_base64 = Data.Profile;
+                                                localStorage.setItem('Profile_base64', Profile_base64)
+                                    });
+                                    //If it is an image this will run.
+                                    if(Texts.ImageSrc){
+                                        
+                                                    if(Texts.WhoIsTheMessageFrom == rty){    
+                                                        
+                                                        //If the person signed in is the person who send the message this will run.
+                                                    
+                                                        const Profile_base64 =  localStorage.getItem('Profile_base64')                 
+                                                    const htmlForTexth = `
+                                                    <div class="Go"><img class="inline" src=${Profile_base64} alt="User Profile"><p class="real_inline">You:</p></div>
+                                                    <div  id="Message_SendLC1" class="left" style = "height: 15.6vw; width:15.6vw;"><p class="go_to_spot">${Datehtml}</p><p class="Center"><img style="width: 150px; height: 150px;" src="${Texts.ImageSrc}" alt="Profile Picture"></img>
+                                                        <br></div>
+                                                    `;
+                                                    setTimeout(function(){
+                                                        MessageBoxr.innerHTML += htmlForTexth;
+                                                    }, 1)  
+                                                    
+                                                    
+                                                   
+                                                                       
+                                                    
+                                                    }else{ 
+                                                        
+                                                        firestore.collection('users').doc(Texts.WhoIsTheMessageFrom).get().then(snapshot =>{
+                                                                            const moreData =snapshot.data();
+                                                                            const Profile_bas64Ny = moreData.Profile 
+                                                                            const Display_Name = moreData.Display_Name
+                                                                            const htmlForTexth = `
+                                                                            <div class="GoR" "><img class="inline" src=${Profile_bas64Ny} alt="User Profile"><p class="inlineR">${Display_Name}</p></div>
+                                                                            <div  id="Message_SendRC1" class="right" style = "heigth: 15.6vw; width:15.6vw;"><p class="go_to_spot">${Datehtml}</p></p><img style="width: 150px; height: 150px;" src="${Texts.ImageSrc}" alt="Profile Picture"></img>
+                                                                                <br></div> 
+                                                                            
+                                                                        `;
+                                                                            
+                                                                        MessageBoxr.innerHTML += htmlForTexth;  
+                                                                         
+                                                                        });  
+                                                        
+                                                
+                                            }//End of the else statement  
+                                        //End of the if statement
+                                    //End of the get method
+                                    }else{
+                                        if(Texts.WhoIsTheMessageFrom == rty){
+                                            
+                                        
+                                        //Making the message out of all the data we got and posting it.
+                                        const htmlForTexth = `
+                                        <div class="Go"><img class="inline" src=${Profile} alt="User Profile"><p class="real_inline">You:</p></div>
+                                        <div  id="Message_SendLC1" class="left" style = " width:auto; height:auto;"><p class="go_to_spot">${Datehtml}</p><p class="Center">${Texts.Message} 
+                                        <br>   </div>
+                                    `;
+                                    
+                                        setTimeout(function(){
+                                            MessageBoxr.innerHTML += htmlForTexth;
+                                        }, 1) 
+                                    
+                                   
+                                   
+                                                    
+                                    }else{
+                                        
+                                                                
+                                        firestore.collection('users').doc(Texts.WhoIsTheMessageFrom).get().then(snapshot =>{
+                                                    const moreData =snapshot.data();
+                                                     const Profile_bas64Ny = moreData.Profile
+                                                    
+                                                    const yhj = moreData.Display_Name
+                                                    const htmlForTexth = `
+                                                    <div class="GoR" "><img class="inline" src=${Profile_bas64Ny} alt="User Profile"><p class="inlineR">${yhj}</p></div>
+                                                    <div  id="Message_SendR1C" class="right" "><p class="go_to_spot">${Datehtml}</p></p>${Texts.Message}
+                                                    <br></div> 
+                                                `
+                                                                                        
+                                                    MessageBoxr.innerHTML += htmlForTexth;
+                                                                                            
+                                                   
+                                                                       
+                                                    });
+                                                                                                
+
+                                        }
+
+                               
+                               
+                                var chat = document.getElementById("scroll");
+                                chat.scrollTop = chat.scrollHeight;
+                                document.getElementById("Chat_input").value = "";
+                            }
+                            
+                                
+                                                                                    
+                                                                                    
+                                                                                
+                        }
+                    
+                    });
+                
+       
+                   
+                });
+                }
+          }
+        }
+    }
+    
+}
+
+
+</script>
+<script>
+    
+    
+     
+</script>
+<script src="authChat.js"></script>
+
+</html>
