@@ -940,11 +940,13 @@ auth.onAuthStateChanged(user => {
             
             const red = sessionStorage.getItem('Chat_Name'); 
             if(red == ""){
+                console.log("sahara")
                 const Refi = firestore.collection(red.trim()).doc("Chat_Info");
             Refi.onSnapshot(function(doc){
                 const data  = doc.data();
                 const uio = data.started
                 if(data.Iscall == true){
+                    console.log("sahara")
                     firestore.collection('users').doc(user.uid).get().then(snapshot=>{
                         const data = snapshot.data();
                         let call = data.calls;  
@@ -964,7 +966,7 @@ auth.onAuthStateChanged(user => {
                             
                             if(uio == user.uid ){ 
                                 
-                                
+                             alert("sssssssssssss")   
                                 document.getElementById("erg").style.display = "block";
                                 document.getElementById("ety").style.display = "block";
                                 setTimeout(function(){
@@ -1009,9 +1011,7 @@ auth.onAuthStateChanged(user => {
                                 document.getElementById("erg").style.display = "none";
                                 document.getElementById("ety").style.display = "none";
                                 
-                            }, 25200)
-                            
-
+                            }, 25200)                         
                         }
                     })
                     
