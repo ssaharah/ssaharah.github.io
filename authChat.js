@@ -76,7 +76,7 @@ auth.onAuthStateChanged(user => {
         
         //The user is logged in.
         //First we hide some stuff that we dont't want to show.
-
+        document.getElementById("hnjkigds").style.display = "none"
         document.querySelector(".modal-boss-s").style.display = "none"
         document.getElementById("signup-first-name").value = "";
         document.getElementById("signup-last-name").value = "";
@@ -281,7 +281,9 @@ auth.onAuthStateChanged(user => {
             
 
         });
-   
+        document.getElementById("addfriendcloseU").addEventListener('click', function(){
+            document.getElementById("friendentername").value = ""
+        })
         addfriend.addEventListener('click', function(e){
             e.preventDefault()
             
@@ -612,10 +614,7 @@ auth.onAuthStateChanged(user => {
             document.getElementById('trty').style.display = "none";
             document.getElementById('addfriend').style.display = "none";
             document.getElementById('allchatpic').style.display ="none";
-            
-            
             document.getElementById('StuffTOHide').style.display = "none";
-            
             textarea.style.display = "block"
             document.getElementById("chat").style.display = "none";
             document.getElementById('Plus_Sign').style.display = "none";
@@ -1584,7 +1583,7 @@ auth.onAuthStateChanged(user => {
         Login_button.style.display = "inline";
         SignUpButton.style.display = "inline";
         Welcome.style.display ="inline";
-        
+        document.getElementById("hnjkigds").style.display = "block"
         document.getElementById('edsz').style.display = "none";
         document.getElementById('ffg').style.display = "none";
     }

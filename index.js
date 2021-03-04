@@ -42,10 +42,7 @@ Submit.addEventListener('submit', function(){
 });
 const CloseInviteFriend = document.getElementById('CloseInviteFriend');
 CloseInviteFriend.addEventListener('click', function(){
-    alert("eeeee")
     document.getElementById('InviteFriendModal').style.display = "none";
-   
-    
 });
 
 const Add_UserToChat = document.getElementById('Add_User');

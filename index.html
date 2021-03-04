@@ -15,6 +15,7 @@
     function changetoimage(id, image){
         document.getElementById(id).src = image
     }
+
 </script>
 <body id="body" style="background-repeat: no-repeat;" >
         <div style=" width:80vw; ">
@@ -123,6 +124,7 @@
                 </form>    
             </div> 
         </div>
+        <div id="hnjkigds" style="display: none;"><br><br><br><br><br><br></div><h1 id="Welcome" class="hide" style="  margin-left: 300px; font-size: 100px;  font-family: Arial, Helvetica, sans-serif; ">Welcome To<br><p style=" margin-left: 400px; font-size: 100px;  font-family: Arial, Helvetica, sans-serif; display: inline;">Sahara</p></h1>
                 <div id="StuffInChat">
                     <button  id="Back_button"style="background-color: transparent; border: none;  margin-right: 500px;  margin-bottom:50px;"><img style="width: 40px; height: 40px; display: none;" src="Images/2b31d65a-2474-4ac1-b9e6-5842d98a0144_200x200.png" alt="Back Button"></button>
                 </div>    
@@ -142,9 +144,9 @@
                     <div>
                     
                     <textarea style="border-radius: 0.9375vw; font-style: normal; font-family:Arial, Helvetica, sans-serif; outline: none; border: none; resize: none; width: 39vw; height: 39vw; margin-left: 7.8125vw; margin-top: 0.78125vw; font-size: 1.171875vw; "  id="textarea" cols="30" rows="10"></textarea>
-                    <div  id="Gp" style=" background-color: gray; border-radius: 2.34375vw; height: 2.34375vw; width: 11.71875vw; margin-left: 21.09375vw; display: none; "><p id="Gp" style="color: white; text-align: center; padding-top:  0.390625vw; padding-bottom:  0.390625vw;"></p></div>
+                    <div  id="Gp" style="padding-top: 10px; background-color: gray; border-radius: 2.34375vw; height: 2.34375vw; width: 11.71875vw; margin-left: 21.09375vw; display: none; color: white;  text-align: center; padding-top: 1vw;"><p  style="color: white; text-align: center; padding-top:  0.390625vw; padding-bottom:  0.390625vw;"></p></div>
                 </div>
-                </div> <h1 id="Welcome" class="hide" style=" margin-left: 300px; font-size: 100px;  font-family: Arial, Helvetica, sans-serif; ">Welcome To<br><p style=" margin-left: 400px; font-size: 100px;  font-family: Arial, Helvetica, sans-serif; display: inline;">Sahara</p></h1>    
+                </div>  
                 
                 
         </main>
@@ -168,7 +170,11 @@
             </div>
                 <div class="i" style="padding-top: 0.78125vw; background-color: black; color: white; display: none;"><p style="color: white; display: inline; margin-right: 100px;">Profile picture</p><p style="color: white; display: inline; margin-right: 60px;">Username</p>           <p style="display: inline; margin-left: 100px; color: white;">Friend since</p></div>
             </div>    
-            </div>
+        </div>
+        
+
+
+        
         <div id ="signup" class="modal-boss-s">
             <div class="modal-signup">
                 <div  id ="modal-boss-sc"class="close">+</div> 
@@ -206,6 +212,7 @@
                 </form>
             </div>
         </div> 
+        
         <img src="" alt="">
             <div id="InviteFriendModal" class="modal-boss-s">
             <div class="modal-signup" style="height: 15.6vw;">
@@ -246,13 +253,12 @@
         </div>
         
         <div style="position: fixed;" id="addfriendU" class="modal-boss-s">
-            <div  class="modal-signup" style="height: 11.7vw;">
-                <div  id ="addfriendcloseU"class="close">+</div>
+            <div  class="modal-signup" style="height: 12.7vw;">
+                <div  id="addfriendcloseU" class="close">+</div>
                 <form class="list">
                     <li><h1>Add a friend</h1></li>
-                    <input id="friendentername" type="text" placeholder="Enter your friend's name">
-                    <br>
-                    <button id="enteraddfriend" style="margin-top: 8px; width: 80px; height: 30px;">Enter</button>
+                    <input id="friendentername" type="text" placeholder="Enter your friend's name"><br>
+                    <button id="enteraddfriend" style="margin-top: 10px; width: 80px; height: 30px;">Enter</button>
                 </form>
             </div>
         </div>
@@ -284,7 +290,7 @@
             </div>
         </div>
         
-        
+           
 </body>
 <script>
         var firebaseConfig = {
