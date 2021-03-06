@@ -57,6 +57,7 @@ sessionStorage.setItem("Chat_currently_in", "")
 //This function will check if a user is logged in or not.
 auth.onAuthStateChanged(user => {
     if(user){
+        let textiscool = []
         let chatinfodata = []
         yuij.addEventListener('click', function(e){
            
@@ -972,7 +973,7 @@ auth.onAuthStateChanged(user => {
                             
                             if(uio == user.uid ){ 
                                 
-                             alert("sssssssssssss")   
+                              
                                 document.getElementById("erg").style.display = "block";
                                 document.getElementById("ety").style.display = "block";
                                 setTimeout(function(){
@@ -1419,20 +1420,21 @@ auth.onAuthStateChanged(user => {
         function join(ty){
             document.getElementById(ty).click()
         }
+        
         function GetAllChats(Chatsin){
             let allthechatsarei = []
            
             let ChatsinArray = Chatsin.split("§");
             let All_The_chats = document.getElementById('All_The_chats');
             let Chat_all = '';
-        
+            
             let Chat_currently_in = "";
             const allchatpic = document.getElementById('allchatpic');
             allchatpic.innerHTML = ``
             for (let i = 0; i < ChatsinArray.length - 1; i++) {
                 if(ChatsinArray[i] != ""){
                    
-                    
+                   
                     firestore.collection(ChatsinArray[i]).doc('Chat_Info').get().then(function(snapshot){
                         const Data = snapshot.data();
                         let message = Data.Message;
@@ -1448,26 +1450,26 @@ auth.onAuthStateChanged(user => {
                         
                         let time = f[3] + "/" + f[4] + "/" + f[5]
                         let rf = Data.Display_Name
-                        let textiscool = ""
-                        
+                       
                         if(WhoIsTheMessageFrom.trim() == user.uid){
-                            textiscool = "You:"
+                            textiscool.push("You:")
+                            
                         }else{
-                           textiscool = rf + ":"
+                           textiscool.push(rf + ":")
                         }
-                        localStorage.setItem("texto", textiscool)
+                        
+                        
                         
                 }else{
                         message = ""
-                        textiscool = ""
-                        localStorage.setItem("texto", textiscool)
+                        textiscool.push("")
+                       
                        }
                        firestore.collection(ChatsinArray[i]).doc("Chat_Info").get().then(s=>{
                            let fg = s.data()
                            let aze = fg.name
                            allchatpic.innerHTML += `<img onclick="join(${ChatsinArray[i]})" style="width:3.1vw; height:3.1vw; margin-left:20px; margin-right:20px; margin-top:10px; display:inline-block; border-radius:50px;" src="${Data.Image}" alt="Can't load"> `
-                       const Chatsin = ` <br><button  id="${ChatsinArray[i]}"class="Inline_vertical"  onclick="JoinChat1(this.id);     " style="margin-left:70px; border:none;   background-color: transparent;"><img style="float: left;  
-                         border-radius: 75px; " class="inline" src="${Data.Image}" alt="Can not load"><p style="display:inline; margin-right:710px; text-align: justify;    "> ${aze} </p> <br><p style="margin-right:650px;">${localStorage.getItem("texto")}${message}</p> </p>  </button> `;
+                       const Chatsin = ` <br><button  id="${ChatsinArray[i]}"class="Inline_vertical"  onclick="JoinChat1(this.id);     " style="margin-left:70px; border:none;   background-color: transparent;"><img style="float: left;  border-radius: 75px; " class="inline" src="${Data.Image}" alt="Can not load"><p style="display:inline; margin-right:710px; text-align: justify;    "> ${aze} </p> <br><p style="margin-right:650px;">${textiscool[i]}${message}</p> </p>  </button> `;
                          Chat_all+= Chatsin
                          
                          allthechatsarei.push(ChatsinArray[i])
