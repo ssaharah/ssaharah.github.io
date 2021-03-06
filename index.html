@@ -65,7 +65,7 @@
             <div id="ffg" style="width: 50.125vw; overflow-y: scroll;   height: 80px; margin-left: 600px; margin-top: 100px; ">
                 <div  style=" height: 10px;  display: inline-block;" id="allchatpic"></div> 
         </div>
-        <button id="Plus_Sign" style=" display: inline-block; background-color: transparent; width:3.5vw; height:3.5vw; border: none; display: none;  "><img  style="width: 3.5vw; height: 3.5vw;" src="Images/1bbf2aba-6fb1-47bc-bc10-3b751e5f1337_200x200.png" alt="Plus sign"></button>
+        <button id="Plus_Sign" style=" display: inline-block; background-color: transparent; width:3.5vw; height:3.5vw; border: none; display: none; margin-left: 700px; "><img  style="width: 3.5vw; height: 3.5vw;" src="Images/1bbf2aba-6fb1-47bc-bc10-3b751e5f1337_200x200.png" alt="Plus sign"></button>
         
         <div style=" width: 1000px; margin-left: 300px;" id="All_The_chats"></div>
             
@@ -93,6 +93,7 @@
                     
             </div>
             </div>
+           
             <div  id="StuffTOHide">
                 <div  style="background-color:whitesmoke; width: 60vw; margin-bottom: 30px; margin-left:  1.4641288433382138vw;" >
                     <span style="display: none; margin-left: 60vw;" id="showInClick" >
@@ -131,7 +132,7 @@
             
         
                 
-           
+                
                 <div id="All_The_Notepad_stuff" style="display: none; margin-left: 300px; margin-top: 40px;">
                     <div>
                         <button id="ClearButton"style="font-size: 0.9375vw; display: inline;"><img style="width: 1.5vw; height: 1.5vw;" src="Images/f53ee05a-c2eb-4286-9d44-1761d3a73c68_200x200.png" alt="Delete" ></button>
@@ -202,13 +203,24 @@
             </div>
         </div> 
         <div id ="Back_buttonModal" class="modal-boss-s">
-            <div class="modal-signup" style="height: 16.6vw;">
+            <div class="modal-signup" style="height: 12.6vw; ">
                 <div  id ="CloseBack_button"class="close">+</div>
                 <form class="list">
                     <h1>Create A Chat</h1></li>
-                    <input class ="form"type="text" id ="CreateChatFirstName" placeholder="Enter Name">
-                    <input  id="CreateChatFile"type="file">
-                    <button class ="form" id="CreateChat" style="margin-top: 20px;">Create Chat</button></li>
+                    <div id="createchat1">
+                        <input class ="form"type="text" style="margin-top: 10px;" id ="CreateChatFirstName" placeholder="Enter Name">
+                   
+                    <button  id="CreateChatNext" style="width: 70px; height: 30px; margin-top: 10px;">Next</button></li>
+                    </div>
+
+                    <div style="display:none;" id="createchat2">
+                        <input  id="CreateChatFile" type="file">
+                        <button style="margin-top: 10px;" id="CreateChat">Create Chat</button>
+                    </div>
+                    <div>
+                        
+                    </div>
+                    
                 </form>
             </div>
         </div> 
@@ -339,7 +351,7 @@ function JoinChat1(Chat_Id){
                 open("html.html")
             }
         })
-    });
+    }); 
     document.getElementById('showInClick').style.display = "block";
     document.getElementById("All_The_chats").style.display = "none";
     document.getElementById("Bottom").style.display = "block";
@@ -392,8 +404,11 @@ function JoinChat1(Chat_Id){
         const Chat_currently_in = Chat_Id;
         sessionStorage.setItem("Chat_Name", Chat_Id);
         //This is the chat name.
-        const Chat_UID_h2html = `${Chat_currently_in}`;
-        document.getElementById('Chat_UID_h2').innerHTML = Chat_UID_h2html;
+        firestore.collection(Chat_currently_in).doc("Chat_Info").get().then(s => {
+            const ghyuj = s.data()
+            document.getElementById('Chat_UID_h2').innerText =ghyuj.name;
+        })
+        
         //This function runs
         GetFirstThenNext("Bottom");
         

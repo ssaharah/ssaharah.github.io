@@ -57,6 +57,7 @@ sessionStorage.setItem("Chat_currently_in", "")
 //This function will check if a user is logged in or not.
 auth.onAuthStateChanged(user => {
     if(user){
+        let chatinfodata = []
         yuij.addEventListener('click', function(e){
            
             e.preventDefault();
@@ -431,6 +432,8 @@ auth.onAuthStateChanged(user => {
             All_The_chats.style.display = "inline";
             All_The_Notepad_stuff.style.display = "none";
             TimerStuff.style.display = "none";
+            document.getElementById("Plus_Sign").style.display = "inline-block";
+            
             document.getElementById("ffg").style.display = "block";
             document.getElementById("showInClick").style.display = "block"
             document.getElementById("stopwatchgotostuff").style.display = "none";
@@ -447,7 +450,7 @@ auth.onAuthStateChanged(user => {
                 document.getElementById('textarea').style.display = "inline";
                 document.getElementById('Gp').style.display = "inline";
                 document.getElementById("chat").style.display = "none";
-                document.getElementById('Plus_Sign').style.display = "inline-block";
+               
                 
                     firestore.collection('users').doc(user.uid).get().then(snapshot =>{
                         const Data = snapshot.data();
@@ -575,6 +578,7 @@ auth.onAuthStateChanged(user => {
             
         })
         Chat.click()
+        
         School.addEventListener('click', (e) =>{
             e.preventDefault();
             //This function runs when the user has clicked school.
@@ -1098,7 +1102,7 @@ auth.onAuthStateChanged(user => {
                     let noiu = uis + "no"
                     let yesbuttonano = `<button id="${yesiu}"   style="width:120px; height: 35px; background-color: green; color: white; border: none; border-radius: 5px;">Yes</button>
                     <button id="${noiu}"  style="width:120px; height: 35px; background-color: red; color: white; border: none; border-radius: 5px;">No</button>`
-                    console.log(uise)
+                   
                     if(document.getElementById(uise).innerHTML == "" ){
                       
                         document.getElementById(uise).innerHTML += yesbuttonano;
@@ -1458,27 +1462,32 @@ auth.onAuthStateChanged(user => {
                         textiscool = ""
                         localStorage.setItem("texto", textiscool)
                        }
-                       
-                        allchatpic.innerHTML += `<img onclick="join(${ChatsinArray[i]})" style="width:3.1vw; height:3.1vw; margin-left:20px; margin-right:20px; margin-top:10px; display:inline-block; border-radius:50px;" src="${Data.Image}" alt="Can't load"> `
-                        const Chatsin = ` <br><button  id="${ChatsinArray[i]}"class="Inline_vertical"  onclick="JoinChat1(this.id);     " style="margin-left:70px; border:none;   background-color: transparent;"><img style="float: left;  
-                          border-radius: 75px; " class="inline" src="${Data.Image}" alt="Can not load"><p style="display:inline; margin-right:710px; text-align: justify;    "> ${ChatsinArray[i]} </p> <br><p style="margin-right:650px;">${localStorage.getItem("texto")}${message}</p> </p>  </button> `;
-                          Chat_all+= Chatsin
-                          
-                          allthechatsarei.push(ChatsinArray[i])
+                       firestore.collection(ChatsinArray[i]).doc("Chat_Info").get().then(s=>{
+                           let fg = s.data()
+                           let aze = fg.name
+                           allchatpic.innerHTML += `<img onclick="join(${ChatsinArray[i]})" style="width:3.1vw; height:3.1vw; margin-left:20px; margin-right:20px; margin-top:10px; display:inline-block; border-radius:50px;" src="${Data.Image}" alt="Can't load"> `
+                       const Chatsin = ` <br><button  id="${ChatsinArray[i]}"class="Inline_vertical"  onclick="JoinChat1(this.id);     " style="margin-left:70px; border:none;   background-color: transparent;"><img style="float: left;  
+                         border-radius: 75px; " class="inline" src="${Data.Image}" alt="Can not load"><p style="display:inline; margin-right:710px; text-align: justify;    "> ${aze} </p> <br><p style="margin-right:650px;">${localStorage.getItem("texto")}${message}</p> </p>  </button> `;
+                         Chat_all+= Chatsin
                          
-                        All_The_chats.innerHTML = Chat_all; 
-                        addtheEventlistener(allthechatsarei)
-                        Chat_currently_in +=  "," + ChatsinArray[i];
-                        Chat_currently_in.split(",");
+                         allthechatsarei.push(ChatsinArray[i])
                         
-                        
-                    });
+                       All_The_chats.innerHTML = Chat_all; 
+                       addtheEventlistener(allthechatsarei)
+                       Chat_currently_in +=  "," + ChatsinArray[i];
+                       Chat_currently_in.split(",");
+                       document.querySelector("#Bottom").style.display = "none";
+               document.getElementById('Plus_Sign').style.display = "inline-block";
+                       })
+                       
+               
+                       
+                   });
                     
                 }
                 
                 
-                document.querySelector("#Bottom").style.display = "none";
-                document.getElementById('Plus_Sign').style.display = "inline-block";
+                
             }
             
         }
@@ -1518,57 +1527,67 @@ auth.onAuthStateChanged(user => {
                                             Base64Reader.readAsDataURL(files);   
                                         
                                     }else{
-                                        alert("Please pick a chat image")
+                                        localStorage.setItam('Chat_Image', "Images/cd16e45f-600d-4327-88cc-9d6748277f24_200x200.png")
                                     }
 
                                     });
                                     function ooop(){
                                         getRealTimeUpdate()
                                     }
-            CreateChat.addEventListener('click',function(e){
-                e.preventDefault();
+            function makeid(length) {
+                var result           = '';
+                var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+                var charactersLength = characters.length;
+                    for ( var i = 0; i < length; i++ ) {
+                        result += characters.charAt(Math.floor(Math.random() * charactersLength));
+                    }
+                    return result;
+                }
+                  
+            //First index will have the name of the chat and the second one will have the doc name           
+            document.getElementById("CreateChatNext").addEventListener('click', function(){
                 let Chat_Name = document.getElementById('CreateChatFirstName').value;
-                if(Chat_Name.length >= 5 && Chat_Name.length <= 30){
+                chatinfodata.push(Chat_Name)
+                chatinfodata.push(makeid(30))
+                if(Chat_Name.length > 1 && Chat_Name.length <= 60){
                     if(Chat_Name != "users"){
-                        sessionStorage.setItem("Chat_Name", Chat_Name);
-                        firestore.collection(Chat_Name).doc("Messages").get().then(function(doc){
-                            
-                            if(doc.exists){
-                                document.getElementById("CreateChatFirstName").value = "Chat Already exists"
-                            }else{
-                                let Time = new Date().getTime();
-                                firestore.collection(Chat_Name).doc("Messages").set({
-                                    Message: ""
-                                });
-                                
-                                firestore.collection(Chat_Name).doc("Chat_Info").set({
-                                    Created: Time,
-                                    User_In_Chat: user.email + " ",
-                                    IsMessage: true,
-                                    Iscall:false,
-                                    started:"",
-                                    pim:"",
-                                    Image: localStorage.getItem('Chat_Image')
-                                });
-                                
-                                
-                                
-                                
-                                ooop()
-                                JoinChatData = Chatsin +  Chat_Name + "§"
-                                firestore.collection('users').doc(user.uid).update({
-                                    Chatsin: JoinChatData
-                                });
-                                
-                                JoinChat1(Chat_Name);
-                            }
-                        });
+                        document.getElementById("createchat1").style.display = "none"
+                        document.getElementById("createchat2").style.display = "block"
                     }else{
-                        alert("Invalid Name")
+                        alert("Chat Name Should be between 1 to 60 charcters")
                     }
                 }else{
-                    alert("Chat Name Should be between 5 to 30 charcters");
-                }      
+                    alert("Invalid input")
+                }
+                
+            });
+            CreateChat.addEventListener('click',function(e){
+                e.preventDefault();
+                let Chat_Name = chatinfodata[0];
+                sessionStorage.setItem("Chat_Name", Chat_Name);
+                
+                firestore.collection(chatinfodata[1]).doc("Messages").get().then(function(doc){
+                    let Time = new Date().getTime();
+                    firestore.collection(chatinfodata[1]).doc("Messages").set({
+                        Message: ""
+                    });
+                    firestore.collection(chatinfodata[1]).doc("Chat_Info").set({
+                        Created: Time,
+                        User_In_Chat: user.email + " ",
+                        IsMessage: true,
+                        Iscall:false,
+                        started:"",
+                        pim:"",
+                        Image: localStorage.getItem('Chat_Image'),
+                        name:Chat_Name
+                    });
+                        ooop()
+                        JoinChatData = Chatsin +  chatinfodata[1] + "§"
+                        firestore.collection('users').doc(user.uid).update({
+                            Chatsin: JoinChatData
+                        });
+                            JoinChat1(chatinfodata[1]); 
+                        });
             });
         }
     }else{
