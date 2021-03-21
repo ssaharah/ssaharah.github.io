@@ -554,35 +554,37 @@ function JoinChat1(Chat_Id){
                                                     if(Texts.WhoIsTheMessageFrom == rty){    
                                                         
                                                         //If the person signed in is the person who send the message this will run.
-                                                    
+                                                       
                                                         const Profile_base64 =  localStorage.getItem('Profile_base64')                 
                                                     const htmlForTexth = `
-                                                    <div class="Go"><img class="inline" src=${Profile_base64} alt="User Profile"><p class="real_inline">You:</p></div>
-                                                    <div  id="Message_SendLC1" class="left" style = "height: 15.6vw; width:15.6vw;"><p class="go_to_spot">${Datehtml}</p><p class="Center"><img style="width: 150px; height: 150px;" src="${Texts.ImageSrc}" alt="Profile Picture"></img>
+                                                    <img class="inline" style="display:inline-block;" src=${Profile_base64} alt="User Profile">
+                                                    <div style="display:inline-block;"  id="Message_SendLC1" class="left" style = "height: 15.6vw; width:15.6vw;"><p class="go_to_spot">${Datehtml}</p><p class="Center"><img style="width: 150px; height: 150px;" src="${Texts.ImageSrc}" alt="Profile Picture"></img>
                                                         <br></div>
                                                     `;
-                                                    setTimeout(function(){
+                                                   
+                                                        console.log("Z1")
                                                         MessageBoxr.innerHTML += htmlForTexth;
-                                                    }, 1)  
+                                                     
                                                     
                                                     
                                                    
                                                                        
                                                     
                                                     }else{ 
-                                                        
+                                                       
                                                         firestore.collection('users').doc(Texts.WhoIsTheMessageFrom).get().then(snapshot =>{
                                                                             const moreData =snapshot.data();
                                                                             const Profile_bas64Ny = moreData.Profile 
                                                                             const Display_Name = moreData.Display_Name
                                                                             const htmlForTexth = `
-                                                                            <div class="GoR" "><img class="inline" src=${Profile_bas64Ny} alt="User Profile"><p class="inlineR">${Display_Name}</p></div>
-                                                                            <div  id="Message_SendRC1" class="right" style = "heigth: 15.6vw; width:15.6vw;"><p class="go_to_spot">${Datehtml}</p></p><img style="width: 150px; height: 150px;" src="${Texts.ImageSrc}" alt="Profile Picture"></img>
-                                                                                <br></div> 
+                                                                           
+                                                                            <div  id="Message_SendRC1" class="right" style = "margin-left:35vw;display:inline-block;heigth: 15.6vw; width:15.6vw;"><p class="go_to_spot">${Datehtml}</p></p><img style="width: 150px; height: 150px;" src="${Texts.ImageSrc}" alt="Profile Picture"></img>
+                                                                                <br></div><img class="inline" style="margin-left:5px; display:inline-block;" src=${Profile_bas64Ny} alt="User Profile">
                                                                             
                                                                         `;
-                                                                            
-                                                                        MessageBoxr.innerHTML += htmlForTexth;  
+                                                                        console.log("Z")
+                                                                            MessageBoxr.innerHTML += htmlForTexth;
+                                                                        
                                                                          
                                                                         });  
                                                         
@@ -593,35 +595,38 @@ function JoinChat1(Chat_Id){
                                     }else{
                                         if(Texts.WhoIsTheMessageFrom == rty){
                                             
-                                        
+                                            
                                         //Making the message out of all the data we got and posting it.
                                         const htmlForTexth = `
-                                        <div class="Go"><img class="inline" src=${Profile} alt="User Profile"><p class="real_inline">You:</p></div>
-                                        <div  id="Message_SendLC1" class="left" style = " width:auto; height:auto;"><p class="go_to_spot">${Datehtml}</p><p class="Center">${Texts.Message} 
-                                        <br>   </div>
+                                        <div><img class="inline" src=${Profile} alt="User Profile"><div id="Message_SendLC1" class="left" style = "display:inline-block; width:auto; height:auto;"><p class="go_to_spot">${Datehtml}</p><p class="Center">${Texts.Message} 
+                                        <br></div></div>
+                                        
+                                            
+                                        
                                     `;
                                     
-                                        setTimeout(function(){
+                                       
+                                            console.log("Z2")
                                             MessageBoxr.innerHTML += htmlForTexth;
-                                        }, 1) 
+                                        
                                     
                                    
                                    
                                                     
                                     }else{
                                         
-                                                                
+                                            
                                         firestore.collection('users').doc(Texts.WhoIsTheMessageFrom).get().then(snapshot =>{
                                                     const moreData =snapshot.data();
                                                      const Profile_bas64Ny = moreData.Profile
                                                     
                                                     const yhj = moreData.Display_Name
                                                     const htmlForTexth = `
-                                                    <div class="GoR" "><img class="inline" src=${Profile_bas64Ny} alt="User Profile"><p class="inlineR">${yhj}</p></div>
-                                                    <div  id="Message_SendR1C" class="right" "><p class="go_to_spot">${Datehtml}</p></p>${Texts.Message}
-                                                    <br></div> 
+                                                    <div style="margin-left:500px;"><div  id="Message_SendR1C" class="right" style=" display:inline-block; margin-left:1vw;"><p class="go_to_spot">${Datehtml}</p></p>${Texts.Message}
+                                                    <br></div> <img style="display:inline-block;  " class="inline" src=${Profile_bas64Ny} alt="User Profile"></div>
+                                                    
                                                 `
-                                                                                        
+                                                console.log("Z3")                                      
                                                     MessageBoxr.innerHTML += htmlForTexth;
                                                                                             
                                                    

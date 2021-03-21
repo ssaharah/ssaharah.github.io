@@ -175,7 +175,6 @@ auth.onAuthStateChanged(user => {
                 if(bnj != ""){
                     let rty = localStorage.getItem('rty');
             let rtx = localStorage.getItem('rtx');
-          
             let rtyu = rty.split("/");
             let rtxu = rtx.split("/");
             for (let iu = 0; iu < rtyu.length - 1; iu++) {
@@ -624,7 +623,7 @@ auth.onAuthStateChanged(user => {
             document.getElementById("chat").style.display = "none";
             document.getElementById('Plus_Sign').style.display = "none";
             All_The_Notepad_stuff.style.display = "block";
-            console.log( All_The_Notepad_stuff.style.display)
+            
             Delete.addEventListener('click', function(){
                 textarea.value = "";
               });
@@ -947,7 +946,7 @@ auth.onAuthStateChanged(user => {
             
             const red = sessionStorage.getItem('Chat_Name'); 
             if(red == ""){
-                console.log("sahara")
+               
                 const Refi = firestore.collection(red.trim()).doc("Chat_Info");
             Refi.onSnapshot(function(doc){
                 const data  = doc.data();
@@ -1306,7 +1305,7 @@ auth.onAuthStateChanged(user => {
             }
             
             Ref.onSnapshot(function (doc){
-                
+                        console.log("Send")
                         Ref.get().then(function(doc) {
                             //Getting some data
                             const NewDates = new Date
@@ -1327,15 +1326,16 @@ auth.onAuthStateChanged(user => {
                                       htmlForText = '';
                                         if(Texts.WhoIsTheMessageFrom == user.uid){  //Change to user.uid at the end                                     
                                         const htmlForTexth = `
-                                        <div class="Go"><img class="inline" src=${Profile_bas64} alt="User Profile"><p class="real_inline">You:</p></div>
-                                        <div  id="Message_SendLC1" class="left" style = "height: 15.6vw; width:15.6vw;"><p class="go_to_spot">Just Now</p><p class="Center"><img style="width: 150px; height: 150px;" src="${Texts.ImageSrc}" alt="Profile Picture"></img>
-                                        </p> <br></div>
+                                        <img class="inline" style="display:inline-block;" src=${Profile_bas64} alt="User Profile">
+                                                    <div style="display:inline-block;"  id="Message_SendLC1" class="left" style = "height: 15.6vw; width:15.6vw;"><p class="go_to_spot">Just now!</p><p class="Center"><img style="width: 150px; height: 150px;" src="${Texts.ImageSrc}" alt="Profile Picture"></img>
+                                                        <br></div>
                                         `;
                                         
                                         htmlForText += htmlForTexth
                                         MessageBoxr.innerHTML += htmlForText;
                                         const Message_SendLC1  = document.getElementById("Message_SendLC1");
                                         Message_SendLC1.style.display = "block";
+                                        
                                        
                                         }else{  
                                             htmlForText = '';
@@ -1345,16 +1345,16 @@ auth.onAuthStateChanged(user => {
                                                         const WSX = MoreData.Display_Name
                                                         const Profile_bas64NY = MoreData.Profile;
                                                         const htmlForTexth = `
-                                                        <div class="GoR" "><img class="inline" src=${Profile_bas64NY} alt="User Profile"><p class="inlineR">${WSX}</p></div>
-                                                        <div  id="Message_SendRC1" class="right" style = "heigth: 15.6vw; width:15.6vw;"></p><img style="width: 150px; height: 150px;" src="${Texts.ImageSrc}" alt="Profile Picture"></img>
-                                                        <br></div> 
+                                                         <div  id="Message_SendRC1" class="right" style = "margin-left:35vw;display:inline-block;heigth: 15.6vw; width:15.6vw;"><p class="go_to_spot">Just now</p></p><img style="width: 150px; height: 150px;" src="${Texts.ImageSrc}" alt="Profile Picture"></img>
+                                                                                <br></div><img class="inline" style="margin-left:5px; display:inline-block;" src=${Profile_bas64NY} alt="User Profile">
+                                                                            
                                                     
                                                     `;
                                                         htmlForText += htmlForTexth
                                                     MessageBoxr.innerHTML += htmlForText;
                                                     const Message_SendRC1  = document.getElementById("Message_SendRC1");
                                                     Message_SendRC1.style.display = "block";
-                                                    document.getElementById("Chat_input").value = "";
+                                                    
                                                     
                                                     
                                                     
@@ -1371,12 +1371,11 @@ auth.onAuthStateChanged(user => {
                                     //Sending the message.
                                     if(Texts.Message != ""){
                                         htmlForText = ""
-                                        console.log(Texts.WhoIsTheMessageFrom)
+                                        
                                         if(Texts.WhoIsTheMessageFrom == user.uid){
                                         const htmlForTexth = `
-                                        <div class="Go"><img class="inline" src=${Profile_bas64} alt="User Profile"><p class="real_inline">You:</p></div>
-                                        <div  id="Message_SendLC1" class="left" style = "height: auto; width:auto;"><p class="go_to_spot">Just Now</p><p class="Center">${Texts.Message}
-                                        </p><br></div>
+                                        <div><img class="inline" src=${Profile_bas64} alt="User Profile"><div id="Message_SendLC1" class="left" style = "display:inline-block; width:auto; height:auto;"><p class="go_to_spot">Just now</p><p class="Center">${Texts.Message} 
+                                        <br></div></div>
                                         `;
                                         htmlForText += htmlForTexth
                                         
@@ -1393,9 +1392,8 @@ auth.onAuthStateChanged(user => {
                                                            const SDF = moreData.Display_Name
                                                            
                                                             const htmlForTexth = `
-                                                            <div class="GoR" "><img class="inline" src=${Profile_bas64Ny} alt="User Profile"><p class="inlineR">${SDF}</p></div>
-                                                            <div  id="Message_SendRC1" class="right" ></p style="margin-top:10px;">${Texts.Message}
-                                                            <p></div> 
+                                                            <div style="margin-left:500px;"><div  id="Message_SendR1C" class="right" style=" display:inline-block; margin-left:1vw;"><p class="go_to_spot">Just now</p></p>${Texts.Message}
+                                                            <br></div> <img style="display:inline-block;  " class="inline" src=${Profile_bas64Ny} alt="User Profile"></div> 
                                                         
                                                         `;
                                                         
@@ -1403,7 +1401,7 @@ auth.onAuthStateChanged(user => {
                                                         MessageBoxr.innerHTML += htmlForText;
                                                         const Message_SendRC1  = document.getElementById("Message_SendRC1");
                                                         Message_SendRC1.style.display = "block";
-                                                        document.getElementById("Chat_input").value = "";
+                                                        
                                                         
                                                         });
                                                    
