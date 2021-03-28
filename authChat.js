@@ -1598,6 +1598,12 @@ auth.onAuthStateChanged(user => {
         document.getElementById("noti").style.display = "none";
         MessageBoxr.style.display ="none";
         User_info.style.display = "none";
+        document.getElementById("All_The_Notepad_stuff").style.display = "none";
+        document.getElementById("All_The_chats").style.display = "none";
+        document.getElementById("yuiut").style.display = "none";
+        document.getElementById("ChatGoTo").style.display = "none";
+        document.getElementById("zsdcx").style.display = "none";
+        document.getElementById("stopwatchgotostuff").style.display = "none";
         Whole.style.display = "none";
         Login_button.style.display = "inline";
         SignUpButton.style.display = "inline";
@@ -1657,7 +1663,7 @@ logout.addEventListener('click', (e)=>{
     auth.signOut();
     sessionStorage.setItem('SignedIn', "false");
     const Take_Picture = document.getElementById('Take_Picture').style.display = "none";
-    
+    n
     StuffTOHide.style.display = "none";
     body.backgroundColor = "white";
     Chat_UID.style.display = "none";
