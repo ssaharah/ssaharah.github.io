@@ -1,6 +1,10 @@
 auth.onAuthStateChanged(user => {
     if(user){
+        if(localStorage.getItem("cth") == undefined){
+            localStorage.setItem("cth", "nothing")
+        }
         let info = localStorage.getItem("cth")
+        
         const Ref = firestore.collection(info.trim()).doc("Messages");
         Ref.onSnapshot(function(doc){
             const data  = doc.data();
