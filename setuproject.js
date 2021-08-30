@@ -1,1 +1,100 @@
-var firebaseConfig={apiKey:"AIzaSyCoK1APEkbi7HzfGekPgAVX8l8q6BLmL50",authDomain:"sahara-8bfbe.firebaseapp.com",databaseURL:"https://sahara-8bfbe.firebaseio.com",projectId:"sahara-8bfbe",storageBucket:"sahara-8bfbe.appspot.com",messagingSenderId:"247681289351",appId:"1:247681289351:web:c75c7b2fc405a19e1e3c22",measurementId:"G-Q1E5WQHV8G"};firebase.initializeApp(firebaseConfig);const firestore=firebase.firestore(),auth=firebase.auth();auth.onAuthStateChanged(e=>{if(e){const l=document.getElementById("Everythingelse"),s=document.getElementById("chatstuff"),a=document.getElementById("body"),n=document.getElementById("profilepicture"),i=document.getElementById("username"),o=document.getElementById("name"),d=document.getElementById("spin"),y=document.querySelector(".circle"),r=document.querySelector(".sidebar"),m=document.getElementById("chatgets"),c=document.getElementById("textarea"),p=document.getElementById("inputmessage"),f=document.getElementById("send"),g=document.getElementById("chatiy"),u=document.getElementById("chattop");document.getElementById("videocall"),document.getElementById("voicecall");function t(e){setTimeout(()=>{rotate="rotate("+e+"deg)",d.style.transform=rotate},25),e>=180?(y.style.marginLeft="10px",d.style.marginLeft="15px",s.style.width="1100px",s.style.marginLeft="100px",m.style.width="400px",c.style.left="405px",c.style.width="650px",p.style.width="590px",f.style.left="1060px",g.style.width="700px",g.style.left="400px",u.style.left="400px",u.style.width="700px"):(y.style.marginLeft="300px",d.style.marginLeft="10px",s.style.width="800px",s.style.marginLeft="390px",m.style.width="300px",c.style.left="305px",c.style.width="450px",p.style.width="390px",f.style.left="760px",g.style.width="500px",g.style.left="300px",u.style.left="300px",u.style.width="500px")}a.style.backgroundImage="none",a.style.backgroundColor="whitesmoke",l.style.display="block",i.innerText=e.email,firestore.collection("users").doc(e.uid).get().then(e=>{let t=e.data();o.innerText=t.Display_Name,n.src=t.Profile,localStorage.setItem("profilepic",t.Profile)}),y.addEventListener("click",function(){if("none"==r.style.display){for(let e=0;e<90;e++)t(2*e);r.style.display="block"}else{for(let e=0;e<180;e++)t(2*e);r.style.display="none"}})}else body.style.backgroundImage="linear-gradient(to bottom right, rgb(255, 115, 0), yellow)",Loginpage.style.display="block",Everythingelse.style.display="none"});
+var firebaseConfig = {
+    apiKey: "AIzaSyCoK1APEkbi7HzfGekPgAVX8l8q6BLmL50",
+    authDomain: "sahara-8bfbe.firebaseapp.com",
+    databaseURL: "https://sahara-8bfbe.firebaseio.com",
+    projectId: "sahara-8bfbe",
+    storageBucket: "sahara-8bfbe.appspot.com",
+    messagingSenderId: "247681289351",
+    appId: "1:247681289351:web:c75c7b2fc405a19e1e3c22",
+    measurementId: "G-Q1E5WQHV8G"
+};
+firebase.initializeApp(firebaseConfig);
+const firestore = firebase.firestore();
+const auth = firebase.auth();
+auth.onAuthStateChanged(user => {    
+    if(user){
+        //If login
+        const Everythingelse = document.getElementById("Everythingelse");
+        const chatstuff = document.getElementById("chatstuff");
+        const body = document.getElementById("body");
+        const profilepicture = document.getElementById("profilepicture");
+        const username = document.getElementById("username");
+        const name = document.getElementById("name");
+        const spin = document.getElementById("spin");
+        const circle = document.querySelector(".circle");
+        const sidebar = document.querySelector(".sidebar");
+        const chatgets = document.getElementById("chatgets");
+        const textarea = document.getElementById("textarea");
+        const inputmessage = document.getElementById("inputmessage");
+        const send = document.getElementById("send");
+        const chatiy = document.getElementById("chatiy");
+        const chattop = document.getElementById("chattop");
+        const videocall =document.getElementById("videocall");
+        const voicecall =document.getElementById("voicecall");
+        body.style.backgroundImage = "none";
+        body.style.backgroundColor = "whitesmoke";
+        Everythingelse.style.display= "block";
+        username.innerText = user.email;
+        firestore.collection("users").doc(user.uid).get().then(snapshot=>{
+            let data = snapshot.data();
+            name.innerText = data.Display_Name
+            profilepicture.src = data.Profile
+            localStorage.setItem("profilepic", data.Profile)
+        });
+        circle.addEventListener('click', function(){
+            if(sidebar.style.display == "none"){
+                for (let i = 0; i < 90; i++) {
+                    spiner(i * 2)   
+                }
+                sidebar.style.display = "block";
+            }else{
+                for (let i = 0; i < 180; i++) {
+                    spiner(i * 2)   
+                }
+                sidebar.style.display = "none";
+            }
+        });
+        function spiner(i){
+            setTimeout(()=>{
+                    rotate = "rotate(" + i  + "deg)"
+                    spin.style.transform = rotate  
+            }, 25)  
+            if(i >= 180){
+                //When big
+                circle.style.marginLeft = "10px"
+                spin.style.marginLeft = "15px"
+                chatstuff.style.width = "1100px"
+                chatstuff.style.marginLeft = "100px"
+                chatgets.style.width = "400px"
+                textarea.style.left = "405px";
+                textarea.style.width = "650px";
+                inputmessage.style.width = "590px";
+                send.style.left = "1060px";
+                chatiy.style.width = "700px";
+                chatiy.style.left = "400px";
+                chattop.style.left = "400px"
+                chattop.style.width = "700px"
+            }else{
+                //When small
+                circle.style.marginLeft = "300px"
+                spin.style.marginLeft = "10px"
+                chatstuff.style.width = "800px"
+                chatstuff.style.marginLeft = "390px"
+                chatgets.style.width = "300px"
+                textarea.style.left = "305px";
+                textarea.style.width = "450px";
+                inputmessage.style.width = "390px";
+                send.style.left = "760px";
+                chatiy.style.width = "500px";
+                chatiy.style.left = "300px";
+                chattop.style.left = "300px"
+                chattop.style.width = "500px";
+            } 
+        }
+    }else{
+        body.style.backgroundImage = "linear-gradient(to bottom right, rgb(255, 115, 0), yellow)"
+        Loginpage.style.display= "block";
+        Everythingelse.style.display = "none";
+    }
+    
+});

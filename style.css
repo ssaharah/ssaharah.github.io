@@ -1,1 +1,166 @@
-button{cursor:pointer}.inputgh{display:inline-block}.button{cursor:pointer}.inputend{border:1px solid #000}.inputend:active{border:1px solid #00f}.ti{width:200px;height:70px;border-radius:14px;color:#fff;margin-left:10px;background-image:linear-gradient(orange,#ffc400);border:none}.inputofsignup{width:300px;margin-top:10px;margin-left:50px;height:50px;border-radius:10px;border:1px solid #dfe1e4;outline:0;line-height:40px;font-size:13pt;caret-color:#000;padding-left:10px}.inputofsignup:focus{border:1px solid #000}.orinmiddle{display:flex;flex-basis:100%;align-items:center;color:rgba(0,0,0,.35);margin:0 50px;margin-top:15px}.orinmiddle:after,.orinmiddle:before{content:"";flex-grow:1;background:rgba(0,0,0,.35);height:.05px;font-size:0;line-height:0;margin:0 0}.darkshade{background-color:orange}.darkshade:hover{background-color:orange}.hoverunderline{color:#000;text-decoration:none;margin-left:155px;font-size:13px;font-family:Arial,Helvetica,sans-serif}.hoverunderline:hover{text-decoration:underline}.sidebar{height:575px;width:270px;background-color:#fff;position:fixed}.sidebary{font-size:25px;font-family:Roboto;width:270px;height:60px;margin-top:5px;display:block}.custom{overflow-y:scroll}.custom::-webkit-scrollbar{width:10px}.custom::-webkit-scrollbar-track{background:#f1f1f1}.custom::-webkit-scrollbar-thumb{background:#888;border-radius:14px}.custom::-webkit-scrollbar-thumb:hover{background:#666}.just{outline:0;background-color:#f3f3f3}.just:hover{background-color:#ccc;cursor:pointer}.selected{background-color:orange;color:#fff}.just1{outline:0;background-color:#fff}.just1:hover{background-color:#ccc;cursor:pointer}.hover{border:2px solid #000}.upload{text-align:center;font-family:"Open sans";background-color:#fff;width:500px;height:251px;border-radius:34px}.circle{background-color:#fff;width:70px;height:70px;border-radius:55px;margin-left:300px;top:270px;left:0;cursor:pointer;position:relative}.spin{transform:rotate(180deg)}.sidebarz{text-decoration:none;color:#000;margin-left:10px;margin-top:30px;display:inline;line-height:45px}.sidebary:hover{background-color:#ccc!important;color:#000!important;cursor:pointer}
+
+button{
+    cursor: pointer;
+}
+.inputgh{
+    display: inline-block;
+}
+.button{
+    cursor: pointer;
+}
+.inputend{
+    border: 1px solid black;
+}
+.inputend:active{
+    border: 1px solid blue;
+}
+.ti{
+    width: 200px;
+    height: 70px;
+    border-radius: 14px;
+    color: white;
+    margin-left: 10px;
+    background-image: linear-gradient(orange, rgb(255, 196, 0));
+    border: none;
+}
+.inputofsignup{
+    width: 300px;
+    margin-top: 10px;
+    margin-left: 50px;
+    height: 50px;
+    border-radius: 10px;
+    border: 1px solid rgb(223, 225, 228);
+    outline: none;
+    line-height: 40px;
+    font-size:13pt;
+    caret-color: black;
+    padding-left: 10px;
+}
+.inputofsignup:focus{
+    border: 1px solid black;   
+}
+.orinmiddle{
+    display: flex;
+    flex-basis: 100%;
+    align-items: center;
+    color: rgba(0, 0, 0, 0.35);
+    margin: 0px 50px;
+    margin-top: 15px;
+}
+.orinmiddle:before,
+.orinmiddle:after {
+    content: "";
+    flex-grow: 1;
+    background: rgba(0, 0, 0, 0.35);
+    height: 0.05px;
+    font-size: 0px;
+    line-height: 0px;
+    margin: 0px 0px;
+}
+.darkshade{
+    background-color: orange;
+}
+.darkshade:hover{
+    background-color: orange;
+}
+.hoverunderline{
+    color: black;
+    text-decoration: none; 
+    margin-left: 155px;
+    font-size: 13px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.hoverunderline:hover{
+    text-decoration: underline;
+}
+.sidebar{
+    height: 44.921875vw;
+    width: 270px;
+    background-color: white;
+    position: fixed;
+}
+.sidebary{
+    font-size: 25px;
+    font-family: "Roboto";
+    width: 270px;  
+    height: 60px; 
+    margin-top: 5px;
+    display: block;
+}
+.custom{
+    overflow-y: scroll;
+}
+.custom::-webkit-scrollbar {
+    width: 10px;
+}
+.custom::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+}
+.custom::-webkit-scrollbar-thumb {
+    background: #888; 
+    border-radius: 14px;
+}
+.custom::-webkit-scrollbar-thumb:hover {
+    background: #666; 
+}
+.just{
+    outline:none;
+    background-color: rgb(243, 243, 243);
+}
+.just:hover{
+    background-color: #ccc;
+    cursor: pointer;
+}
+.selected{
+    background-color: orange;
+    color: white;
+}
+.just1{
+    outline:none;
+    background-color: white;
+}
+.just1:hover{
+    background-color: #ccc;
+    cursor: pointer;
+}
+.hover{
+    border: 2px solid black;
+}
+
+.upload{
+    text-align: center;
+    font-family: "Open sans";
+    background-color: white;
+    width: 500px;
+    height: 251px;
+    border-radius: 34px;
+}
+.circle{
+    background-color: white;
+    width: 70px;
+    height: 70px;
+    border-radius: 55px;
+   margin-left: 300px;
+   top: 270px;
+   left: 0;
+   cursor: pointer;
+   position: relative;
+   
+}
+.spin{
+    transform: rotate(180deg);
+}
+.sidebarz{
+    text-decoration: none;
+    color: black;
+    margin-left: 10px;
+    margin-top: 30px;
+    display: inline;
+    line-height: 45px;
+    
+}
+.sidebary:hover{
+    background-color: #ccc!important;
+    color: #000!important;
+    cursor: pointer;
+}

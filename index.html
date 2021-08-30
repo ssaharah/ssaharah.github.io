@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Sahara is a free platform where people can connect all around and have fun.">
+    <meta name="description" content="Sahara is a free platform where people can connect all over the world and have fun.">
     <meta name="keywords" content="Sahara, fun">
     <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-firestore.js"></script>
@@ -13,14 +13,6 @@
     <link rel="icon" href="Images/Sahara.png">
     <link rel="stylesheet" href="style.css">
     <title>Sahara</title>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZHGWXWWZCW"></script>
-    <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-ZHGWXWWZCW');
-    </script>
 </head>
 <body id="body" style=" background-color: whitesmoke;  height: 100%;margin: 0;background-repeat: no-repeat;background-attachment: fixed;">
     <div id="Loginpage" style="display: none; border-radius: 30px; justify-content: center; margin-right: 32.03125vw;  border: thin solid rgb(223, 225, 228); margin-left: 32.03125vw; margin-top: 5.46875vw; width: 410px; height: 450px; background-color: white;">
@@ -32,7 +24,7 @@
         <a class="hoverunderline" href="#">Forgot password?</a>
         <div class="orinmiddle"></div>
         <p id="catcherrorlog" style="font-size: 12px; text-align: center; color: red;"></p>
-        <button id="gotosignin" class="darkshade" style="color: white; margin-top: 0px;  outline: none; width: 140px; margin-left: 140px; height: 50px; border-radius: 10px; border: none;">Sign Up</button>
+        <button id="gotosignin" class="darkshade" style="color: white; margin-top: 0px; margin-left:10.9375vw; outline: none; width: 140px; height: 50px; border-radius: 10px; border: none;">Sign Up</button>
     </div>
     <div id="Signinpage" style="display: none; border-radius: 30px; justify-content: center; margin-right: 32.03125vw; border: thin solid rgb(223, 225, 228); margin-left: 32.03125vw; margin-top: 4.46875vw; width: 410px; height: 500px; background-color: white;">
         <h1 style="margin-left: 140px; margin-top: 40px; font-family: Arial, Helvetica, sans-serif; font-size: 45px;">Sahara</h1>
@@ -57,6 +49,8 @@
         <div class="circle" style="z-index: 1;" >
             <img class="spin" id="spin" src="Images/arrow.png" style=" margin-left: 10px; margin-top: 13px;" alt="spin">
         </div>
+        
+        <div id="button" style="background-color: white; border-radius: 15px; height: 30px; width: 30px;"><img src="Images/arrow.png" alt=""></div>
         <div id="timerstuff" style="display: none;">
             <div style="margin-left: 450px; background-color: white; border-radius: 14px; height: 300px; width: 550px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
                 <h1 id="timert" class="button" style="padding-top: 20px; text-align: center; display: none; margin-top: 200px; font-family: Arial, Helvetica, sans-serif; position: relative; font-size: 80px; line-height: 90px;  margin-top: 100px;">00:00</h1>
@@ -77,12 +71,13 @@
                 </div>
                 </div>
             </div>
+
         <div id="notestuff" style="display: none; position: relative;">
             <button style="margin-left: 300px;" id="savememo"><img style=" width: 25px; height: 25px;" src="Images/save.png" alt=""></button>
             <button id="deletememo"><img style="width: 25px; height: 25px;" src="Images/delete.png" alt=""></button>
             <button id="boldmemo"><img style="width: 25px; height: 25px;" src="Images/bold.png" alt=""></button>
             <button id="italicmemo"><img style="width: 25px; height: 25px;" src="Images/italic.png" alt=""></button>
-            <textarea id="notepad" style="font-family: Arial, Helvetica, sans-serif; font-size: 14px; resize: none; position: relative; z-index: 0; left: 400px; top: 10px; border-radius: 14px; outline: none; padding-left: 7px; padding-top: 5px;" cols="80" rows="40"></textarea>
+            <div id="notepad" contenteditable="true" style="font-family: Arial, Helvetica, sans-serif; font-size: 14px; resize: none; position: relative; z-index: 0; left: 400px; top: 10px; border-radius: 14px; outline: none; padding-left: 7px; padding-top: 5px; border: none; box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);" cols="80" rows="40"></div>
         </div><div id="all" >
             <div id="chatstuff" style="position: absolute; display: none; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); border: 1px solid rgb(223, 225, 228); position: relative; bottom: 100px;margin-bottom: 100px; width: 800px; height: 550px; margin-top: 50px; border-radius: 10px; background-color: white; margin-left: 390px;">
                 <div id="chatgets" class="custom" style="display: inline-block;  overflow-x: hidden; background-color: whitesmoke; height: 550px; width: 300px; border-bottom-left-radius: 10px; border-top-left-radius: 10px;"></div>
@@ -98,7 +93,7 @@
             </div>
         </div>
         <input multiple accept="image/*" style="display: none;" type="file" id="uploadimagei">
-        <div id="uploadimagep" style="z-index: 6; width: 1300px;height: 578px;background-color: rgba(0, 0, 0, 0.514);position: fixed;top: 0;display: none;justify-content: center;align-items: center;">
+        <div id="uploadimagep" style="z-index: 6; width: 101.5625vw;height: 45.15625vw;background-color: rgba(0, 0, 0, 0.514);position: fixed;top: 0;display: none;justify-content: center;align-items: center;">
             <div id="uploadmodel" style="width: 500px; height: 350px; border-radius: 24px; background-color: white;">
                 <div id="closeuploadimage" style="color: black; position: fixed; display: block;  margin-left: 460px;transform: rotate(45deg);font-weight: bold;font-size: 40px;cursor: pointer;">+</div>
                 <h1 style="text-align: center; font-family: Roboto; margin-top: 30px; ">Drag a picture here</h1>
@@ -106,9 +101,10 @@
                     <img style="margin-top: 10px; " src="Images/upload.png" alt="upload image"><br>
                     <p id="uploadtext" style="margin-top: 10px;"></p>      
                 </div>
+                
             </div>
         </div>
-        <div id="addchat"  style="z-index: 6; width: 1300px;height: 578px;background-color: rgba(0, 0, 0, 0.514);position: fixed;top: 0;display: none;justify-content: center;align-items: center;">
+        <div id="addchat"  style="z-index: 6; width: 101.5625vw;height: 45.15625vw;background-color: rgba(0, 0, 0, 0.514);position: fixed;top: 0;display: none;justify-content: center;align-items: center;">
             <div id="uploadmodel" style="width: 500px; height: 350px; border-radius: 24px; background-color: white;">
                 <div id="closeaddchat" style="color: black; position: fixed; display: block;  margin-left: 460px;transform: rotate(45deg);font-weight: bold;font-size: 40px;cursor: pointer;">+</div>
                 <h1 style="text-align: center; font-family: Roboto; margin-top: 30px; ">Create A Chat</h1>
