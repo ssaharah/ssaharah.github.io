@@ -4,490 +4,125 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sahara is a free platform where people can connect all over the world and have fun.">
+    <meta name="keywords" content="Sahara, fun">
+    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-auth.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Roboto|Open+Sans|Lato' rel='stylesheet'>
+    <link rel="icon" href="Images/Sahara.png">
     <link rel="stylesheet" href="style.css">
-    <title>Extra</title>
+    <title>Sahara</title>
 </head>
-<body id="body" style="overflow: hidden; background-repeat: no-repeat; background-size: cover; background-image: linear-gradient(rgb(24, 23, 23),rgb(36, 34, 34));">
-    
-    <div id="else">
-        <div id="begin">
-            <h1 id="text" style="color: rgb(197, 25, 25); -webkit-text-stroke: 1px white; text-align: center; font-size: 70px; margin-top: 130px; font-family: Arial, Helvetica, sans-serif; ">A Tale Of A <br>Dog</h1>
-            <button id="start" style="border-radius: 12px; border: 1px solid rgb(139, 11, 11); background-color: white; width: 145px; height: 73px; margin-left: 560px; margin-top: 40px;">Start</button>
-        </div>
-        <div style="display:none; margin-top: 180px; " id="instruction"> 
-            <h1 style="padding-left: 100px; padding-right: 120px; text-align: center; color: rgb(197, 25, 25); -webkit-text-stroke: 0.35px white; font-family: Arial, Helvetica, sans-serif;">Instructions: In this interactive website you will be presented with a series of questions where you will have  5 seconds to pick the correct choice. You will only know if you have chosen correctly at the end of the game. If you are ready, click next and let the adventure begin.
-            </h1>
-            <button id="Next" style="border-radius: 12px; border: 1px solid rgb(139, 11, 11); background-color: white; width: 145px; height: 73px; margin-left: 550px; margin-top: 40px;">Next</button>
-        </div>
-        <img id="source" style = "display:none; width: 1220px; height: 470px; margin-left: 30px;" src="Images/1.png" alt="">
-        <div id="write" style="margin-top: 55px; background-color: rgba(0, 0, 0, 0.952); height: 80px; width: 1278px; padding-top: 40px;">
-            <button id="nextt" style="border-radius: 12px; border: 1px solid rgb(139, 11, 11); display: none; background-color: white; width: 145px; height: 53px; margin-left: 550px">Next</button>
-            <button style="border-radius: 10px; border: 1px solid rgb(139, 11, 11); display: none; background-color: white; width: 105px; height: 43px; margin-left: 550px" id="choice1"></button><button style="border-radius: 10px; border: 1px solid rgb(139, 11, 11); display: none; background-color: white; width: 105px; height: 43px; margin-left: 20px; " id="choice2"></button>
-            
-            <h1 id="words" style="color: white;  text-align: center; font-family: Arial, Helvetica, sans-serif;"></h1>
-            
-        </div>
+<body id="body" style=" background-color: whitesmoke;  height: 100%;margin: 0;background-repeat: no-repeat;background-attachment: fixed;">
+    <div id="Loginpage" style="display: none; border-radius: 30px; justify-content: center; margin-right: 32.03125vw;  border: thin solid rgb(223, 225, 228); margin-left: 32.03125vw; margin-top: 5.46875vw; width: 410px; height: 450px; background-color: white;">
+        <h1 style="margin-left: 140px; margin-top: 40px; font-family: Arial, Helvetica, sans-serif; font-size: 45px;">Sahara</h1>
+        <input id="loginusername" style="margin-top: 17px;" placeholder="Username" class="inputofsignup" type="username"><br>
+        <input id="loginpassword" placeholder="Password" class="inputofsignup" type="password">
+        <button id="login" class="darkshade" style="color: white;  margin-top: 5px; margin-left: 50px; outline: none; width: 315px; height: 50px; border-radius: 10px; border: none;">Log in</button>
+        <br><br>
+        <a class="hoverunderline" href="#">Forgot password?</a>
+        <div class="orinmiddle"></div>
+        <p id="catcherrorlog" style="font-size: 12px; text-align: center; color: red;"></p>
+        <button id="gotosignin" class="darkshade" style="color: white; margin-top: 0px; margin-left:10.9375vw; outline: none; width: 140px; height: 50px; border-radius: 10px; border: none;">Sign Up</button>
     </div>
+    <div id="Signinpage" style="display: none; border-radius: 30px; justify-content: center; margin-right: 32.03125vw; border: thin solid rgb(223, 225, 228); margin-left: 32.03125vw; margin-top: 4.46875vw; width: 410px; height: 500px; background-color: white;">
+        <h1 style="margin-left: 140px; margin-top: 40px; font-family: Arial, Helvetica, sans-serif; font-size: 45px;">Sahara</h1>
+        <input id="signupusername" placeholder="Username" class="inputofsignup" type="username"><br>
+        <input id="signuppassword" placeholder="Password" class="inputofsignup" type="password">
+        <input id="signupfirstname" placeholder="First Name" class="inputofsignup" type="text">
+        <input id="signuplastname" placeholder="Last Name" class="inputofsignup" type="text">
+        <button id="signup" class="darkshade" style="color: white;  margin-top: 10px; margin-left: 50px; outline: none; width: 315px; height: 50px; border-radius: 10px; border: none;">Sign up</button>
+        <br><br>
+        <a  id="gotologin" class="hoverunderline" href="#">Have an account?</a>
+    </div>
+    <div style="display: none;" id="Everythingelse">
+        <div class="sidebar" style="z-index: 1;">
+            <img class="button" src="Images/grey square.png" id="profilepicture" style="margin-top: 10px; margin-left: 30px; width: 200px; height: 200px; border-radius: 155px;" alt="profile">
+            <p id="name"  style="display: block; text-align: center; color: #202124; font-family: Open Sans; font-size: 19px; line-height: 5px;"></p>
+            <p id="username" style="display: block; text-align: center; color: #5F6368; font-family: Robotot; font-size: 17px;"></p>
+            <div id="notes" class="sidebary" style="margin-top: 10px;"><img style="display: inline-block; width: 35px; height: 35px; vertical-align: middle; margin-left: 45px; align-items: center;" src="Images/note.png" alt="notes"><a class="sidebarz"  href="#">Notes</a></div>
+            <div id="chat" class="sidebary"><img style="display: inline-block; width: 35px; height: 35px; vertical-align: middle; margin-left: 45px; align-items: center;" src="Images/chat.png" alt="chat"><a class="sidebarz" href="#">Chat</a></div>
+            <div id="timer" class="sidebary"><img style="display: inline-block; width: 35px; height: 35px; vertical-align: middle; margin-left: 45px; align-items: center;" src="Images/timer.png" alt="timer"><a class="sidebarz" href="#">Timer</a></div>
+            <div id="logout" class="sidebary"><img style="display: inline-block; width: 35px; height: 35px; vertical-align: middle; margin-left: 45px; align-items: center;" src="Images/Log out.png" alt="log out"> <a class="sidebarz" href="#">Log out</a></div>
+        </div>
+        <div class="circle" style="z-index: 1;" >
+            <img class="spin" id="spin" src="Images/arrow.png" style=" margin-left: 10px; margin-top: 13px;" alt="spin">
+        </div>
+        
+        <div id="button" style="background-color: white; border-radius: 15px; height: 30px; width: 30px;"><img src="Images/arrow.png" alt=""></div>
+        <div id="timerstuff" style="display: none;">
+            <div style="margin-left: 450px; background-color: white; border-radius: 14px; height: 300px; width: 550px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                <h1 id="timert" class="button" style="padding-top: 20px; text-align: center; display: none; margin-top: 200px; font-family: Arial, Helvetica, sans-serif; position: relative; font-size: 80px; line-height: 90px;  margin-top: 100px;">00:00</h1>
+                <div id="inputtime">
+                    <div id="eeed" style="position: relative; top: 20px; left: 0px; z-index: 2;">
+                        <p  style="font-size: 30px; display: inline; margin-left: 80px; font-family: Roboto;">Hours</p><p style="font-size: 30px; display: inline; margin-left: 50px; font-family: Roboto;">Minutes</p><p style="font-size: 30px; display: inline; margin-left: 50px; font-family: Roboto;">Seconds</p>
+                    </div>
+                <div class="inputgh" id="edre">
+                    <input id="inputtimehour" maxlength="2" placeholder="00" style="border: 1px solid black; margin-left: 50px; padding-left:10px; font-size: 40px; text-align: center; outline: none; width: 130px; border-radius: 14px;  margin-top: 40px; height: 70px">
+                    <input id="inputtimeminute" maxlength="2" placeholder="00" style="border: 1px solid black;  padding-left:10px; font-size: 40px; text-align: center; outline: none; width: 130px; border-radius: 14px;  margin-top: 40px; height: 70px; margin-left: 5px;">
+                    <input id="inputtimesecond" maxlength="2" placeholder="00" style="border: 1px solid black; margin-left: 5px; padding-left:10px; font-size: 40px; text-align: center; outline: none; width: 130px; border-radius: 14px;  margin-top: 40px; height: 70px">
+                </div>
+                <div id="timerbutton" style="margin-left: 60px; position: relative; margin-top: 30px; ">
+                    <button class="ti" id="starttimer">Start</button> 
+                    <button style="display: none;" class="ti" id="pausetimer">Pause</button> 
 
-    <div id="win" style="display: none;">
-        <div style="background-color: white; width: 350px; height: 400px; border-radius: 14px; margin-left: 450px; margin-top: 90px;">
-            <h1 style="padding-top: 20px; text-align: center; font-family: Arial, Helvetica, sans-serif;">Congratulations</h1>
-            <p style="padding-left: 10px; padding-right: 10px;">You answered all the questions correctly. Well now I don't know what to say so enjoy this picture of a cat. </p>
-            <img style="width: 270px; height: 270px; margin-left: 30px;" src="Images/about-img.png" alt="">
+                    <button class="ti" id="canceltimer">Cancel</button></div>
+                </div>
+                </div>
+            </div>
+
+        <div id="notestuff" style="display: none; position: relative;">
+            <button style="margin-left: 300px;" id="savememo"><img style=" width: 25px; height: 25px;" src="Images/save.png" alt=""></button>
+            <button id="deletememo"><img style="width: 25px; height: 25px;" src="Images/delete.png" alt=""></button>
+            <button id="boldmemo"><img style="width: 25px; height: 25px;" src="Images/bold.png" alt=""></button>
+            <button id="italicmemo"><img style="width: 25px; height: 25px;" src="Images/italic.png" alt=""></button>
+            <textarea id="notepad"  style="font-family: Arial, Helvetica, sans-serif; font-size: 14px; resize: none; position: relative; z-index: 0; left: 400px; top: 10px; border-radius: 14px; outline: none; padding-left: 7px; padding-top: 5px; border: none; box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);" cols="80" rows="40"></textarea>
+        </div><div id="all" >
+            <div id="chatstuff" style="position: absolute; display: none; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); border: 1px solid rgb(223, 225, 228); position: relative; bottom: 100px;margin-bottom: 100px; width: 800px; height: 550px; margin-top: 50px; border-radius: 10px; background-color: white; margin-left: 390px;">
+                <div id="chatgets" class="custom" style="display: inline-block;  overflow-x: hidden; background-color: whitesmoke; height: 550px; width: 300px; border-bottom-left-radius: 10px; border-top-left-radius: 10px;"></div>
+                <div  style="width: 500px; height: 80px;  left:300px; bottom: 555px; position: relative; background-color: white; border-bottom: 1px solid rgb(119, 119, 119); display: none;  " id="chattop" ></div>
+                <div id="chatiy" style=" display: none; width: 500px; height: 440px; position: relative; overflow-y: scroll; bottom: 555px;  left: 300px;"></div>
+                <img id="add_chat" class="button" src="Images/create chat.png" style="z-index: 5; position: relative; bottom: 20px; right: 90px; width: 55px; height: 55px;" alt="add_chat">
+                <div id="textarea" style=" cursor: text; border: 1px solid rgb(201, 201, 211); left: 305px;  border-radius: 14px; bottom: 616px; position: relative;  width: 450px;  display: none;">     
+                    <img id="uploadimagei" style="cursor: pointer; width: 18px;  display: inline-block; height: 20px; position: relative; left: 10px; top: 3px;" src="Images/image.png" alt="image">
+                    <input id="inputmessage" onkeypress="handleKeyPress(event)" style=" background-color: transparent; padding-left: 10px; border: none; display: inline-block;  outline: none;   width: 390px; height: 20px; line-height: 20px;" type="text"> 
+                    <img id="emojipicker" style="cursor: pointer; width: 18px; height: 20px; position: relative; left: 0px; top: 3px;" src="Images/emoji.png" alt="emoji picker">
+                </div>
+                <img id="send"  style="cursor: pointer; width: 20px; height: 20px; position: relative; left: 760px; bottom: 640.2px; display: none;" src="Images/send.png" alt="send message">
+            </div>
+        </div>
+        <input multiple accept="image/*" style="display: none;" type="file" id="uploadimagei">
+        <div id="uploadimagep" style="z-index: 6; width: 101.5625vw;height: 45.15625vw;background-color: rgba(0, 0, 0, 0.514);position: fixed;top: 0;display: none;justify-content: center;align-items: center;">
+            <div id="uploadmodel" style="width: 500px; height: 350px; border-radius: 24px; background-color: white;">
+                <div id="closeuploadimage" style="color: black; position: fixed; display: block;  margin-left: 460px;transform: rotate(45deg);font-weight: bold;font-size: 40px;cursor: pointer;">+</div>
+                <h1 style="text-align: center; font-family: Roboto; margin-top: 30px; ">Drag a picture here</h1>
+                <div id="droparea" class="upload" >
+                    <img style="margin-top: 10px; " src="Images/upload.png" alt="upload image"><br>
+                    <p id="uploadtext" style="margin-top: 10px;"></p>      
+                </div>
+                
+            </div>
+        </div>
+        <div id="addchat"  style="z-index: 6; width: 101.5625vw;height: 45.15625vw;background-color: rgba(0, 0, 0, 0.514);position: fixed;top: 0;display: none;justify-content: center;align-items: center;">
+            <div id="uploadmodel" style="width: 500px; height: 350px; border-radius: 24px; background-color: white;">
+                <div id="closeaddchat" style="color: black; position: fixed; display: block;  margin-left: 460px;transform: rotate(45deg);font-weight: bold;font-size: 40px;cursor: pointer;">+</div>
+                <h1 style="text-align: center; font-family: Roboto; margin-top: 30px; ">Create A Chat</h1>
+                <input id="namechat" placeholder="Enter a chat name" type="text" style="padding-left: 10px; line-height: 25px; width: 400px; border-radius: 5px; height: 30px; border: 1px solid black;  outline: none; margin-left: 50px;">
+                <div id="getsfriend" class="custom" style="display: inline-block;  width: 500px; margin-top: 15px; overflow-y: scroll; height: 150px; overflow-x: none;"></div>
+                <button id="createbutton" style="margin-left: 210px; position: relative; top: 3px; width: 90px; height: 50px; background-image: linear-gradient(rgb(255, 208, 0), orange); color: white; border-radius: 14px; border: none;">Create</button>
+            </div>
+        </div>
         </div>
     </div>
-    <div id="notwin" style="display: none;">
-        <div id="finished"  style="background-color: white; width: 350px; height: 400px; border-radius: 14px; margin-left: 450px; margin-top: 90px;">
-            <h1 style="padding-top: 30px; text-align: center; font-family: Arial, Helvetica, sans-serif;">
-                Congratulation!
-            </h1>
-            <p style="text-align: center; font-size: 20px; font-family: Arial, Helvetica, sans-serif; padding-top: 20px;">You Answered</p>
-            <h1 style="text-align: center; font-size: 55px; font-family: Arial, Helvetica, sans-serif;" id="score"></h1>
-            <p style="text-align: center; font-size: 20px; font-family: Arial, Helvetica, sans-serif;">Question(s)</p>
-            <button id="again" style="margin-left: 130px; margin-top: 20px; width: 120px; height: 60px; border-radius: 14px; border: none; border: 1px solid black;">Again</button>
-        </div>
-    </div>
-    
-    <audio id="audio1" src="audio/5 Minutes of Rain and Thunderstorm Sounds For Focus, Relaxing and Sleep ⛈️ Epidemic ASMR.mp3"></audio>
-    
 </body>
-
-<script>
-    
-    const start = document.getElementById("start")
-    
-    function writetext(stringi,message){
-        document.getElementById("words").innerText = ""
-        u = 1
-        message = setInterval(function(){ 
-            console.log(u, stringi)
-            if(u <= stringi.length){
-                document.getElementById("words").innerText = stringi.slice(0, u) 
-                u += 1
-            }else{
-                clearInterval(message)
-            }
-        }, 105);
-    }
-    function choice(one,two,right,not){
-        console.log("ze")
-        document.getElementById("write").style.paddingTop = "15px"
-        document.getElementById("choice1").style.display = "inline-block"
-        document.getElementById("choice2").style.display = "inline-block"
-        document.getElementById("choice1").innerText = one
-        document.getElementById("choice2").innerText = two
-        document.getElementById(right).addEventListener('click', function(){
-            correct += 1
-            current += 1
-            document.getElementById("write").style.paddingTop = "40px"
-            document.getElementById("choice1").style.display = "none"
-            document.getElementById("choice2").style.display = "none"
-            
-        });
-        document.getElementById(not).addEventListener('click', function(){
-            current += 1
-            document.getElementById("write").style.paddingTop = "40px"
-            document.getElementById("choice1").style.display = "none"
-            document.getElementById("choice2").style.display = "none"
-            
-        });
-    }
-    writetext("Hello and Welcome To The Tale Of A Dog.")
-    current = 0
-    correct = 0
-    
-                        
-                        
-
-                    
-
-
-    const next = document.getElementById("Next");
-    next.addEventListener('click', function(){
-        i = 0
-       nu = setInterval(() => {
-        if(i < 500){
-            next.style.color = "black"
-            next.style.backgroundColor = "black"
-            next.style.marginTop = 10 - 5*i + "px"
-            next.style.marginLeft = 550 - 1.25*i + "px"
-            next.style.width = 145 + 2.5*i + "px"
-            next.style.height = 73 + 1.25*i + "px"  
-        }else{
-            setTimeout(() => {
-                document.getElementById("instruction").style.display = "none" 
-                clearInterval(nu)
-                document.getElementById("body").style.backgroundColor = "black"
-                document.getElementById("body").style.backgroundImage = "none"
-                document.getElementById("write").style.marginTop = "0px"
-                document.getElementById("write").style.display = "block" 
-                document.getElementById("source").style.display = "block"
-                document.getElementById("audio1").volume = 0.3
-                document.getElementById("audio1").play()
-            }, 500);   
-        }
-        i += 1
-       }, 1);  
-    });
-    start.addEventListener('click', function(){
-        i = 0
-       hj = setInterval(() => {
-        if(i < 500){
-            start.style.color = "black"
-            start.style.backgroundColor = "black"
-            start.style.marginTop = 10 - 5*i + "px"
-            start.style.marginLeft = 550 - 1.25*i + "px"
-            start.style.width = 145 + 2.5*i + "px"
-            start.style.height = 73 + 1.25*i + "px"  
-        }else{
-            setTimeout(() => {
-                document.getElementById("write").style.display = "none"
-                document.getElementById("text").style.display = "none"
-                start.style.display = "none"
-                document.getElementById("begin").style.display = "none"
-                clearInterval(hj)
-                document.getElementById("instruction").style.display = "block"
-                
-               
-                document.getElementById("words").innerText= "A long time ago, in a land far, far away"
-                setTimeout(function(){
-                    
-                    document.getElementById("words").innerText = "In front of our house"
-                }, 7000)
-                setTimeout(function(){
-                    document.getElementById("words").innerText = " A dog was living out her last day. "
-                }, 10000)
-                setTimeout(function(){
-                    document.getElementById("words").innerText = " Or so they thought. "
-                }, 13000)
-                setTimeout(function(){
-                    document.getElementById("words").innerText = " But nobody knew the truth "
-                }, 16000)
-                setTimeout(function(){
-                    document.getElementById("words").innerText = " She wasn’t dead. "
-                }, 19000)
-                setTimeout(function(){
-                    document.getElementById("words").innerText = " She got carried away by the terrible storm that happened that night. "
-                }, 21000)
-                setTimeout(function(){
-                    document.getElementById("words").innerText = ""
-                    
-                    document.getElementById("write").style.paddingTop = "30px"
-                }, 26000)
-                setTimeout(function(){
-                    document.getElementById("source").src = "Images/2.png"
-                        
-                        document.getElementById("nextt").style.display = "none"
-                        document.getElementById("write").style.paddingTop = "40px"
-                        document.getElementById("words").innerText = "How might you think a dog would get carried away by a storm?"
-                }, 29000)
-               
-                        setTimeout(function(){
-                            document.getElementById("words").innerText = "That is because the dog had decided to use the umbrella she had found- "
-                        }, 32000)
-                        setTimeout(function(){
-                            document.getElementById("words").innerText = "perched up against the tree to protect herself against the wind. "
-                        }, 35000)
-                        setTimeout(function(){
-                            document.getElementById("words").innerText = " Shee didn’t know that the ____ storm "
-                            choice("Thunder", "Spageti", "choice1", "choice2")
-                        }, 38000)
-                        
-                         
-                        setTimeout(function(){
-                            document.getElementById("write").style.paddingTop = "40px"
-                            document.getElementById("choice1").style.display = "none"
-                            document.getElementById("choice2").style.display = "none"
-                            document.getElementById("source").src = "Images/3.png"
-                            document.getElementById("words").innerText = "was strong enough to carry her away.  "
-                        }, 43000)
-
-                        setTimeout(function(){
-                            document.getElementById("source").src = "Images/4.png"
-                            document.getElementById("words").innerText = "It hadn’t been long until the storm had left,  "
-                        }, 44000)
-                        
-                        setTimeout(function(){
-                            document.getElementById("words").innerText = "but unfortunately for the dog he was going with the storm. "
-                        }, 47000)
-                        setTimeout(function(){
-                            document.getElementById("words").innerText = "The dog felt herself going higher and higher when suddenly she was above the clouds.   "
-                        }, 50000)
-                        setTimeout(function(){
-                            document.getElementById("words").innerText = "Now this, my friends, is when this abnormal story becomes even crazier.   "
-                        }, 53000)
-                        setTimeout(function(){
-                            document.getElementById("words").innerText = ""
-                            
-                        }, 56000)
-                   
-                        setTimeout(function(){
-                            
-                            document.getElementById("words").innerText = "As the dog admires the beautiful view she feels something weird, something different. "
-                        }, 59000)
-
-                        setTimeout(function(){
-                            
-                            document.getElementById("words").innerText = "When she had finally descended below the clouds  "
-                        }, 62000)
-                        
-                        setTimeout(function(){
-                            document.getElementById("words").innerText = " she saw from the corner of his eye a cute puppy "
-                        }, 65000)
-                        setTimeout(function(){
-                            choice("Golden", "Black", "choice2", "choice1")
-                            document.getElementById("words").innerText = "with a beautiful ____ fur. "
-                        }, 68000)
-                        setTimeout(function(){
-                            choice("Beard", "Moustache", "choice2", "choice1")
-                            document.getElementById("words").innerText = " With what seems to be a _______ "
-                        }, 71000)
-                        setTimeout(function(){
-                            document.getElementById("source").src = "Images/1.png"
-                            document.getElementById("words").innerText = "It was so cute hiding with her mom from potential danger.  "
-                        }, 76000)
-                        setTimeout(function(){
-                            
-                            document.getElementById("words").innerText = "After that her vision became blurry and this scene faded away just as new started fading in.  "
-                        }, 81000)
-                        setTimeout(function(){
-                            
-                            document.getElementById("words").innerText = "This time the same black furred puppy was a bit older.  "
-                        }, 86000)
-                        setTimeout(function(){
-                            choice("Spring", "Winter", "choice1", "choice2")
-                            document.getElementById("words").innerText = "It was a beautiful ___ morning "
-                        }, 91000)
-                        setTimeout(function(){
-                            
-                            document.getElementById("words").innerText = "This time the puppy was not hiding "
-                        }, 96000)
-                        setTimeout(function(){
-                            
-                            document.getElementById("words").innerText = "but playing with the same humans she had previously been hiding from. "
-                        }, 101000)
-                        setTimeout(function(){
-                            choice("First", "Last", "choice1", "choice2")
-                            document.getElementById("words").innerText = "This puppy was the ____ to play with the humans.  "
-                        }, 104000)
-                        setTimeout(function(){
-                            
-                            document.getElementById("words").innerText = "What was not apparent in the last scene but is on this "
-                        }, 107000)
-                        setTimeout(function(){
-                            
-                            document.getElementById("words").innerText = " one are the other puppies hiding behind the mother. "
-                        }, 110000)
-                        setTimeout(function(){
-                            
-                            document.getElementById("words").innerText = " At this scene the dog started crying from the memories. "
-                        }, 113000)
-                        setTimeout(function(){
-                            
-                            document.getElementById("words").innerText = " This wasn’t any other puppy, it was her siblings. "
-                        }, 116000)
-                        setTimeout(function(){
-                            
-                            document.getElementById("words").innerText = " She hadn’t seen them since they left, "
-                        }, 119000)
-                        setTimeout(function(){
-                            
-                            document.getElementById("words").innerText = "  and the one playing with the humans was him. "
-                        }, 122000)
-                        setTimeout(function(){
-                            
-                            document.getElementById("words").innerText = "  Her as a puppy.  "
-                        }, 125000)
-
-                        setTimeout(function(){
-                            
-                            document.getElementById("words").innerText = "  Now here I ask you if you want to continue the story.  "
-                        }, 128000)
-                        setTimeout(function(){
-                            
-                            document.getElementById("words").innerText = "  think carefully about this question.  "
-                        }, 131000)
-                        setTimeout(function(){
-                            
-                            document.getElementById("words").innerText = "  Do you want this dog to continue crying as he is reminded of his childhood  "
-                        }, 134000)
-                        setTimeout(function(){
-                            
-                            document.getElementById("words").innerText = "  or do you want this dog to see other things  "
-                        }, 137000)
-
-                        setTimeout(function(){
-                            
-                            document.getElementById("words").innerText = "  things that will make her happy,   "
-                        }, 140000)
-                        setTimeout(function(){
-                            
-                            document.getElementById("words").innerText = "   like a million dog treats or as many beds as she could ever imagine.  "
-                        }, 143000)
-                        setTimeout(function(){
-                            
-                            document.getElementById("words").innerText = "   Think carefully, think carefully.   "
-                        }, 146000)
-                        setTimeout(function(){
-                            
-                            document.getElementById("words").innerText = "   Dear person, you choose to continue,   "
-                        }, 149000)
-
-                        setTimeout(function(){
-                            
-                            document.getElementById("words").innerText = "    let the dog be reminded of his childhood  "
-                        }, 152000)
-                        setTimeout(function(){
-                            
-                            document.getElementById("words").innerText = "   Was this the right decision. Did you do the right thing?    "
-                        }, 155000)
-                        setTimeout(function(){
-                            
-                            document.getElementById("words").innerText = "   Fortunately for you it seems like you did.   "
-                        }, 158000)
-                        setTimeout(function(){
-                            
-                            document.getElementById("words").innerText = "  This dog has more to learn than what meets the eye.    "
-                        }, 161000)
-                        setTimeout(function(){
-                            
-                            document.getElementById("words").innerText = "   The dog’s vision becomes blurry again as a new scene appears.  "
-                        }, 164000)
-                        setTimeout(function(){
-                            
-                            document.getElementById("words").innerText = "   This story is one the dog will never forget.   "
-                        }, 167000)
-                        setTimeout(function(){
-                            choice("People", "Dogs", "choice1", "choice2")
-                            document.getElementById("words").innerText = "    A group of  _____ have come.   "
-                        }, 170000)
-                        setTimeout(function(){
-                            
-                            document.getElementById("words").innerText = "    With guns in their hands.    "
-                        }, 173000)
-
-                        setTimeout(function(){
-                            
-                            document.getElementById("words").innerText = "    “Boom”   "
-                        }, 176000)
-                        setTimeout(function(){
-                            
-                            document.getElementById("words").innerText = "    A loud explosion goes off.    "
-                        }, 179000)
-                        setTimeout(function(){
-                            
-                            document.getElementById("words").innerText = "    The house nearby shakes, and horror falls in the neighborhood.    "
-                        }, 182000)
-                        setTimeout(function(){
-                            
-                            document.getElementById("words").innerText = "    Luckily for the dog. The dog we still haven’t named, was still alive.   "
-                        }, 185000)
-
-                        setTimeout(function(){
-                            
-                            document.getElementById("words").innerText = "    But unfortunately we can't say the same for another dog, or rather bark for another dog.    "
-                        }, 188000)
-                        setTimeout(function(){
-                            
-                            document.getElementById("words").innerText = "    The owners of that house were quick to realize what was happening   "
-                        }, 191000)
-                        setTimeout(function(){
-                            
-                            document.getElementById("words").innerText = "    and ran out to make sure they didn't shoot their beloved dog.   "
-                        }, 194000)
-                        setTimeout(function(){
-                            
-                            document.getElementById("words").innerText = "     As the dog continues to think about what she had just seen this vision like the other ones before had faded away.   "
-                        }, 197000)
-
-                        setTimeout(function(){
-                            
-                            document.getElementById("words").innerText = "     A new vision appears.    "
-                        }, 200000)
-                        setTimeout(function(){
-                            
-                            document.getElementById("words").innerText = "      But there was something different about this one.   "
-                        }, 203000)
-                        setTimeout(function(){
-                            
-                            document.getElementById("words").innerText = "     She didn’t remember it.     "
-                        }, 206000)
-                        setTimeout(function(){
-                            
-                            document.getElementById("words").innerText = "     As the dog continues to think about what she had just seen this vision like the other ones before had faded away.   "
-                        }, 209000)
-
-                        setTimeout(function(){
-                            
-                            document.getElementById("words").innerText = "     There she was sleeping under the storm when suddenly lightning struck her.    "
-                        }, 212000)
-                        setTimeout(function(){
-                            
-                            document.getElementById("words").innerText = "     What do you think will happen next reader?   "
-                        }, 215000)
-                        setTimeout(function(){
-                            
-                            document.getElementById("words").innerText = "     What happens to our poor little dog.    "
-                        }, 218000)
-                        setTimeout(function(){
-                            
-                            document.getElementById("words").innerText = "     As his final vision slowly fades out she learns what happened.    "
-                        }, 221000)
-                        setTimeout(function(){
-                            
-                            document.getElementById("words").innerText = "     She wasn’t flying with the storm but rather somewhere.   "
-                        }, 224000)
-                        setTimeout(function(){
-                            
-                            document.getElementById("words").innerText = "     Somewhere that reader I can’t describe, nobody can.   "
-                        }, 227000)
-                        setTimeout(function(){
-                            
-                            document.getElementById("words").innerText = "    I'm sorry to say but this is where the story ends.  "
-                        }, 230000)
-                        setTimeout(function(){
-                            
-                            document.getElementById("words").innerText = "      Nowhere.   "
-                        }, 233000)
-                        setTimeout(function(){
-                            
-                            document.getElementById("words").innerText = "     Nobody knows what happened next or if this creature was even a dog.   "
-                        }, 236000)
-                        setTimeout(function(){
-                            
-                            document.getElementById("words").innerText = "      As the screen fades like the vision of the dog you realize that this text doesn’t describe the life of a dog.   "
-                        }, 239000)
-                        setTimeout(function(){
-                            
-                            document.getElementById("words").innerText = "      But a tale of a mythic creature    "
-                        }, 242000)
-                        setTimeout(function(){
-                            
-                            if(correct == 5){
-                                document.getElementById("win").style.display = "block"
-                                document.getElementById("else").style.display = "none"
-                            }else{
-                                document.getElementById("notwin").style.display = "block"
-                                document.getElementById("else").style.display = "none"
-                                document.getElementById("score").innerText = correct
-                            }
-                        }, 245000)
-
-
-
-               
-                
-                
-
-                
-               
-                
-              
-            })
-        }
-
-        i += 1
-       }, 1); 
-    });
-</script>
+<script src="setuproject.js"></script>
+<script src="setupage.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/emoji-button@latest/dist/index.min.js"></script>
+<script src="goto.js"></script>
+<script src="dragandupload.js"></script>
+<script src="addmessage.js"></script>
+<script src="getchats.js"></script>
+<script src="send.js"></script>
+<script src="inrealtime.js"></script>
 </html>
